@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "simple-slack-af9e7": {
+      "hosting": {
+        "simple-slack": [
+          "simple-slack-af9e7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "simple-slack-af9e7"
+  }
+}
