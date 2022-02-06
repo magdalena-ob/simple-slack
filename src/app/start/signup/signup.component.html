@@ -3,11 +3,17 @@
 </button>
 
 <mat-card>
-    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input autocomplete="off" formControlName="displayName" type="text" matInput placeholder="Display Name">
+            </mat-form-field>
+        </p>
         <p>
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input autocomplete="off" formControlName="email" type="email" matInput placeholder="Email">
+                <input formControlName="email" type="email" matInput placeholder="Email">
             </mat-form-field>
         </p>
         <p>
@@ -20,6 +26,6 @@
             <span>{{ firebaseErrorMessage }}</span>
         </div>
 
-        <button mat-raised-button color="primary">Login</button>
+        <button mat-raised-button color="primary">Signup</button>
     </form>
 </mat-card>
