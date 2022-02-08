@@ -23,6 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './start/signup/signup.component';
+import { MainChatAreaComponent } from './main-page/dialog/main-chat-area/main-chat-area.component';
 
 
 
@@ -37,7 +38,8 @@ import { SignupComponent } from './start/signup/signup.component';
     ChannelComponent,
     DirectMessageComponent,
     ThreadComponent,
-    SignupComponent
+    SignupComponent,
+    MainChatAreaComponent
   ],
   imports: [
     BrowserModule,
