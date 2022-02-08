@@ -24,6 +24,9 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './start/signup/signup.component';
 import { MainChatAreaComponent } from './main-page/dialog/main-chat-area/main-chat-area.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -55,6 +58,9 @@ import { MainChatAreaComponent } from './main-page/dialog/main-chat-area/main-ch
     MatButtonModule,
     MatCardModule,
     MatInputModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
     
     FormsModule,
     ReactiveFormsModule

@@ -1,7 +1,26 @@
-<p>main-page works!</p>
+<mat-toolbar class="header">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Simple Slack</span>
+    <span class="example-spacer"></span>
 
-<br>
+</mat-toolbar>
 
-<button mat-raised-button color="primary" routerLink="">
-    Home
-</button>
+<mat-drawer-container class="main-container">
+    <mat-drawer class="sidenav" mode="side" [opened]="true">
+        <button mat-raised-button color="primary" routerLink="">
+            Home
+        </button>
+        <ul class="menu-items">
+            <li routerLink="/thread">Threads</li>
+            <li routerLink="/channel">Channels</li>
+            <li routerLink="/direct-message">Direktnachrichten</li>
+        </ul>
+    </mat-drawer>
+ 
+
+    <div class="router-container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

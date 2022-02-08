@@ -1,0 +1,29 @@
+.main-container {
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.sidenav {
+    width: 300px;
+    background-color: #481449;
+    color: white;
+    margin-top: 56px;
+  
+}
+
+.menu-items {
+   list-style-type: none;
+}
+
+mat-toolbar {
+    background-color: #330e34;
+}
+
+.header {
+    color: white;
+    height: 56px;
+    width: 100vw;
+}
+
