@@ -8,13 +8,15 @@
 
 <mat-drawer-container class="main-container">
     <mat-drawer class="sidenav" mode="side" [opened]="true">
-        <button mat-raised-button color="primary" routerLink="">
-            Home
-        </button>
+        <div class="title-navigation">
+            <button mat-button routerLink="">
+                <mat-icon>home</mat-icon>
+            </button>
+        </div>
         <ul class="menu-items">
-            <li routerLink="/thread">Threads</li>
-            <li routerLink="/channel">Channels</li>
-            <li routerLink="/direct-message">Direktnachrichten</li>
+            <li routerLink="/thread"><mat-icon class="chat-icon">chat</mat-icon>Threads</li>
+            <li routerLink="/channel"><mat-icon>arrow_drop_down</mat-icon>Channels <mat-icon class="add-icon">add</mat-icon></li>
+            <li routerLink="/direct-message"><mat-icon>arrow_drop_down</mat-icon>Direktnachrichten <mat-icon class="add-icon">add</mat-icon></li>
         </ul>
     </mat-drawer>
  
@@ -22,4 +24,12 @@
     <div class="router-container">
         <router-outlet></router-outlet>
     </div>
+    <mat-drawer class="thread-container" mode="side" position="end" [opened]="true">
+        <div class="title-container">
+            <b>Thread</b> 
+            <button type="button" mat-button class="close-btn">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-drawer>
 </mat-drawer-container>
