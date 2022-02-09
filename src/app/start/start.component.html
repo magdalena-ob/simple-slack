@@ -1,24 +1,30 @@
-<p>start works!</p>
-<button mat-raised-button color="primary" routerLink="/signup">
-    Signup
-</button>
+<div class="header">Sign in to Simple-Slack</div>
 
-<button mat-raised-button color="primary" routerLink="/login">
-    Login
-</button>
 
-<button mat-raised-button color="primary" routerLink="/main-page">
-    Dashboard
-</button>
-
-<div *ngIf="(afAuth.user | async)">
-    User is logged in
-
-    <br>
-    <button mat-raised-button color="primary" (click)="logout()">
-        Log out
+<div class="column-center">
+    <button mat-raised-button color="primary" routerLink="/login">
+        Login
     </button>
+
+    <button mat-raised-button color="primary" routerLink="/signup">
+        Signup
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/main-page">
+        Dashboard
+    </button>
+
+
+    <div class="column-center" *ngIf="(afAuth.user | async)">
+        User is logged in
+    
+        <br>
+        <button mat-raised-button color="primary" (click)="logout()">
+            Log out
+        </button>
+    </div>
+    <div *ngIf="!(afAuth.user | async)">
+        User is not logged in
+    </div>
 </div>
-<div *ngIf="!(afAuth.user | async)">
-    User is not logged in
-</div>
+

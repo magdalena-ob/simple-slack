@@ -10,13 +10,29 @@ import { SignupComponent } from './start/signup/signup.component';
 import { StartComponent } from './start/start.component';
 
 const routes: Routes = [
-  {path:'',component:StartComponent},
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
-  {path:'main-page',component:MainPageComponent, canActivate: [AuthGuard]},
-  {path: 'channel', component:ChannelComponent}, 
-  {path: 'direct-message', component:DirectMessageComponent},
-  {path: 'thread', component:ThreadComponent}
+  { path: '', component: StartComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  {
+    path: 'main-page', component: MainPageComponent, canActivate: [AuthGuard],
+    children: [
+      {
+        path:'thread',
+        component: ThreadComponent
+      },
+      {
+        path:'channel',
+        component: ChannelComponent
+      },
+      {
+        path:'directmessage',
+        component: DirectMessageComponent
+      },
+    ]
+  },
+  { path: 'channel', component: ChannelComponent },
+  { path: 'direct-message', component: DirectMessageComponent },
+  { path: 'thread', component: ThreadComponent }
 ];
 
 @NgModule({
