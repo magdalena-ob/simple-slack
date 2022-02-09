@@ -1,0 +1,20 @@
+
+.thread-container {
+    width: 100%;
+}
+
+.title-container {
+    min-height: 56px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.close-btn {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    padding: 0 !important;
+}
