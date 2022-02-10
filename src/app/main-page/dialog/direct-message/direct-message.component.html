@@ -2,17 +2,21 @@
 
 <mat-drawer class="thread-container" mode="side" position="end" [opened]="true">
     <div class="title-container">
-        <b>#allgemein</b>
+        <b>#allgemein (Chat-Name)</b>
         <button type="button" mat-button class="close-btn">
             <mat-icon>close</mat-icon>
         </button>
     </div>
     <div class="title-container">
-        <b>Hallo</b>
+        Channel Lesezeichen hinzufügen
         <button type="button" mat-button class="close-btn">
             <mat-icon>close</mat-icon>
         </button>
-        <li routerLink="message_box">Nachrichten-Box</li>
+        <li routerLink="message_box">Nachrichten-Box öffnen</li>
+    </div>
+
+    <div class="message-destination-area">
+        Zielort der Nachrichten
     </div>
 
     <mat-card class="message-box">
