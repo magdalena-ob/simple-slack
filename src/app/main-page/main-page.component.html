@@ -14,20 +14,31 @@
             </button>
         </div>
         <ul class="menu-items">
-            <li (click)="drawer.toggle()"><mat-icon class="chat-icon">chat</mat-icon>Threads</li>
+            <li (click)="drawer.toggle()">
+                <mat-icon class="chat-icon">chat</mat-icon>Threads
+            </li>
             <li routerLink="channel">
-                <mat-icon>arrow_drop_down</mat-icon>Channels <mat-icon matTooltip="Channels hinzufügen" matTooltipPosition="above" class="add-icon">add</mat-icon></li>
-            <li routerLink="directmessage"><mat-icon>arrow_drop_down</mat-icon>Direktnachrichten <mat-icon class="add-icon">add</mat-icon></li>
+                <mat-icon>arrow_drop_down</mat-icon>Channels <mat-icon matTooltip="Channels hinzufügen"
+                    matTooltipPosition="above" class="add-icon" [matMenuTriggerFor]="menu1">add</mat-icon>
+            </li>
+            <li routerLink="directmessage">
+                <mat-icon>arrow_drop_down</mat-icon>Direktnachrichten <mat-icon class="add-icon">add</mat-icon>
+            </li>
         </ul>
+
+        <mat-menu #menu1="matMenu">
+            <button mat-menu-item>Channels durchsuchen</button>
+            <button mat-menu-item>Channels erstellen</button>
+          </mat-menu>
     </mat-drawer>
- 
+
 
     <div class="router-container">
         <router-outlet></router-outlet>
     </div>
     <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
         <div class="title-container">
-            <b>Thread</b> 
+            <b>Thread</b>
             <button type="button" mat-button class="close-btn" (click)="drawer.toggle()">
                 <mat-icon>close</mat-icon>
             </button>
