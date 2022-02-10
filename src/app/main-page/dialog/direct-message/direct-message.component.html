@@ -12,6 +12,7 @@
         <button type="button" mat-button class="close-btn">
             <mat-icon>close</mat-icon>
         </button>
+        <li routerLink="message_box">Nachrichten-Box</li>
     </div>
 
     <mat-card class="message-box">
@@ -21,16 +22,19 @@
         <div>
             <mat-form-field appearance="fill" class="text-area">
                 <mat-label>Nachrichten senden an #allgemein</mat-label>
-                <textarea matInput
-                          cdkTextareaAutosize
-                          #autosize="cdkTextareaAutosize"
-                          cdkAutosizeMinRows="1"
-                          cdkAutosizeMaxRows="5"></textarea>
-              </mat-form-field>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
         </div>
         <div class="text-design-function-area">
             Zusatzfunktionen und Senden-Button
+            <mat-icon>send</mat-icon>
         </div>
-
     </mat-card>
+
+    <mat-drawer-container class="main-container">
+        <div class="router-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-container>
 </mat-drawer>

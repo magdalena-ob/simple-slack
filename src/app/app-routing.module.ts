@@ -29,7 +29,7 @@ const routes: Routes = [
         path:'directmessage',
         component: DirectMessageComponent
       },
-      { path: 'message-box',
+      { path: 'message_box',
         component: MessageBoxComponent
       }
     ]
