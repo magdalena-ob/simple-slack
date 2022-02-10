@@ -27,6 +27,7 @@ import { MainChatAreaComponent } from './main-page/dialog/main-chat-area/main-ch
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.component';
 
 
 
@@ -42,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     DirectMessageComponent,
     ThreadComponent,
     SignupComponent,
-    MainChatAreaComponent
+    MainChatAreaComponent,
+    MessageBoxComponent
   ],
   imports: [
     BrowserModule,
