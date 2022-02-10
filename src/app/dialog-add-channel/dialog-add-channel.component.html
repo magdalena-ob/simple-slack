@@ -1,16 +1,31 @@
-<h1 mat-dialog-title>Channels erstellen</h1>
-<div mat-dialog-content>Hier können themenbezogene Channels erstellt werden, um die Kommunikation mit deinem Team zu erleichtern.</div>
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Name des Channels</mat-label>
-        <input matInput placeholder="z.B. Marketing">
-    </mat-form-field>
+<div class="add-channel-container">
+    <h1 mat-dialog-title><b>Channels erstellen</b></h1>
+    <div mat-dialog-content class="color-gr">
+        Hier können themenbezogene Channels erstellt werden, um die Kommunikation mit deinem Team zu
+        erleichtern.
+    </div>
+    <div class="form-container">
+        <div>
+            <div>
+                <b>Name</b>
+            </div>
+            <mat-form-field class="with-100" appearance="outline">
+                <mat-label>Name des Channels</mat-label>
+                <input matInput placeholder="z.B. Marketing">
+            </mat-form-field>
+        </div>
+        <div>
+            <div>
+                <b>Beschreibung</b> (optional)
+            </div>
+            <mat-form-field class="with-100" appearance="outline">
+                <mat-label>Beschreibung</mat-label>
+                <input matInput placeholder="Beschreibung">
+                <mat-hint>Worum geht es in diesem Channel?</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="btn-container">
+        <button mat-raised-button class="create-btn">Erstellen</button>
+    </div>
 </div>
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Beschreibung</mat-label>
-        <input matInput placeholder="Beschreibung">
-        <mat-hint>Worum geht es in diesem Channel?</mat-hint>
-    </mat-form-field>
-</div>
-<button mat-raised-button>Erstellen</button>
