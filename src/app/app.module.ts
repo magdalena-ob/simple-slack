@@ -33,7 +33,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogSearchCahnnelComponent } from './dialog-search-cahnnel/dialog-search-cahnnel.component';
+import { DialogSearchChannelComponent } from './dialog-search-channel/dialog-search-channel.component';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { DialogSearchCahnnelComponent } from './dialog-search-cahnnel/dialog-sea
     MainChatAreaComponent,
     MessageBoxComponent,
     DialogAddChannelComponent,
-    DialogSearchCahnnelComponent
+    DialogSearchChannelComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
-import { DialogSearchCahnnelComponent } from '../dialog-search-cahnnel/dialog-search-cahnnel.component';
+import { DialogSearchChannelComponent } from '../dialog-search-channel/dialog-search-channel.component';
 
 @Component({
   selector: 'app-main-page',
@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit {
   }
 
   openSearchChannel() {
-    this.dialog.open(DialogSearchCahnnelComponent);
+    this.dialog.open(DialogSearchChannelComponent);
   }
 
 }
