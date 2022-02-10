@@ -28,7 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.component';
-
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 
 @NgModule({
@@ -65,7 +65,8 @@ import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.
     MatIconModule,
     
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

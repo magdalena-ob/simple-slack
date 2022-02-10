@@ -2,13 +2,13 @@
 
 <mat-drawer class="thread-container" mode="side" position="end" [opened]="true">
     <div class="title-container">
-        <b>#allgemein</b> 
+        <b>#allgemein</b>
         <button type="button" mat-button class="close-btn">
             <mat-icon>close</mat-icon>
         </button>
     </div>
     <div class="title-container">
-        <b>Hallo</b> 
+        <b>Hallo</b>
         <button type="button" mat-button class="close-btn">
             <mat-icon>close</mat-icon>
         </button>
@@ -16,13 +16,21 @@
 
     <mat-card class="message-box">
         <div class="text-design-function-area">
-
+            Text-Design-Funktionen
         </div>
         <div>
-            Hallo
+            <mat-form-field appearance="fill" class="text-area">
+                <mat-label>Nachrichten senden an #allgemein</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="text-design-function-area">
+            Zusatzfunktionen und Senden-Button
         </div>
 
     </mat-card>
 </mat-drawer>
-
-
