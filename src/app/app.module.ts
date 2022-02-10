@@ -18,9 +18,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './start/signup/signup.component';
 import { MainChatAreaComponent } from './main-page/dialog/main-chat-area/main-chat-area.component';
@@ -31,6 +31,9 @@ import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogSearchCahnnelComponent } from './dialog-search-cahnnel/dialog-search-cahnnel.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { MatMenuModule } from '@angular/material/menu';
     ThreadComponent,
     SignupComponent,
     MainChatAreaComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    DialogAddChannelComponent,
+    DialogSearchCahnnelComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,8 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     ReactiveFormsModule,
     TextFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

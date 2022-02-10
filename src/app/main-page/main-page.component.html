@@ -27,8 +27,8 @@
         </ul>
 
         <mat-menu #menu1="matMenu">
-            <button mat-menu-item>Channels durchsuchen</button>
-            <button mat-menu-item>Channels erstellen</button>
+            <button mat-menu-item (click)="openSearchChannel()">Channels durchsuchen</button>
+            <button mat-menu-item (click)="openAddChannel()">Channels erstellen</button>
           </mat-menu>
     </mat-drawer>
 
