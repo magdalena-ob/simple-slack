@@ -34,6 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSearchChannelComponent } from './dialog-search-channel/dialog-search-channel.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { DialogSearchChannelComponent } from './dialog-search-channel/dialog-sea
     ReactiveFormsModule,
     TextFieldModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
