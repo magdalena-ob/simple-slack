@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChannelComponent } from './main-page/dialog/channel/channel.component';
+import { DirectMessageAddComponent } from './main-page/dialog/direct-message-add/direct-message-add.component';
 import { DirectMessageComponent } from './main-page/dialog/direct-message/direct-message.component';
 import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.component';
 import { ThreadComponent } from './main-page/dialog/thread/thread.component';
@@ -28,6 +29,9 @@ const routes: Routes = [
       {
         path:'directmessage',
         component: DirectMessageComponent
+      },
+      { path: 'directmessageadd',
+        component: DirectMessageAddComponent
       },
       { path: 'message_box',
         component: MessageBoxComponent

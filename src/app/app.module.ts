@@ -35,6 +35,14 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSearchChannelComponent } from './dialog-search-channel/dialog-search-channel.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DirectMessageAddComponent } from './main-page/dialog/direct-message-add/direct-message-add.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { MultiselectAutocompleteComponent } from './main-page/multiselect-autocomplete/multiselect-autocomplete.component';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -53,6 +61,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MessageBoxComponent,
     DialogAddChannelComponent,
     DialogSearchChannelComponent,
+    DirectMessageAddComponent,
+    MultiselectAutocompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +87,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     TextFieldModule,
     MatMenuModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMatSelectSearchModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

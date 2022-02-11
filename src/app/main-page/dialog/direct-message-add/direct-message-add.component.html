@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <mat-card class="card-wrapper">
+      <multiselect-autocomplete
+        placeholder="Select Items Here ..."
+        key="options"
+        [data]="selectOptions"
+        (result)="selectChange($event)">
+      </multiselect-autocomplete>
+    </mat-card>
+  
+    <mat-card class="card-wrapper answers">
+      <ng-container *ngIf="cardValue.options.length === 0">
+        No Selected Options
+      </ng-container>
+      <ng-container *ngIf="cardValue.options.length > 0">
+        <div *ngFor="let option of cardValue.options">
+          {{ option }}
+        </div>
+      </ng-container>
+    </mat-card>
+  </div>

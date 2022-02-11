@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "firebase": "^9.4.0",
+    "ng-multiselect-dropdown": "^0.3.8",
+    "ngx-mat-select-search": "^4.0.2",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
