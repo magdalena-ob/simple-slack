@@ -50,3 +50,27 @@
 .message-destination-area {
     margin: 16px;
 }
+
+
+
+.icon-button {
+    width: 60px;
+    height: 32px;
+    background-color: #e9e9e9;
+
+    mat-icon {
+        font-size: 20px !important;
+    }
+
+    &:hover {
+        background-color: white;
+    }
+}
+
+.send-icon-button {
+    width: 60px;
+    height: 32px;
+    mat-icon {
+        font-size: 20px !important;
+    }
+}
