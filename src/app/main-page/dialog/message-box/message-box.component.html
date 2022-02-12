@@ -2,15 +2,25 @@
 <mat-card class="message-box">
     <div class="text-design-function-area">
         Text-Design-Funktionen
+        <button mat-flat-button color="none" class="icon-button">
+            <mat-icon>code</mat-icon>
+        </button>
     </div>
     <div>
         <mat-form-field appearance="fill" class="text-area">
             <mat-label>Nachrichten senden an #allgemein</mat-label>
             <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5"></textarea>
+                cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
     </div>
     <div class="text-design-function-area">
         Zusatzfunktionen und Senden-Button
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="primary" class="send-icon-button">
+            <mat-icon>send</mat-icon>
+        </button>
+
     </div>
 </mat-card>
