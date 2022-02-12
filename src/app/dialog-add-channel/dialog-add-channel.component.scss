@@ -6,7 +6,6 @@
     margin-top: 16px;
 }
 
-
 .btn-container {
     display: flex;
     justify-content: flex-end;
@@ -15,4 +14,29 @@
 .create-btn {
     background-color: #209c20;
     color: white;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #481449 !important;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    /*change color of outline when focused*/
+    color:#481449 !important;
+}
+
+.pos-relativ {
+    position: relative;
+}
+
+.value-pos {
+    padding-left: 32px;
+}
+
+.fixed-value {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 18px;
 }
