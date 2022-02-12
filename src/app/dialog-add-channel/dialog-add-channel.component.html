@@ -9,9 +9,10 @@
             <div>
                 <b>Name</b>
             </div>
-            <mat-form-field class="with-100" appearance="outline">
-                <mat-label>Name des Channels</mat-label>
-                <input matInput placeholder="z.B. Marketing">
+            <mat-form-field class="with-100 pos-relativ" appearance="outline">
+                <!--<mat-label>Name des Channels</mat-label>-->
+                <input class="value-pos" matInput placeholder="z.B. Marketing">
+                <label class="fixed-value color-gr">#</label>
             </mat-form-field>
         </div>
         <div>
@@ -19,8 +20,8 @@
                 <b>Beschreibung</b> (optional)
             </div>
             <mat-form-field class="with-100" appearance="outline">
-                <mat-label>Beschreibung</mat-label>
-                <input matInput placeholder="Beschreibung">
+                <!--<mat-label>Beschreibung</mat-label>-->
+                <input matInput>
                 <mat-hint>Worum geht es in diesem Channel?</mat-hint>
             </mat-form-field>
         </div>
