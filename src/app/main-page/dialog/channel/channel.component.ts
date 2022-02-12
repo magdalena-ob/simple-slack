@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Channel } from 'src/models/channel.class';
 
 @Component({
   selector: 'app-channel',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./channel.component.scss']
 })
 export class ChannelComponent implements OnInit {
+
+  channel = new Channel();
 
   constructor() { }
 

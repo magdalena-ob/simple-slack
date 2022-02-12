@@ -39,6 +39,7 @@ import { DirectMessageAddComponent } from './main-page/dialog/direct-message-add
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatSelectModule } from '@angular/material/select';
 import { MultiselectAutocompleteComponent } from './main-page/multiselect-autocomplete/multiselect-autocomplete.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -89,6 +90,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
+    AngularFirestoreModule,
     MatSelectModule,
     MatAutocompleteModule,
     MatChipsModule,

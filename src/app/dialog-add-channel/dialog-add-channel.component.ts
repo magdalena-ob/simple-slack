@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Channel } from 'src/models/channel.class';
 
 @Component({
   selector: 'app-dialog-add-channel',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogAddChannelComponent implements OnInit {
 
-  constructor() { }
+  channel = new Channel();
+
+  constructor( private firestore:AngularFirestore) { }
 
   ngOnInit(): void {
+  }
+
+  saveChannel() {
+    this.firestore
+      .collection('channels')
+      .add(this.channel.toJSON())
+      .then((result:any) =>{
+        console.log('finished adding channel' , result);
+      });
   }
 
 }
