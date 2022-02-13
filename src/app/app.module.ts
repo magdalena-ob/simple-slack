@@ -33,7 +33,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogSearchChannelComponent } from './dialog-search-channel/dialog-search-channel.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DirectMessageAddComponent } from './main-page/dialog/direct-message-add/direct-message-add.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -46,6 +45,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-file.component';
+import { SearchChannelComponent } from './search-channel/search-channel.component';
 
 
 @NgModule({
@@ -63,10 +63,10 @@ import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-fi
     MainChatAreaComponent,
     MessageBoxComponent,
     DialogAddChannelComponent,
-    DialogSearchChannelComponent,
     DirectMessageAddComponent,
     MultiselectAutocompleteComponent,
     DialogUploadFileComponent,
+    SearchChannelComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { DirectMessageComponent } from './main-page/dialog/direct-message/direct
 import { MessageBoxComponent } from './main-page/dialog/message-box/message-box.component';
 import { ThreadComponent } from './main-page/dialog/thread/thread.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { SearchChannelComponent } from './search-channel/search-channel.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './start/login/login.component';
 import { SignupComponent } from './start/signup/signup.component';
@@ -35,6 +36,10 @@ const routes: Routes = [
       },
       { path: 'message_box',
         component: MessageBoxComponent
+      },
+      {
+        path:'search_channel',
+        component: SearchChannelComponent
       }
     ]
   },
