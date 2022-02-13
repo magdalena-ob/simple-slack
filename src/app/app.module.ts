@@ -45,6 +45,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-file.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     DialogSearchChannelComponent,
     DirectMessageAddComponent,
     MultiselectAutocompleteComponent,
+    DialogUploadFileComponent,
   ],
   imports: [
     BrowserModule,

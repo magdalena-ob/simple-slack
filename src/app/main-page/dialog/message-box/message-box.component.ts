@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogUploadFileComponent } from 'src/app/dialog-upload-file/dialog-upload-file.component';
 
 @Component({
   selector: 'app-message-box',
@@ -11,9 +13,13 @@ export class MessageBoxComponent implements OnInit {
   status = 'Enable';
   
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    this.dialog.open(DialogUploadFileComponent);
   }
 
   toSendMessage() {
