@@ -17,7 +17,7 @@ export class DirectMessageAddComponent implements OnInit {
   };
 
   selectOptions: Array<string> = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
+    'a', '2', '3', '4', '5', '6', '7', '8', '9', '10'
   ];
 
   selectChange = (event: any) => {

@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+import { User } from 'src/models/user.class';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  user = new User();
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
 
-    constructor(private router: Router, private afAuth: AngularFireAuth) {
+    constructor(private router: Router, private afAuth: AngularFireAuth, private firestore:AngularFirestore) {
         this.userLoggedIn = false;
 
         this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
@@ -49,4 +52,5 @@ export class AuthService {
                     return { isValid: false, message: error.message };
             });
     }
+    
 }
