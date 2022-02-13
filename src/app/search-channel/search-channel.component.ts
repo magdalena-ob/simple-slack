@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 
 @Component({
   selector: 'app-search-channel',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchChannelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openAddChannel() {
+    this.dialog.open(DialogAddChannelComponent);
   }
 
 }
