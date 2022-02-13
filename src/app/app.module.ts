@@ -46,6 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-file.component';
 import { SearchChannelComponent } from './search-channel/search-channel.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 
@@ -101,6 +102,16 @@ import { MatListModule } from '@angular/material/list';
     MatChipsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCo6_rX447wTFQ6WzoAxtdgp4l-NlRd5qE",
+      authDomain: "simple-slack-af9e7.firebaseapp.com",
+      //databaseURL
+      projectId: "simple-slack-af9e7",
+      storageBucket: "simple-slack-af9e7.appspot.com",
+      messagingSenderId: "116022411182",
+      appId: "1:116022411182:web:7e3693e4ddb3338d46523f"
+    }),
     MatDividerModule,
     MatListModule
   ],

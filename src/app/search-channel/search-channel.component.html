@@ -5,17 +5,23 @@
 <div class="search">
     <mat-form-field class="with-100 pos-relativ" appearance="outline">
         <input class="value-pos" matInput placeholder="Nach Channel-Name suchen">
-        <label class="fixed-value color-gr"><mat-icon>search</mat-icon></label>
+        <label class="fixed-value color-gr">
+            <mat-icon>search</mat-icon>
+        </label>
     </mat-form-field>
 </div>
 <div class="all-channels">
-    <mat-list>
-        <mat-list-item>Item 1</mat-list-item>
+    <mat-list *ngFor="let channel of allChannels">
+        <mat-list-item>
+           <div class="channel-name">
+            <b># {{ channel.category }}</b>
+           </div> 
+           <div class="channel-description color-gr">
+            {{ channel.description }}
+           </div>
+        </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Item 2</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 3</mat-list-item>
-      </mat-list>
+    </mat-list>
 </div>
 <div class="create-btn-center">
     <button mat-raised-button class="create-btn" (click)="openAddChannel()">Channel erstellen</button>

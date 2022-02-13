@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-dialog-upload-file',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogUploadFileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firestore:AngularFireStorage) {
+    
+  }
+
+  path!: String;
 
   ngOnInit(): void {
+  }
+
+  upload($event: any) {
+    this.path = $event.target.files[0];
+  }
+
+  uploadImage() {
+    console.log(this.path);
+    this.firestore.upload("/files"+Math.random()+this.path, this.path);
   }
 
 }
