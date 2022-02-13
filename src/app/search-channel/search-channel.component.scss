@@ -1,0 +1,25 @@
+.header-search-channel {
+    position: relative;
+   /* padding-top: 16px;
+    padding-left: 16px;*/
+}
+
+.create-btn-top {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    line-height: 24px !important;
+}
+
+.create-btn-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: smaller;
+}
+
+.create-btn {
+    background-color: #209c20;
+    color: white;
+}
+
