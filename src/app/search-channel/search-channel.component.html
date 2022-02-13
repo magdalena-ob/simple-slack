@@ -2,8 +2,20 @@
     <b>Channel-Browser</b>
     <button mat-stroked-button class="create-btn-top" (click)="openAddChannel()">Channel erstellen</button>
 </div>
+<div class="search">
+    <mat-form-field class="with-100 pos-relativ" appearance="outline">
+        <input class="value-pos" matInput placeholder="Nach Channel-Name suchen">
+        <label class="fixed-value color-gr"><mat-icon>search</mat-icon></label>
+    </mat-form-field>
+</div>
 <div class="all-channels">
-
+    <mat-list>
+        <mat-list-item>Item 1</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 2</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 3</mat-list-item>
+      </mat-list>
 </div>
 <div class="create-btn-center">
     <button mat-raised-button class="create-btn" (click)="openAddChannel()">Channel erstellen</button>

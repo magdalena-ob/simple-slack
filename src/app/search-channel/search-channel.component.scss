@@ -1,7 +1,6 @@
 .header-search-channel {
     position: relative;
-   /* padding-top: 16px;
-    padding-left: 16px;*/
+  
 }
 
 .create-btn-top {
@@ -23,3 +22,27 @@
     color: white;
 }
 
+.search {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.pos-relativ {
+    position: relative;
+}
+
+.value-pos {
+    padding-left: 32px;
+}
+
+.fixed-value {
+    position: absolute;
+    top: 8px;
+    left: 0px;
+}
+
+.all-channels {
+    padding-left: 16px;
+    padding-right: 16px;
+}

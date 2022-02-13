@@ -46,6 +46,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-file.component';
 import { SearchChannelComponent } from './search-channel/search-channel.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -98,7 +100,9 @@ import { SearchChannelComponent } from './search-channel/search-channel.componen
     MatAutocompleteModule,
     MatChipsModule,
     MatCheckboxModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
