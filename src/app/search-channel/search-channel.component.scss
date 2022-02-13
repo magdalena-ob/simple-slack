@@ -46,3 +46,13 @@
     padding-left: 16px;
     padding-right: 16px;
 }
+
+::ng-deep.mat-list-item-content {
+    display: flex;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+.channel-description {
+    font-size: 14px;
+}
