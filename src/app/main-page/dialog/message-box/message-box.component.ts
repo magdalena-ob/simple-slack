@@ -15,7 +15,9 @@ export class MessageBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  toSendMessage() {
+    
+  }
 
   enableDisableRule() {
     this.toggle = !this.toggle;

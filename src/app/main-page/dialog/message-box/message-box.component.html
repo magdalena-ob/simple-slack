@@ -19,10 +19,8 @@
     </div>
     <div class="text-design-function-area">
         Zusatzfunktionen und Senden-Button
-        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
-            <mat-icon>send</mat-icon>
-        </button>
-        <button mat-flat-button color="primary" class="send-icon-button">
+        <button mat-flat-button class="send-icon-button"(click)="toSendMessage()" 
+        > <!--color="primary" -->
             <mat-icon>send</mat-icon>
         </button>
 
