@@ -13,7 +13,7 @@
     <div>
         <mat-form-field appearance="fill" class="text-area">
             <mat-label>Nachrichten senden an #allgemein</mat-label>
-            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            <textarea #message required minlength="1" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
     </div>

@@ -9,6 +9,7 @@ export class MessageBoxComponent implements OnInit {
 
   toggle = true;
   status = 'Enable';
+  
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class MessageBoxComponent implements OnInit {
   }
 
   toSendMessage() {
-    
+
   }
 
   enableDisableRule() {
