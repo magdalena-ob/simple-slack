@@ -10,8 +10,14 @@
         </label>
     </mat-form-field>
 </div>
+<div class="pad-16">
+    <div class="amount color-gr">
+        {{ allChannels.length }} Channels
+    </div>
+    <mat-divider></mat-divider>
+</div>
 <div class="all-channels">
-    <mat-list *ngFor="let channel of allChannels">
+    <mat-list *ngFor="let channel of allChannels; let lastItem = last">
         <mat-list-item>
            <div class="channel-name">
             <b># {{ channel.category }}</b>
@@ -20,7 +26,7 @@
             {{ channel.description }}
            </div>
         </mat-list-item>
-        <mat-divider></mat-divider>
+        <mat-divider *ngIf="!lastItem"></mat-divider>
     </mat-list>
 </div>
 <div class="create-btn-center">

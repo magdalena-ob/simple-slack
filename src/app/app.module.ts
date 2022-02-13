@@ -46,12 +46,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DialogUploadFileComponent } from './dialog-upload-file/dialog-upload-file.component';
 import { SearchChannelComponent } from './search-channel/search-channel.component';
-<<<<<<< HEAD
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-=======
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
->>>>>>> 050aabc9afe748eced92d67555a2ff883192f691
 
 
 @NgModule({
@@ -105,7 +102,6 @@ import { MatListModule } from '@angular/material/list';
     MatChipsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-<<<<<<< HEAD
     AngularFireStorageModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCo6_rX447wTFQ6WzoAxtdgp4l-NlRd5qE",
@@ -115,11 +111,9 @@ import { MatListModule } from '@angular/material/list';
       storageBucket: "simple-slack-af9e7.appspot.com",
       messagingSenderId: "116022411182",
       appId: "1:116022411182:web:7e3693e4ddb3338d46523f"
-    })
-=======
+    }),
     MatDividerModule,
     MatListModule
->>>>>>> 050aabc9afe748eced92d67555a2ff883192f691
   ],
   providers: [],
   bootstrap: [AppComponent]
