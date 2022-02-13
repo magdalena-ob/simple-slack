@@ -11,7 +11,6 @@ export class MessageBoxComponent implements OnInit {
 
   toggle = true;
   status = 'Enable';
-  
 
   constructor(public dialog: MatDialog) { }
 
@@ -23,7 +22,7 @@ export class MessageBoxComponent implements OnInit {
   }
 
   toSendMessage() {
-
+    console.log('gesendet');
   }
 
   enableDisableRule() {
