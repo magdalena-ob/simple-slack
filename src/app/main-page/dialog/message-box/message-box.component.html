@@ -2,9 +2,13 @@
 <mat-card class="message-box">
     <div class="text-design-function-area">
         Text-Design-Funktionen
-        <button mat-flat-button color="none" class="icon-button">
+        <button mat-flat-button color="none" 
+        class="icon-button" 
+        (click)="enableDisableRule()" 
+        [ngClass]="{'light-grey' : toggle, 'grey': !toggle}">
             <mat-icon>code</mat-icon>
         </button>
+
     </div>
     <div>
         <mat-form-field appearance="fill" class="text-area">

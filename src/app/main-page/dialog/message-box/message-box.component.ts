@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageBoxComponent implements OnInit {
 
+  toggle = true;
+  status = 'Enable';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+
+  enableDisableRule() {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
   }
 
 }
