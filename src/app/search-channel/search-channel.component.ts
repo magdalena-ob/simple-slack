@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 
 @Component({
   selector: 'app-search-channel',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchChannelComponent implements OnInit {
 
-  constructor() { }
+  allChannels :any = [];
+
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    this.firestore
+      .collection('channels')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        console.log('received changes from database', changes);
+        this.allChannels = changes;
+        console.log('show arry allChannels', this.allChannels);
+      })
+  }
+
+  openAddChannel() {
+    this.dialog.open(DialogAddChannelComponent);
   }
 
 }

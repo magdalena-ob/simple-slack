@@ -1,1 +1,28 @@
-<p>search-channel works!</p>
+<div class="header-search-channel title-container">
+    <b>Channel-Browser</b>
+    <button mat-stroked-button class="create-btn-top" (click)="openAddChannel()">Channel erstellen</button>
+</div>
+<div class="search">
+    <mat-form-field class="with-100 pos-relativ" appearance="outline">
+        <input class="value-pos" matInput placeholder="Nach Channel-Name suchen">
+        <label class="fixed-value color-gr">
+            <mat-icon>search</mat-icon>
+        </label>
+    </mat-form-field>
+</div>
+<div class="all-channels">
+    <mat-list *ngFor="let channel of allChannels">
+        <mat-list-item>
+           <div class="channel-name">
+            <b># {{ channel.category }}</b>
+           </div> 
+           <div class="channel-description color-gr">
+            {{ channel.description }}
+           </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
+<div class="create-btn-center">
+    <button mat-raised-button class="create-btn" (click)="openAddChannel()">Channel erstellen</button>
+</div>

@@ -63,17 +63,6 @@ mat-toolbar {
     width: 600px;
 }
 
-.title-container {
-    min-height: 56px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 1.2em;
-}
-
 .close-btn {
     min-width: 36px !important;
     min-height: 36px !important;
