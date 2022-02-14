@@ -63,8 +63,38 @@
     align-items: flex-start !important;
 }
 
-.channel-description {
-    font-size: 14px;
+::ng-deep.mat-list-base, .mat-list-item {
+    padding-top: 0px !important;
+    height: 64px !important;
 }
 
+.channel-description {
+    font-size: 14px;
+    padding-bottom: 16px;
+}
 
+.channel-item {
+    position: relative;
+}
+
+.channel-action {
+    display: none;
+}
+
+.channel-item:hover  .channel-action {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.04);
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.channel-name {
+    padding-top: 16px;
+}

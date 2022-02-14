@@ -18,12 +18,17 @@
 </div>
 <div class="all-channels">
     <mat-list *ngFor="let channel of allChannels | filter:searchText; let lastItem = last">
-        <mat-list-item>
+        <mat-list-item class="channel-item">
            <div class="channel-name">
             <b># {{ channel.category }}</b>
            </div> 
            <div class="channel-description color-gr">
             {{ channel.description }}
+           </div>
+           <div class="channel-action">
+               <div class="join-btn">
+                <button mat-raised-button class="create-btn">Beitreten</button>
+               </div>
            </div>
         </mat-list-item>
         <mat-divider *ngIf="!lastItem"></mat-divider>
