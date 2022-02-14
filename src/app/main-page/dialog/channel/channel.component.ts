@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 
 @Component({
@@ -8,11 +9,16 @@ import { Channel } from 'src/models/channel.class';
 })
 export class ChannelComponent implements OnInit {
 
+  channelId: any = '';
   channel = new Channel();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe( paramMap => {
+      this.channelId = paramMap.get('id');
+      console.log('got channel id ', this.channelId);
+    })
   }
 
 }
