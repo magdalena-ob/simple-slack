@@ -9,6 +9,9 @@ export class FilterPipe implements PipeTransform {
     if (!allChannels || !searchText) {
       return allChannels;
     }
-    return allChannels.filter(em => em.category.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()));
+    return allChannels.filter(em =>
+      em.category.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) ||
+      em.description.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+    );
   }
 }
