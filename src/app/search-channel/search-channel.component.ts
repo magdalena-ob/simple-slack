@@ -13,6 +13,7 @@ export class SearchChannelComponent implements OnInit {
 
   allChannels :any = [];
   searchText: any;
+  value = '';
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 

@@ -4,10 +4,13 @@
 </div>
 <div class="search">
     <mat-form-field class="with-100 pos-relativ" appearance="outline">
-        <input class="value-pos" matInput placeholder="Nach Channel-Name oder Beschreibung suchen" [(ngModel)]="searchText">
+        <input class="value-pos" matInput placeholder="Nach Channel-Name oder Beschreibung suchen" [(ngModel)]="searchText" [(ngModel)]="value">
         <label class="fixed-value color-gr">
             <mat-icon>search</mat-icon>
         </label>
+        <button *ngIf="value" matSuffix mat-icon-button (click)="value=''">
+            <mat-icon>cancel</mat-icon>
+        </button>
     </mat-form-field>
 </div>
 <div class="pad-16">
