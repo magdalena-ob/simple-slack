@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'main-page', component: MainPageComponent, canActivate: [AuthGuard],
     children: [
       {
-        path:'thread',
+        path:'thread/:id',
         component: ThreadComponent
       },
       {
@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   //{ path: 'channel', component: ChannelComponent },
   { path: 'direct-message', component: DirectMessageComponent },
-  { path: 'thread', component: ThreadComponent }
+  //{ path: 'thread', component: ThreadComponent }
 ];
 
 @NgModule({

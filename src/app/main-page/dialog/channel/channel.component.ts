@@ -41,7 +41,7 @@ export class ChannelComponent implements OnInit {
       .collection('channels')
       .doc(this.channelId)
       .collection('messages')
-      .valueChanges()
+      .valueChanges(({idField: 'customIdMessage'}))
       .subscribe((changes: any) => {
         this.channelmessages = changes;
         console.log('retrieved channelmessages ', this.channelmessages);
