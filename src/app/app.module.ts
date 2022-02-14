@@ -49,6 +49,7 @@ import { SearchChannelComponent } from './search-channel/search-channel.componen
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { MatListModule } from '@angular/material/list';
     MultiselectAutocompleteComponent,
     DialogUploadFileComponent,
     SearchChannelComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +115,7 @@ import { MatListModule } from '@angular/material/list';
       appId: "1:116022411182:web:7e3693e4ddb3338d46523f"
     }),
     MatDividerModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

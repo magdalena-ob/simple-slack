@@ -4,7 +4,7 @@
 </div>
 <div class="search">
     <mat-form-field class="with-100 pos-relativ" appearance="outline">
-        <input class="value-pos" matInput placeholder="Nach Channel-Name suchen">
+        <input class="value-pos" matInput placeholder="Nach Channel-Name suchen" [(ngModel)]="searchText">
         <label class="fixed-value color-gr">
             <mat-icon>search</mat-icon>
         </label>
@@ -16,7 +16,23 @@
     </div>
     <mat-divider></mat-divider>
 </div>
+
+<!--for testing search function-->
 <div class="all-channels">
+    <mat-list *ngFor="let channel of allChannels | filter:searchText">
+        <mat-list-item>
+           <div class="channel-name">
+            <b># {{ channel.category }}</b>
+           </div> 
+           <div class="channel-description color-gr">
+            {{ channel.description }}
+           </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
+
+<!--<div class="all-channels">
     <mat-list *ngFor="let channel of allChannels; let lastItem = last">
         <mat-list-item>
            <div class="channel-name">
@@ -28,7 +44,7 @@
         </mat-list-item>
         <mat-divider *ngIf="!lastItem"></mat-divider>
     </mat-list>
-</div>
+</div>-->
 <div class="create-btn-center">
     <button mat-raised-button class="create-btn" (click)="openAddChannel()">Channel erstellen</button>
 </div>

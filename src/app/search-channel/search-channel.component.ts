@@ -8,9 +8,11 @@ import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-chan
   templateUrl: './search-channel.component.html',
   styleUrls: ['./search-channel.component.scss']
 })
+
 export class SearchChannelComponent implements OnInit {
 
   allChannels :any = [];
+  searchText: any;
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 
