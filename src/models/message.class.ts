@@ -1,9 +1,15 @@
 export class Message {
-    message: any;
+    textmessage: any;
 
     constructor(obj?: any) {
-            this.message = obj ? obj.message : '';
-        
-        
+            this.textmessage = obj ? obj.message : '';
+           
+    }
+
+    public toJSON() {
+        return {
+            message: this.textmessage
+            
+        }
     }
 }

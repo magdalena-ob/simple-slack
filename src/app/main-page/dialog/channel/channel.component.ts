@@ -12,6 +12,7 @@ export class ChannelComponent implements OnInit {
 
   channelId: any = '';
   channel: Channel = new Channel();
+  channelmessages: any = [];
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
@@ -20,6 +21,7 @@ export class ChannelComponent implements OnInit {
       this.channelId = paramMap.get('id');
       console.log('got channel id ', this.channelId);
       this.getChannel();
+      this.getMessage();
     })
   }
 
@@ -31,6 +33,18 @@ export class ChannelComponent implements OnInit {
       .subscribe((channel: any) => {
         this.channel = new Channel(channel);
         console.log('retrieved channel ', this.channel);
+      })
+  }
+
+  getMessage() {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.channelmessages = changes;
+        console.log('retrieved channelmessages ', this.channelmessages);
       })
   }
 
