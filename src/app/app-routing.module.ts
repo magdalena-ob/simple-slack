@@ -24,7 +24,7 @@ const routes: Routes = [
         component: ThreadComponent
       },
       {
-        path:'channel',
+        path:'channel/:id',
         component: ChannelComponent
       },
       {
@@ -43,7 +43,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'channel', component: ChannelComponent },
+  //{ path: 'channel', component: ChannelComponent },
   { path: 'direct-message', component: DirectMessageComponent },
   { path: 'thread', component: ThreadComponent }
 ];

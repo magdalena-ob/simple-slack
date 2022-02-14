@@ -17,7 +17,7 @@
     <mat-divider></mat-divider>
 </div>
 <div class="all-channels">
-    <mat-list *ngFor="let channel of allChannels | filter:searchText; let lastItem = last">
+    <mat-list *ngFor="let channel of allChannels | filter:searchText; let lastItem = last" [routerLink]="['/main-page/channel/' + channel.customIdChannel]">
         <mat-list-item class="channel-item">
            <div class="channel-name">
             <b># {{ channel.category }}</b>

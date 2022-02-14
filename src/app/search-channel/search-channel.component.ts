@@ -19,7 +19,7 @@ export class SearchChannelComponent implements OnInit {
   ngOnInit(): void {
     this.firestore
       .collection('channels')
-      .valueChanges()
+      .valueChanges({idField: 'customIdChannel'})
       .subscribe((changes: any) => {
         console.log('received changes from database', changes);
         this.allChannels = changes;
