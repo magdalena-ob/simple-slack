@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-direct-message-add',
@@ -7,17 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirectMessageAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    this.firestore
+      .collection('users')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        console.log('received changes from database', changes);
+        this.selectOptions = changes;
+      
+        console.log('selectOptions', this.selectOptions);
+       
+       
+      });
+      
+  }
+
+  setselectOptions(changes: any) {
+ for (let i=0; i <= changes.length; i++ ){
+   this.selectOptions.push(changes[i]["email"]);
+ }
   }
 
   cardValue: any = {
     options: []
   };
 
-  selectOptions: Array<string> = [
-    'a', '2', '3', '4', '5', '6', '7', '8', '9', '10'
+  testarray2 = ["zwischentest", "b", "3"];
+  testarray = [];
+  @Input() selectOptions: any = ["1"
+  
   ];
 
   selectChange = (event: any) => {
