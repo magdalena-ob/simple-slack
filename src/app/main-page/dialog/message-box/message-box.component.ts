@@ -24,7 +24,7 @@ export class MessageBoxComponent implements OnInit {
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id');
       console.log('got channel id ', this.channelId);
-      this.toSendMessage();
+      
     })
   }
 

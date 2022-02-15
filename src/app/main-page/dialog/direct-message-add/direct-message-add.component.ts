@@ -16,14 +16,17 @@ export class DirectMessageAddComponent implements OnInit {
       .valueChanges()
       .subscribe((changes: any) => {
         console.log('received changes from database', changes);
-        this.selectOptions = changes;
+        
       
+        this.testarray = changes;
+        this.selectOptions.push(this.testarray[0]["email"]);
+        
+
         console.log('selectOptions', this.selectOptions);
-       
-       
+        
       });
-      
   }
+
 
   setselectOptions(changes: any) {
  for (let i=0; i <= changes.length; i++ ){
@@ -37,7 +40,7 @@ export class DirectMessageAddComponent implements OnInit {
 
   testarray2 = ["zwischentest", "b", "3"];
   testarray = [];
-  @Input() selectOptions: any = ["1"
+  selectOptions: any = ["1","allesandere"
   
   ];
 
