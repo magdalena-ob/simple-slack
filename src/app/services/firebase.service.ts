@@ -7,9 +7,9 @@ import { Channel } from 'src/models/channel.class';
   providedIn: 'root'
 })
 export class FirebaseService {
-  channel = new Channel();
+  channel = new Channel(); //for saveChannel
 
-  channels: Observable<any[]> | undefined;
+  channels: Observable<any[]> | undefined; //for getAllChannels
   customIdChannel: any;
 
   constructor(private firestore: AngularFirestore) { }
@@ -26,20 +26,12 @@ export class FirebaseService {
   }
 
   //to show all created channels in search-channel.component
-  getChannel() {
+  getAllChannels() {
     this.channels = this.firestore
       .collection('channels')
       .valueChanges({ idField: 'customIdChannel' })
       return this.channels;
   }
-  
-  //getChannel(){
-  //  this.firestore
-  //    .collection('channels')
-  //    .valueChanges({idField: 'customIdChannel'})
-  //    .subscribe((changes: any) => {
-  //      console.log('received changes from database', changes);
-  //      return this.allChannels = changes;
-  //    })
-  //}
+
+ 
 }

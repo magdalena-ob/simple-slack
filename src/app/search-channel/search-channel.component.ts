@@ -13,7 +13,6 @@ import { FirebaseService } from '../services/firebase.service';
 export class SearchChannelComponent implements OnInit {
 
   allChannels: any = [];
-  //allChannels = this.firebaseService.allChannels;
   customIdChannel = this.firebaseService.customIdChannel;
   searchText: any;
   value = '';
@@ -23,12 +22,9 @@ export class SearchChannelComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.firebaseService.getChannel()
+    this.firebaseService.getAllChannels()
       .subscribe(channels => {
         this.allChannels = channels})
-
-
 
   //this.firestore
   //  .collection('channels')
