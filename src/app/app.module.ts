@@ -50,6 +50,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FirebaseService } from './services/firebase.service';
 
 
 @NgModule({
@@ -117,7 +118,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatDividerModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
