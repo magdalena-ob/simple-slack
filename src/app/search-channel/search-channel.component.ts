@@ -26,22 +26,24 @@ export class SearchChannelComponent implements OnInit {
       .subscribe(channels => {
         this.allChannels = channels})
 
-  //this.firestore
-  //  .collection('channels')
-  //  .valueChanges({idField: 'customIdChannel'})
-  //  .subscribe((changes: any) => {
-  //    console.log('received changes from database', changes);
-  //    this.allChannels = changes;
-  //    console.log('show arry allChannels', this.allChannels);
-  //  })
+    //this.firestore
+    //  .collection('channels')
+    //  .valueChanges({idField: 'customIdChannel'})
+    //  .subscribe((changes: any) => {
+    //    console.log('received changes from database', changes);
+    //    this.allChannels = changes;
+    //    console.log('show arry allChannels', this.allChannels);
+    //  })
+  }
+
+  openAddChannel() {
+    this.dialog.open(DialogAddChannelComponent);
+  }
+
+  joinChannel() {
+    console.log('you joined channel');
+  }
+
 }
 
-openAddChannel() {
-  this.dialog.open(DialogAddChannelComponent);
-}
-
-}
-function renderChannel() {
-  throw new Error('Function not implemented.');
-}
 
