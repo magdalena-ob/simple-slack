@@ -8,45 +8,41 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class DirectMessageAddComponent implements OnInit {
 
+  cardValue: any = {
+    options: []
+  };
+
+  @Input() selectOptions: any[] = [];
+
   constructor(private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.firestore
       .collection('users')
       .valueChanges()
-      .subscribe((changes: any) => {
+      .subscribe((changes: unknown[]) => {
         console.log('received changes from database', changes);
-        
-      
-        this.testarray = changes;
-        this.selectOptions.push(this.testarray[0]["email"]);
-        
+        this.selectOptions = changes;
 
         console.log('selectOptions', this.selectOptions);
-        
+        console.log('selectOptions.map', this.selectOptions.map((so: any) => so['email']) as string[]);
       });
   }
 
-
-  setselectOptions(changes: any) {
- for (let i=0; i <= changes.length; i++ ){
-   this.selectOptions.push(changes[i]["email"]);
- }
+  getEmails() {
+    let emails = this.selectOptions.map((so: any) => so['email']) as string[];
+    return emails;
   }
 
-  cardValue: any = {
-    options: []
-  };
-
-  testarray2 = ["zwischentest", "b", "3"];
-  testarray = [];
-  selectOptions: any = ["1","allesandere"
-  
-  ];
+  setselectOptions(changes: any) {
+    for (let i = 0; i <= changes.length; i++) {
+      this.selectOptions.push(changes[i]["email"]);
+    }
+  }
 
   selectChange = (event: any) => {
     const key: string = event.key;
-    this.cardValue[key] = [ ...event.data ];
+    this.cardValue[key] = [...event.data];
 
     console.log(this.cardValue);
   };

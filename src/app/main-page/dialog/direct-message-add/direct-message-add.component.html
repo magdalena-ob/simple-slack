@@ -3,7 +3,7 @@
       <multiselect-autocomplete
         placeholder="Select Items Here ..."
         key="options"
-        [data]="selectOptions"
+        [data]="getEmails()"
         (result)="selectChange($event)">
       </multiselect-autocomplete>
     </mat-card>

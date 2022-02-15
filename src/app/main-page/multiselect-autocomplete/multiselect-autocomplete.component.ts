@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -32,6 +32,19 @@ export class MultiselectAutocompleteComponent implements OnInit {
       map(value => typeof value === 'string' ? value : this.filterString),
       map(filter => this.filter(filter))
     );    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes, this.data);
+    this.filteredData = this.selectControl.valueChanges.pipe(
+      startWith<string>(''),
+      map(value => typeof value === 'string' ? value : this.filterString),
+      map(filter => this.filter(filter))
+    );
+    this.rawData = [];
+    this.data.forEach((item: string) => {
+      this.rawData.push({ item, selected: false});
+    });
   }
 
   ngOnInit(): void {
