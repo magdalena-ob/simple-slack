@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { Channel } from 'src/models/channel.class';
 
 @Component({
@@ -14,7 +15,7 @@ export class ChannelComponent implements OnInit {
   channel: Channel = new Channel();
   channelmessages: any = [];
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
@@ -24,6 +25,11 @@ export class ChannelComponent implements OnInit {
       this.getMessage();
     })
   }
+
+  //getChannel() {
+  //  this.firebaseService.getAllChannels()
+  //    .doc(this.channelId)
+  //}
 
   getChannel() {
     this.firestore
