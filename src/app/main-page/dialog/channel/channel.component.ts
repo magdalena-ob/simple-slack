@@ -1,21 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { fromEvent, Subscription } from 'rxjs';
 import { Channel } from 'src/models/channel.class';
+import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 
 @Component({
   selector: 'app-channel',
   templateUrl: './channel.component.html',
   styleUrls: ['./channel.component.scss']
 })
-export class ChannelComponent implements OnInit {
+export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
 
   channelId: any = '';
   channel: Channel = new Channel();
   channelmessages: any = [];
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private firebaseService: FirebaseService) { }
+ 
+  @ViewChild('textArea', { static: true })
+  textArea!: ElementRef;
+  @ViewChild('codeContent', { static: true })
+  codeContent!: ElementRef;
+  @ViewChild('pre', { static: true })
+  pre!: ElementRef;
+
+  sub!: Subscription;
+  highlighted = false;
+  codeType = 'javascript';
+
+
+  form = this.fb.group({
+    content: ''
+  });
+
+  get contentControl() {
+    return this.form.get('content');
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: AngularFirestore,
+    private prismService: SyntaxHighlightingService,
+    private fb: FormBuilder,
+    private renderer: Renderer2 
+    ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
@@ -23,13 +52,11 @@ export class ChannelComponent implements OnInit {
       console.log('got channel id ', this.channelId);
       this.getChannel();
       this.getMessage();
+      this.listenForm()
+      this.synchronizeScroll();
     })
   }
 
-  //getChannel() {
-  //  this.firebaseService.getAllChannels()
-  //    .doc(this.channelId)
-  //}
 
   getChannel() {
     this.firestore
@@ -52,6 +79,43 @@ export class ChannelComponent implements OnInit {
         this.channelmessages = changes;
         console.log('retrieved channelmessages ', this.channelmessages);
       })
+  }
+
+  ngAfterViewInit() {
+    this.prismService.highlightAll();
+  }
+
+  ngAfterViewChecked() {
+    if (this.highlighted) {
+      this.prismService.highlightAll();
+      this.highlighted = false;
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+
+  private listenForm() {
+    this.sub = this.form.valueChanges.subscribe((val) => {
+      const modifiedContent = this.prismService.convertHtmlIntoString(val.content);
+
+      this.renderer.setProperty(this.codeContent.nativeElement, 'innerHTML', modifiedContent);
+
+      this.highlighted = true;
+    });
+  }
+
+  private synchronizeScroll() {
+    const localSub  = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
+      const toTop = this.textArea.nativeElement.scrollTop;
+      const toLeft = this.textArea.nativeElement.scrollLeft;
+
+      this.renderer.setProperty(this.pre.nativeElement, 'scrollTop', toTop);
+      this.renderer.setProperty(this.pre.nativeElement, 'scrollLeft', toLeft + 0.2);
+    });
+
+    this.sub.add(localSub);
   }
 
 }

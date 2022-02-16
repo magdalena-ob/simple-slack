@@ -2,8 +2,9 @@
     <h1>Image upload</h1>
     <h3>You have the option of uploading a picture and sending it with the message.</h3>
     <p>Please, select a file from type image.</p>
-    <input type="file" #file (change)="upload($event)" accept="*.png.jpg">
-    <button (click)="uploadImage()">Upload Image</button>
+  
+    <input type="file" #file (change)="showPreview($event)" accept="*.png.jpg">
+    <button (click)="uploadFile($event)">Upload Image</button>
 </div>
 
 <!--<button>
