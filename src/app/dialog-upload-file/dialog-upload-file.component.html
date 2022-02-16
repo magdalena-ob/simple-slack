@@ -4,7 +4,7 @@
     <p>Please, select a file from type image.</p>
   
     <input type="file" #file (change)="showPreview($event)" accept="*.png.jpg">
-    <button (click)="uploadFile()">Upload Image</button>
+    <button (click)="uploadFile($event)">Upload File</button>
 </div>
 
 <!--<button>

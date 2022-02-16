@@ -116,7 +116,7 @@ import { FirebaseService } from './services/firebase.service';
       appId: "1:116022411182:web:7e3693e4ddb3338d46523f"
     }),
     MatDividerModule,
-    MatListModule,
+    MatListModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

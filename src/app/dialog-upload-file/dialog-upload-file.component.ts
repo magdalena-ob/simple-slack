@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   templateUrl: './dialog-upload-file.component.html',
   styleUrls: ['./dialog-upload-file.component.scss'],
   template: `
-    <input type="file" (change)="uploadFile(§event)" />
+    <input type="file" (change)="uploadFile(event)" />
     <div>{{ uploadPercent | async }}</div>
     <a [href]="downloadURL" | async">{{ downloadURL | async }}</a>
   ` 
@@ -24,8 +24,9 @@ export class DialogUploadFileComponent implements OnInit {
 
   uploadPercent!: Observable<number | undefined>;
   downloadURL: Observable<string> | undefined;
+  file: any;
  
-  constructor(private storage: AngularFireStorage) {
+  constructor(private firestore: AngularFireStorage) { //angularfire storage
   } //firestore
 
   ngOnInit(): void {
@@ -33,15 +34,16 @@ export class DialogUploadFileComponent implements OnInit {
   }
 
   showPreview($event: any) {
-    this.selectedImage = $event.target.files[0];
+    this.file = $event.target.files[0];
   }
 
   uploadFile($event: any) {
-    console.log(this.selectedImage); 
-    const file = $event.target.files[0];
+    console.log(this.file); 
+    //this.file = $event.target.files[0];
     const filePath = 'name-your-file-path-here';
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+    const fileRef = this.firestore.ref(filePath);
+    const task = this.firestore.upload(filePath, this.file);
+    this.firestore.upload("/files"+Math.random()+this.file, this.file);
 
     // observe percentage changes
     this.uploadPercent = task.percentageChanges();
