@@ -52,6 +52,7 @@ import { MatListModule } from '@angular/material/list';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FirebaseService } from './services/firebase.service';
 import { SyntaxHighlightingService } from './services/syntax-highlighting.service';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { SyntaxHighlightingService } from './services/syntax-highlighting.servic
       appId: "1:116022411182:web:7e3693e4ddb3338d46523f"
     }),
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [FirebaseService,
   SyntaxHighlightingService,

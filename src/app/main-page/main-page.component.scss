@@ -22,12 +22,14 @@
    padding: 0;
    margin: 0;
 
-   li {
+   .nav-item {
        cursor: pointer;
        display: flex;
        align-items: center;
-       padding-left: 16px;
+       padding-left: 28px;
        padding-right: 16px;
+       padding-top: 16px;
+       padding-bottom: 16px;
        position: relative;
 
 
@@ -39,7 +41,7 @@
 
 .chat-icon {
   font-size: 18px !important;
-  padding-top: 12px;
+  padding-top: 6px;
 }
 
 .add-icon {
@@ -71,4 +73,17 @@ mat-toolbar {
 
 ::ng-deep.mat-drawer-content {
     overflow-x: hidden !important;
+}
+
+.ex-panel {
+    width: 100%;
+}
+
+::ng-deep.mat-expansion-panel {
+    background-color: #481449 !important;
+    box-shadow: unset !important;
+}
+
+::ng-deep.mat-expansion-panel-header-title {
+    color: white !important;
 }

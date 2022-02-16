@@ -13,26 +13,43 @@
                 <mat-icon>home</mat-icon>
             </button>
         </div>
-        <ul class="menu-items">
-            <li (click)="drawer.toggle()">
+        <div class="menu-items">
+            <div class="nav-item" (click)="drawer.toggle()">
                 <mat-icon class="chat-icon">chat</mat-icon>Threads
-            </li>
-            <li>
-                <mat-icon>arrow_drop_down</mat-icon>Channels <mat-icon matTooltip="Channels hinzufügen"
-                    matTooltipPosition="above" class="add-icon" [matMenuTriggerFor]="menu1">add</mat-icon>
-            </li>
-
-            <div>
-            <li routerLink="directmessageadd">
-                <mat-icon>arrow_drop_down</mat-icon>Direktnachrichten <mat-icon routerLink="directmessageadd" class="add-icon">add</mat-icon></li>
             </div>
-            
-        </ul>
+
+            <mat-accordion class="ex-panel" multi>
+                <mat-expansion-panel [hideToggle]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>arrow_drop_down</mat-icon>
+                            Channels
+                            <mat-icon matTooltip="Channels hinzufügen" matTooltipPosition="above" class="add-icon"
+                                [matMenuTriggerFor]="menu1">add</mat-icon>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion class="ex-panel" multi>
+                <mat-expansion-panel [hideToggle]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>arrow_drop_down</mat-icon>
+                            Direktnachrichten
+                            <mat-icon matTooltip="Direktnachricht öffnen" matTooltipPosition="above" class="add-icon"
+                                routerLink="directmessageadd">add</mat-icon>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
 
         <mat-menu #menu1="matMenu">
             <button mat-menu-item routerLink="search_channel">Channels durchsuchen</button>
             <button mat-menu-item (click)="openAddChannel()">Channels erstellen</button>
-          </mat-menu>
+        </mat-menu>
     </mat-drawer>
 
 
