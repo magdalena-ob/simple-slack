@@ -22,8 +22,8 @@ import { Observable } from 'rxjs';
 export class DialogUploadFileComponent implements OnInit {
   [x: string]: any;
 
-  uploadPercent!: Observable<number>;
-  downloadURL!: Observable<string>;
+  uploadPercent!: Observable<number | undefined>;
+  downloadURL: Observable<string> | undefined;
  
   constructor(private storage: AngularFireStorage) {
   } //firestore
@@ -49,7 +49,6 @@ export class DialogUploadFileComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => this.downloadURL = fileRef.getDownloadURL() )
     ).subscribe()
-    //this.storage.upload("/files"+Math.random()+this.selectedImage, this.selectedImage)
   }
   
 }
