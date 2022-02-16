@@ -51,6 +51,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FirebaseService } from './services/firebase.service';
+import { SyntaxHighlightingService } from './services/syntax-highlighting.service';
 
 
 @NgModule({
@@ -118,7 +119,9 @@ import { FirebaseService } from './services/firebase.service';
     MatDividerModule,
     MatListModule,
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService,
+  SyntaxHighlightingService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

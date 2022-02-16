@@ -12,7 +12,7 @@ export class DirectMessageAddComponent implements OnInit {
     options: []
   };
 
-  @Input() selectOptions: any[] = [];
+   selectOptions: any[] = [];
 
   constructor(private firestore: AngularFirestore) { }
 
