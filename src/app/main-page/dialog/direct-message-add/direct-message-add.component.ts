@@ -12,7 +12,8 @@ export class DirectMessageAddComponent implements OnInit {
     options: []
   };
 
-   selectOptions: any[] = [];
+   @Input() selectOptions: any[] = [];
+   emails: any = [];
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -23,6 +24,7 @@ export class DirectMessageAddComponent implements OnInit {
       .subscribe((changes: unknown[]) => {
         console.log('received changes from database', changes);
         this.selectOptions = changes;
+        this.emails = this.selectOptions.map((so: any) => so['email']) as string[];
 
         console.log('selectOptions', this.selectOptions);
         console.log('selectOptions.map', this.selectOptions.map((so: any) => so['email']) as string[]);
