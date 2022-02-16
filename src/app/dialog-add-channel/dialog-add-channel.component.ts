@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 //import { AngularFirestore } from '@angular/fire/compat/firestore';
 //import { Channel } from 'src/models/channel.class';
 import { FirebaseService } from '../services/firebase.service';
@@ -12,8 +13,9 @@ export class DialogAddChannelComponent implements OnInit {
 
   //channel = new Channel();
   channel = this.firebaseService.channel;
+  dialogRef: any;
 
-  constructor( private firebaseService: FirebaseService) { }
+  constructor( public dialog: MatDialog, private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,8 @@ export class DialogAddChannelComponent implements OnInit {
   createChannel() {
     this.firebaseService.saveChannel();
     console.log('show added channels', this.channel)
+    //this.dialogRef.close();
+
   }
 
   //saveChannel() {

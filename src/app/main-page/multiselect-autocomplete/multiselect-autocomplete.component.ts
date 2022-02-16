@@ -68,6 +68,7 @@ export class MultiselectAutocompleteComponent implements OnInit {
 
   optionClicked = (event: Event, data: ItemData): void => {
     event.stopPropagation();
+    console.log("optionedClicked", event, data);
     this.toggleSelection(data);
   };
 
