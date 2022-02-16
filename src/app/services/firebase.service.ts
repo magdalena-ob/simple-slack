@@ -13,7 +13,7 @@ export class FirebaseService {
   channels: Observable<any[]> | undefined; //for getAllChannels
   customIdChannel: any;
 
-  //currentChannel: Observable<any[]>| undefined; //for getChannel
+  //currentChannel: Observable<any> | undefined; //for getChannel
   //channelId: any = '';
 
   constructor(private firestore: AngularFirestore, private route: ActivatedRoute) { }
@@ -46,11 +46,11 @@ export class FirebaseService {
 
   //to show current channel in channel.component
   //getChannel() {
-   // this.currentChannel = this.firestore
-   //   .collection('channels')
-   //   .doc(this.channelId)
-   //   .valueChanges()
-   //   return this.currentChannel;
+  //  this.currentChannel = this.firestore
+  //    .collection('channels')
+  //    .doc(this.channelId)
+  //    .valueChanges()
+  //    return this.currentChannel;
   //}
 
  

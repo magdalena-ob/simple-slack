@@ -5,6 +5,8 @@
     <div> 
         <b> {{message.message}}</b>
     </div>
+    <div><mat-icon matTooltip="Im Thread antworten"
+      matTooltipPosition="above" [routerLink]="['/main-page/channel/customIdChannel/thread/' + message.customIdMessage]">chat</mat-icon></div>
 </mat-list>
 <app-message-box></app-message-box>
 
