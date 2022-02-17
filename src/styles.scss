@@ -110,6 +110,11 @@ p {
   }
 }
 
+.msg-box {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .user {
   position: relative;
   .user-img {
