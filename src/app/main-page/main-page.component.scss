@@ -60,17 +60,6 @@ mat-toolbar {
     width: 100vw;
 }
 
-
-.thread-container {
-    width: 600px;
-}
-
-.close-btn {
-    min-width: 36px !important;
-    min-height: 36px !important;
-    padding: 0 !important;
-}
-
 ::ng-deep.mat-drawer-content {
     overflow-x: hidden !important;
 }

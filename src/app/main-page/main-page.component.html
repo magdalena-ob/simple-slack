@@ -14,7 +14,7 @@
             </button>
         </div>
         <div class="menu-items">
-            <div class="nav-item" (click)="drawer.toggle()">
+            <div class="nav-item">
                 <mat-icon class="chat-icon">chat</mat-icon>Threads
             </div>
 
@@ -56,7 +56,7 @@
     <div class="router-container">
         <router-outlet></router-outlet>
     </div>
-    <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
+    <!--<mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
         <div class="title-container">
             <b>Thread</b>
             <button type="button" mat-button class="close-btn" (click)="drawer.toggle()">
@@ -64,5 +64,5 @@
             </button>
         </div>
         <div></div>
-    </mat-drawer>
+    </mat-drawer>-->
 </mat-drawer-container>

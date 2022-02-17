@@ -43,6 +43,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 1.2em;
 }
 
+.thread-container {
+  width: 600px;
+}
+
+.close-btn {
+  min-width: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+}
+
 h1 {
     padding: 10px 0;
     text-align: center;
@@ -83,4 +93,6 @@ h1 {
     padding-right: 0.8em;
     text-align: right;
   }
+
+  
 

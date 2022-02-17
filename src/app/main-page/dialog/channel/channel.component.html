@@ -10,6 +10,7 @@
 </mat-list>
 <app-message-box></app-message-box>
 
+
 <br>
 test:
 <h1>Prism.js</h1>
@@ -31,3 +32,15 @@ test:
     </pre>
   </div>
 </form>
+
+<mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
+  <div class="title-container">
+      <b>Thread</b>
+      <button type="button" mat-button class="close-btn" (click)="drawer.toggle()">
+          <mat-icon>close</mat-icon>
+      </button>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer>
