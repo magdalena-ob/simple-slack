@@ -9,9 +9,11 @@ import { Channel } from 'src/models/channel.class';
 })
 export class FirebaseService {
   channel = new Channel(); //for saveChannel
+  channelCreated : boolean = false;
 
   channels: Observable<any[]> | undefined; //for getAllChannels
   customIdChannel: any;
+
 
   //currentChannel: Observable<any> | undefined; //for getChannel
   //channelId: any = '';
@@ -25,6 +27,7 @@ export class FirebaseService {
       .add(this.channel.toJSON())
       .then((result: any) => {
         console.log('finished adding channel', result);
+        this.channelCreated = true;
         return this.channel;
       });
   }

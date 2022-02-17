@@ -23,8 +23,10 @@ export class DialogAddChannelComponent implements OnInit {
   createChannel() {
     this.firebaseService.saveChannel();
     console.log('show added channels', this.channel)
-    //this.dialogRef.close();
 
+    if (this.firebaseService.channelCreated){
+      this.dialogRef.close();
+    }
   }
 
   //saveChannel() {
