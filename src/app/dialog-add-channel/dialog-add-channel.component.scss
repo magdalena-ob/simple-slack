@@ -32,6 +32,14 @@
     color:#481449 !important;
 }
 
+::ng-deep.mat-error {
+    color: #ff9800 !important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+    color: #ff9800 !important;
+    opacity: 0.8!important;
+}
+
 .pos-relativ {
     position: relative;
 }

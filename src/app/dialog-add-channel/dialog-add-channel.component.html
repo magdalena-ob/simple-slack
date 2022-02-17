@@ -17,8 +17,9 @@
             </div>
             <mat-form-field class="with-100 pos-relativ" appearance="outline">
                 <!--<mat-label>Name des Channels</mat-label>-->
-                <input class="value-pos" matInput placeholder="z.B. Marketing" [(ngModel)]="channel.category">
+                <input class="value-pos" matInput [formControl]="name" required placeholder="z.B. Marketing" [(ngModel)]="channel.category">
                 <label class="fixed-value color-gr">#</label>
+                <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
         <div>
@@ -33,6 +34,6 @@
         </div>
     </div>
     <div class="btn-container">
-        <button mat-raised-button class="create-btn" (click)="createChannel()">Erstellen</button>
+        <button [disabled]="name.invalid" mat-raised-button class="create-btn" (click)="createChannel()">Erstellen</button>
     </div>
 </div>
