@@ -18,6 +18,7 @@ import { FileService } from '../services/file.service';
     <input type="file" (change)="uploadFile(event)" />
     <div>{{ uploadPercent | async }}</div>
     <a [href]="downloadURL" | async">{{ downloadURL | async }}</a>
+    <img [src]="profileUrl | async" />
   ` 
 })
 export class DialogUploadFileComponent implements OnInit {
@@ -26,8 +27,11 @@ export class DialogUploadFileComponent implements OnInit {
   uploadPercent!: Observable<number | undefined>;
   downloadURL: Observable<string> | undefined;
   file: any;
+  profileUrl: Observable<string | null>;
  
   constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
+       const ref = this.storage.ref(this.profileUrl);
+       this.profileUrl = ref.getDownloadURL();
   } //firestore
 
   ngOnInit(): void {
