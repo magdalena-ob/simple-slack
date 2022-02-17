@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
+import { FileService } from '../services/file.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class DialogUploadFileComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   file: any;
  
-  constructor(private storage: AngularFireStorage) { //angularfire storage
+  constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
   } //firestore
 
   ngOnInit(): void {
@@ -51,6 +52,10 @@ export class DialogUploadFileComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => this.downloadURL = fileRef.getDownloadURL() )
     ).subscribe()
+  }
+
+  view() {
+    this.fileService.getImage(this.file);
   }
   
 }

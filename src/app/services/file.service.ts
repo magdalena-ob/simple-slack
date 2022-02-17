@@ -6,4 +6,9 @@ import { Injectable } from '@angular/core';
 export class FileService {
 
   constructor() { }
+
+  getImage(value: any) {
+
+  }
+
 }
