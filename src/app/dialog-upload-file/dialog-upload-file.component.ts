@@ -27,11 +27,11 @@ export class DialogUploadFileComponent implements OnInit {
   uploadPercent!: Observable<number | undefined>;
   downloadURL: Observable<string> | undefined;
   file: any;
-  profileUrl: Observable<string | null>;
+ // profileUrl: Observable<string | null>;
  
   constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
-       const ref = this.storage.ref('gs://simple-slack-af9e7.appspot.com'+this.profileUrl);
-       this.profileUrl = ref.getDownloadURL();
+      // const ref = this.storage.ref('gs://simple-slack-af9e7.appspot.com'+'files0.200362540166646[object File].png');
+      // this.profileUrl = ref.getDownloadURL();
   } //firestore
 
   ngOnInit(): void {
@@ -58,8 +58,8 @@ export class DialogUploadFileComponent implements OnInit {
     ).subscribe()
   }
 
-  view() {
-    this.fileService.getImage(this.file);
-  }
+  //view() {
+  //  this.fileService.getImage(this.file);
+  //}
   
 }
