@@ -2,25 +2,6 @@
   height: 95vh;
 }
 
-.user {
-  position: relative;
-  .user-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    img {
-      object-fit: cover;
-      height: 40px;
-      width: 40px;
-      border-radius: 4px;
-    }
-  }
-}
-
-.pd-left-56 {
-  padding-left: 56px;
-}
-
 .answer-icon {
   cursor: pointer;
 }
@@ -30,11 +11,7 @@
   justify-content: flex-end;
 }
 
-.channel-msg {
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.04) !important;
-  }
-}
+
 
 .code-container {
   max-width: 1000px;

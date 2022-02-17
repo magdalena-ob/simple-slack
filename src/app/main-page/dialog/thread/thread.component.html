@@ -1,5 +1,11 @@
-<p>show current message in this thread</p>
-<mat-list>
-    {{ message.textMessage }}
+<mat-list class="padding-16 channel-msg">
+    <div class="user">
+        <div class="user-img"><img src="/assets/img/user.png"></div>
+        <div class="pd-left-56"><b>Username</b> 00:00 Uhr</div>
+    </div>
+    <div class="pd-left-56">
+        show current message in this thread
+        {{ message.textMessage }}
+    </div>
 </mat-list>
 <app-message-box></app-message-box>
