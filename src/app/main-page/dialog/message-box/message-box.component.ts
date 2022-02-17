@@ -22,7 +22,7 @@ export class MessageBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
-      this.channelId = paramMap.get('id');
+      this.channelId = paramMap.get('id1');
       console.log('got channel id ', this.channelId);
       
     })
