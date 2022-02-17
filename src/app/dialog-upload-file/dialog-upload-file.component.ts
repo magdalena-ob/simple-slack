@@ -30,7 +30,7 @@ export class DialogUploadFileComponent implements OnInit {
   profileUrl: Observable<string | null>;
  
   constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
-       const ref = this.storage.ref(this.profileUrl);
+       const ref = this.storage.ref('gs://simple-slack-af9e7.appspot.com'+this.profileUrl);
        this.profileUrl = ref.getDownloadURL();
   } //firestore
 
