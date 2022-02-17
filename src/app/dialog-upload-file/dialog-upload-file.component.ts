@@ -26,7 +26,7 @@ export class DialogUploadFileComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   file: any;
  
-  constructor(private firestore: AngularFireStorage) { //angularfire storage
+  constructor(private storage: AngularFireStorage) { //angularfire storage
   } //firestore
 
   ngOnInit(): void {
@@ -40,10 +40,10 @@ export class DialogUploadFileComponent implements OnInit {
   uploadFile($event: any) {
     console.log(this.file); 
     //this.file = $event.target.files[0];
-    const filePath = "/files"+Math.random()+this.file;
-    const fileRef = this.firestore.ref(filePath);
+    const filePath = "/files"+Math.random()+this.file; // 'name-your-file-path-here'
+    const fileRef = this.storage.ref(filePath);
     //const task = this.firestore.upload(filePath, this.file);
-    const task = this.firestore.upload("/files"+Math.random()+this.file, this.file);
+    const task = this.storage.upload("/files"+Math.random()+this.file, this.file);
 
     // observe percentage changes
     this.uploadPercent = task.percentageChanges();
