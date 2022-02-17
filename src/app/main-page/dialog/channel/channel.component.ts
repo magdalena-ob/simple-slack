@@ -15,7 +15,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
 
   channelId: any = '';
   channel: Channel = new Channel();
-  channelmessages: any = [];
+  channelMessages: any = [];
 
  
   @ViewChild('textArea', { static: true })
@@ -48,7 +48,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
-      this.channelId = paramMap.get('id');
+      this.channelId = paramMap.get('id1');
       console.log('got channel id ', this.channelId);
       this.getChannel();
       this.getMessage();
@@ -76,8 +76,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .collection('messages')
       .valueChanges(({idField: 'customIdMessage'}))
       .subscribe((changes: any) => {
-        this.channelmessages = changes;
-        console.log('retrieved channelmessages ', this.channelmessages);
+        this.channelMessages = changes;
+        console.log('retrieved channelmessages ', this.channelMessages);
       })
   }
 

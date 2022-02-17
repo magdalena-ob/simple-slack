@@ -1,9 +1,9 @@
 <div class="title-container">
     <b># {{ channel.category }}</b>
 </div>
-<mat-list *ngFor="let message of channelmessages" >
+<mat-list *ngFor="let message of channelMessages" >
     <div> 
-        <b> {{message.message}}</b>
+        <b> {{message.textMessage}}</b>
     </div>
     <div><mat-icon matTooltip="Im Thread antworten"
       matTooltipPosition="above" [routerLink]="['/main-page/channel/customIdChannel/thread/' + message.customIdMessage]">chat</mat-icon></div>

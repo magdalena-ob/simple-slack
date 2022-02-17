@@ -1,14 +1,14 @@
 export class Message {
-    textmessage: any;
+    textMessage: string;
 
     constructor(obj?: any) {
-            this.textmessage = obj ? obj.message : '';
+            this.textMessage = obj ? obj.textMessage : '';
            
     }
 
     public toJSON() {
         return {
-            message: this.textmessage
+            textMessage: this.textMessage
             
         }
     }

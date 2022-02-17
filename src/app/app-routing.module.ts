@@ -24,10 +24,10 @@ const routes: Routes = [
       //  component: ThreadComponent
       //},
       {
-        path:'channel/:id',
+        path:'channel/:id1',
         component: ChannelComponent,
         children : [
-          {path: 'thread/:ID', component: ThreadComponent}
+          {path: 'thread/:id2', component: ThreadComponent}
         ]
       },
       {
