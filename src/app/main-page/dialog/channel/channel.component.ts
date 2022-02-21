@@ -16,6 +16,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   channelId: any = '';
   channel: Channel = new Channel();
   channelMessages: any = [];
+  time: any = new Date().getHours();
 
  
   @ViewChild('textArea', { static: true })
@@ -78,6 +79,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .subscribe((changes: any) => {
         this.channelMessages = changes;
         console.log('retrieved channelmessages ', this.channelMessages);
+        //this.channelMessages.timeSent = new Date(this.channelMessages.timeSent).getHours();
+        //console.log('time sent ', this.channelMessages.timeSent);
       })
   }
 

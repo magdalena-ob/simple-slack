@@ -17,6 +17,7 @@ export class MessageBoxComponent implements OnInit {
 
   channelId : any;
   message = new Message();
+  timeSent: Date = new Date();
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
@@ -34,6 +35,8 @@ export class MessageBoxComponent implements OnInit {
 
 
   toSendMessage() {
+    this.message.timeSent = this.timeSent.getTime();
+
     this.firestore
     .collection('channels')
     .doc(this.channelId)

@@ -6,7 +6,7 @@
     <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages">
       <div class="user">
         <div class="user-img"><img src="assets/img/user.png"></div>
-        <div class="pd-left-56"><b>Username</b> 00:00 Uhr</div>
+        <div class="pd-left-56"><b>Username</b> {{ message.timeSent | date:'HH:mm'  }} Uhr</div>
       </div>
       <div class="pd-left-56">
         {{message.textMessage}}
