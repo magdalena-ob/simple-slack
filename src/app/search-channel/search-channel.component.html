@@ -1,6 +1,6 @@
 <div class="header-search-channel title-container">
     <b>Channel-Browser</b>
-    <button mat-stroked-button class="create-btn-top" (click)="openAddChannel()">Channel erstellen</button>
+    <button mat-stroked-button class="create-btn create-btn-top" (click)="openAddChannel()">Channel erstellen</button>
 </div>
 <div class="search">
     <mat-form-field class="with-100 pos-relativ" appearance="outline">
@@ -31,8 +31,8 @@
                 {{ channel.description }}
             </div>
             <div class="channel-action">
-                <button mat-stroked-button
-                    [routerLink]="['/main-page/channel/' + channel.customIdChannel]">Ansicht</button>
+                <!--<button mat-stroked-button
+                    [routerLink]="['/main-page/channel/' + channel.customIdChannel]">Ansicht</button>-->
                 <button mat-raised-button class="create-btn join-btn" (click)="joinChannel()">Beitreten</button>
             </div>
         </mat-list-item>
