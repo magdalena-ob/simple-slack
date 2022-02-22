@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { FileService } from '../services/file.service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({

@@ -3,10 +3,12 @@
     <h3>You have the option of uploading a picture and sending it with the message.</h3>
     <p>Please, select a file from type image.</p>
 
-    <input [hidden]="true" type="file" #file (change)="showPreview($event, previewImg)" accept="*.png.jpg">
-    <button (click)="file.click()">Choose File</button>
-    <img #previewImg>
-    <button (click)="uploadFile($event)">Upload File</button>
+    <div class="file-event-area">
+        <input [hidden]="true" type="file" #file (change)="showPreview($event, previewImg)" accept="*.png.jpg">
+        <button mat-flat-button (click)="file.click()" class="file-event-button">Choose File</button>
+        <img #previewImg class="img-size">
+        <button mat-flat-button (click)="uploadFile($event)" class="file-event-button">Upload File</button>
+    </div>
 </div>
 
 <!--<button>
