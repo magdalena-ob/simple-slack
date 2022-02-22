@@ -4,6 +4,7 @@ import { User } from 'src/models/user.class';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,16 @@ export class AuthService {
         return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
             .then((result) => {
                 let emailLower = user.email.toLowerCase();
+
+               // this.firestore.doc('/testUsers/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
+                // .set({
+                //    displayName: user.displayName,
+                //    displayName_lower: user.displayName.toLowerCase(),
+                //    email: user.email,
+                //    email_lower: emailLower
+                //});
+
+                
                 result.user!.sendEmailVerification();                    // immediately send the user a verification email
             })
             .catch(error => {
