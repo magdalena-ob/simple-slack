@@ -13,38 +13,38 @@ import { Observable } from 'rxjs';
 export class MainPageComponent implements OnInit {
 
   user: Observable<any> | null;
-  allUsers: any = [];
+  //allUsers: any = [];
 
   constructor(public dialog: MatDialog, public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.user = null;
   }
 
   ngOnInit(): void {
-    //this.afAuth.authState
-     // .subscribe(user => {
-     //   console.log('main-page: user ', user);
-      
-        //if (user) {
-        //  let emailLower = user.email.toLowerCase();
-        //  this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-        //}
-      //});
+    this.afAuth.authState
+      .subscribe(user => {
+        console.log('main-page: user ', user);
 
-      this.getUsers();
-
-  }
-
-  getUsers() {
-    return this.firestore
-      .collection('users')
-      .valueChanges({idField: 'userID'})
-      .subscribe((changes) => {
-        this.allUsers = changes;
-        for(let usr of this.allUsers) {
-          console.log('user id is ', usr.userID);
+        if (user) {
+          let emailLower = user.email.toLowerCase();
+          this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
         }
-      }) 
+      });
+
+    //this.getUsers();
+
   }
+
+  //getUsers() {
+  //  return this.firestore
+  //    .collection('users')
+  //    .valueChanges({idField: 'userID'})
+  //    .subscribe((changes) => {
+  //      this.allUsers = changes;
+  //      for(let usr of this.allUsers) {
+  //        console.log('user id is ', usr.userID);
+  //      }
+  //    }) 
+  //}
 
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);

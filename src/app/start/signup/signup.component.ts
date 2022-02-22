@@ -24,6 +24,11 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the main-page (NOTE: don't use afAuth.currentUser -- it's never null)
+    //  this.router.navigate(['/main-page']);
+    //}
+
+
     this.signupForm = new FormGroup({
       'displayName': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
@@ -38,9 +43,9 @@ export class SignupComponent implements OnInit {
     this.authService.signupUser(this.signupForm.value).then((result: any) => {
       if (result == null) {                            // null is success, false means there was an error
 
-        this.firestore.collection('users').add(this.user.toJSON()).then((result: any) => {
-          console.log('User added', result);
-        });
+        //this.firestore.collection('users').add(this.user.toJSON()).then((result: any) => {
+        //  console.log('User added', result);
+        //});
 
         this.router.navigate(['/main-page']);
       }

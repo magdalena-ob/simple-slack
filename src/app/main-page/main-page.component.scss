@@ -68,6 +68,21 @@ mat-toolbar {
     font-weight: 400;
 }
 
+.user-name {
+    position: absolute;
+    right: 280px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.user {
+    position: absolute;
+    right: 200px;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+}
+
 ::ng-deep.mat-drawer-content {
     overflow-x: hidden !important;
 }

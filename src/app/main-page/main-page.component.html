@@ -4,6 +4,17 @@
     </button>
     <span>Simple Slack</span>
     <span class="example-spacer"></span>
+    <div class="user">
+        <div>
+            {{ (user | async)?.displayName }}
+        </div>
+        <div class="pd-left-8" *ngIf="(afAuth.user | async)">
+            <span>is logged in</span>
+        </div>
+        <div class="pd-left-8" *ngIf="! (afAuth.user | async)">
+            <span>User is not logged in</span>
+        </div>
+    </div>
     <button mat-stroked-button class="logout-btn" (click)="logout()">Logout</button>
 </mat-toolbar>
 

@@ -7,14 +7,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
-  user = new User();
-  userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
+    user = new User();
+    userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
 
-    constructor(private router: Router, private afAuth: AngularFireAuth, private firestore:AngularFirestore) {
+    constructor(private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
         this.userLoggedIn = false;
 
         this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
@@ -46,15 +46,17 @@ export class AuthService {
             .then((result) => {
                 let emailLower = user.email.toLowerCase();
 
-               // this.firestore.doc('/testUsers/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
-                // .set({
-                //    displayName: user.displayName,
-                //    displayName_lower: user.displayName.toLowerCase(),
-                //    email: user.email,
-                //    email_lower: emailLower
-                //});
+                this.firestore.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
+                    .set({
+                        displayName: user.displayName,
+                        displayName_lower: user.displayName.toLowerCase(),
+                        email: user.email,
+                        email_lower: emailLower,
+                        status: 'aktive',
+                        uid:'',
+                        channel: ''
+                    });
 
-                
                 result.user!.sendEmailVerification();                    // immediately send the user a verification email
             })
             .catch(error => {
@@ -63,5 +65,5 @@ export class AuthService {
                     return { isValid: false, message: error.message };
             });
     }
-    
+
 }

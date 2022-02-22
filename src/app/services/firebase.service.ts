@@ -9,7 +9,7 @@ import { Channel } from 'src/models/channel.class';
 })
 export class FirebaseService {
   channel = new Channel(); //for saveChannel
-  channelCreated : boolean = false;
+  channelCreated: boolean = false;
 
   channels: Observable<any[]> | undefined; //for getAllChannels
   customIdChannel: any;
@@ -37,7 +37,7 @@ export class FirebaseService {
     this.channels = this.firestore
       .collection('channels')
       .valueChanges({ idField: 'customIdChannel' })
-      return this.channels;
+    return this.channels;
   }
 
   //getId() {
@@ -56,5 +56,5 @@ export class FirebaseService {
   //    return this.currentChannel;
   //}
 
- 
+
 }
