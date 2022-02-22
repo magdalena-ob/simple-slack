@@ -54,10 +54,18 @@ mat-toolbar {
 }
 
 .header {
+    position: relative;
     color: white;
     /*height: 56px;*/
     height: 5vh;
     width: 100vw;
+}
+
+.logout-btn {
+    position: absolute;
+    right: 32px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 ::ng-deep.mat-drawer-content {
