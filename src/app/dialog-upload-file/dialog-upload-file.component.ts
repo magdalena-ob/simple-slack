@@ -38,8 +38,9 @@ export class DialogUploadFileComponent implements OnInit {
     
   }
 
-  showPreview($event: any) {
+  showPreview($event: any, img: HTMLImageElement) {
     this.file = $event.target.files[0];
+    img.src= URL.createObjectURL(this.file);
   }
 
   uploadFile($event: any) {
