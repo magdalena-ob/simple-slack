@@ -44,6 +44,7 @@ export class AuthService {
     signupUser(user: any): Promise<any> {
         return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
             .then((result) => {
+                let uid = result.user?.uid;
                 let emailLower = user.email.toLowerCase();
 
                 this.firestore.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
@@ -53,7 +54,7 @@ export class AuthService {
                         email: user.email,
                         email_lower: emailLower,
                         status: 'aktive',
-                        uid:'',
+                        uid,
                         channel: ''
                     });
 
