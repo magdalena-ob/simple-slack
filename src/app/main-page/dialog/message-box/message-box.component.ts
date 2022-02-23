@@ -23,6 +23,7 @@ export class MessageBoxComponent implements OnInit {
 
   user: Observable<any> | null;
   uid: any;
+  fromUser: any;
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private firestore: AngularFirestore, public afAuth: AngularFireAuth) {
     this.user = null;
@@ -43,14 +44,13 @@ export class MessageBoxComponent implements OnInit {
   }
 
   getCurrentUserId() {
-   // let currentUser = this.afAuth.user.subscribe();
-    //console.log('message-box uid ', currentUser);
-
     this.afAuth.authState
       .subscribe((user: any) => {
+        console.log('user message-box ', user);
         
         if (user) {
           this.uid = user.uid;
+          this.fromUser = user.displayName;
         }
       });
   }
@@ -58,7 +58,8 @@ export class MessageBoxComponent implements OnInit {
 
   toSendMessage() {
     this.message.timeSent = this.timeSent.getTime();
-    this.message.from = this.uid;                     //to get uid from user who sent the message
+    this.message.fromID = this.uid;
+    this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
                                 
     this.firestore
     .collection('channels')

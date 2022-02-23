@@ -2,13 +2,15 @@ export class Message {
     textMessage: string;
     timeSent: number;
     image: any;
-    from: any;
+    fromID: any;
+    fromName: string;
 
     constructor(obj?: any) {
             this.textMessage = obj ? obj.textMessage : '';
             this.timeSent = obj ? obj.timeSent : '';
             this.image = obj ? obj.image : '';
-            this.from = obj ? obj.from : '';
+            this.fromID = obj ? obj.fromID : '';
+            this.fromName = obj ? obj.fromName : '';
            
     }
 
@@ -17,7 +19,9 @@ export class Message {
             textMessage: this.textMessage,
             timeSent: this.timeSent,
             image: this.image,
-            from: this.from
+            fromID: this.fromID,
+            fromName: this.fromName
+           
             
         }
     }

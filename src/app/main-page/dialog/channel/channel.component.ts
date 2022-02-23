@@ -79,8 +79,6 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .subscribe((changes: any) => {
         this.channelMessages = changes;
         console.log('retrieved channelmessages ', this.channelMessages);
-        //this.channelMessages.timeSent = new Date(this.channelMessages.timeSent).getHours();
-        //console.log('time sent ', this.channelMessages.timeSent);
       })
   }
 
