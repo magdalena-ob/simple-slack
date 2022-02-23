@@ -21,12 +21,13 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.afAuth.authState
-      .subscribe(user => {
+      .subscribe((user: any) => {
         console.log('main-page: user ', user);
 
         if (user) {
           let emailLower = user.email.toLowerCase();
           this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+          //console.log('uid = ', user.uid);
         }
       });
 
