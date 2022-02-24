@@ -51,6 +51,14 @@ export class MessageBoxComponent implements OnInit {
         if (user) {
           this.uid = user.uid;
           this.fromUser = user.displayName;
+
+          let emailLower = user.email.toLowerCase();
+          this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+          this.user.subscribe((changes) => {
+            this.fromUser = changes.displayName;
+            //console.log('display name' , this.fromUser);
+          } )
+         
         }
       });
   }

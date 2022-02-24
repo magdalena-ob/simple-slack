@@ -52,6 +52,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FirebaseService } from './services/firebase.service';
 import { SyntaxHighlightingService } from './services/syntax-highlighting.service';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ChatService } from './services/chat.service';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   ],
   providers: [FirebaseService,
   SyntaxHighlightingService,
+  ChatService
   ],
   bootstrap: [AppComponent]
 })
