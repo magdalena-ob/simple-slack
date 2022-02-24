@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementR
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Observable, Subscription } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { Channel } from 'src/models/channel.class';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 
@@ -17,6 +18,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   channel: Channel = new Channel();
   channelMessages: any = [];
   time: any = new Date().getHours();
+
+  
 
  
   @ViewChild('textArea', { static: true })
@@ -42,6 +45,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   constructor(
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
+    private firebaseService: FirebaseService,
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
     private renderer: Renderer2 
@@ -80,6 +84,12 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
         this.channelMessages = changes;
         console.log('retrieved channelmessages ', this.channelMessages);
       })
+  }
+
+  joinChannel() {
+    this.firebaseService.channelId = this.channelId;
+
+    this.firebaseService.joinChannel();
   }
 
   ngAfterViewInit() {

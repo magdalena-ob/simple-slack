@@ -13,7 +13,6 @@ import { Observable } from 'rxjs';
 export class MainPageComponent implements OnInit {
 
   user: Observable<any> | null;
-  //allUsers: any = [];
 
   constructor(public dialog: MatDialog, public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.user = null;
@@ -27,25 +26,9 @@ export class MainPageComponent implements OnInit {
         if (user) {
           let emailLower = user.email.toLowerCase();
           this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-          //console.log('uid = ', user.uid);
         }
       });
-
-    //this.getUsers();
-
   }
-
-  //getUsers() {
-  //  return this.firestore
-  //    .collection('users')
-  //    .valueChanges({idField: 'userID'})
-  //    .subscribe((changes) => {
-  //      this.allUsers = changes;
-  //      for(let usr of this.allUsers) {
-  //        console.log('user id is ', usr.userID);
-  //      }
-  //    }) 
-  //}
 
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);

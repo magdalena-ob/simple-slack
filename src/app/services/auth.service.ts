@@ -56,7 +56,7 @@ export class AuthService {
                         email_lower: emailLower,
                         status: 'aktive',
                         uid,
-                        channel: ''
+                        channels: []
                     });
 
                 result.user!.sendEmailVerification();                    // immediately send the user a verification email

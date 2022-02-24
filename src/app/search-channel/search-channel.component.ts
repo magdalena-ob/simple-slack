@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { FirebaseService } from '../services/firebase.service';
 
@@ -17,23 +17,17 @@ export class SearchChannelComponent implements OnInit {
   searchText: any;
   value = '';
 
-  constructor(public dialog: MatDialog, private firebaseService: FirebaseService) { }
+  constructor(public dialog: MatDialog, private firebaseService: FirebaseService, private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
 
     this.firebaseService.getAllChannels()
       .subscribe(channels => {
-        this.allChannels = channels})
+        this.allChannels = channels;
+        console.log('search channel inof', this.allChannels);
+      })
 
-    //this.firestore
-    //  .collection('channels')
-    //  .valueChanges({idField: 'customIdChannel'})
-    //  .subscribe((changes: any) => {
-    //    console.log('received changes from database', changes);
-    //    this.allChannels = changes;
-    //    console.log('show arry allChannels', this.allChannels);
-    //  })
   }
 
   openAddChannel() {
@@ -41,7 +35,9 @@ export class SearchChannelComponent implements OnInit {
   }
 
   joinChannel() {
-    console.log('you joined channel');
+    //console.log('you joined channel');
+   console.log('your joined channel ', this.allChannels.customIdChannel);
+    
   }
 
 }
