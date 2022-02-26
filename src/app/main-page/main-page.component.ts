@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class MainPageComponent implements OnInit {
 
   user: Observable<any> | null;
+  emailLower: any;
 
   constructor(public dialog: MatDialog, public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.user = null;
@@ -24,14 +25,32 @@ export class MainPageComponent implements OnInit {
         console.log('main-page: user ', user);
 
         if (user) {
-          let emailLower = user.email.toLowerCase();
-          this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+          this.emailLower = user.email.toLowerCase();
+          this.user = this.firestore.collection('users').doc(this.emailLower).valueChanges();
         }
       });
   }
 
   openAddChannel() {
-    this.dialog.open(DialogAddChannelComponent);
+   let dialogRef = this.dialog.open(DialogAddChannelComponent);
+    //this.dialog.afterAllClosed.subscribe(
+    //  {
+    //    next: (newChannelDoc: any) => {
+    //      console.log(newChannelDoc);
+    //      this.firestore
+    //        .collection('users')
+    //        .doc(this.emailLower)
+    //        .set({channels: [newChannelDoc.id]},
+    //        { merge: true });
+    //    },
+    //    error: (error: any) => {console.error(error)},
+    //    complete: () => {}
+
+    //  }
+    //)
+    dialogRef.afterClosed().subscribe((result: any)=> {
+      console.log('result is',  result);
+    })
   }
 
   logout(): void {

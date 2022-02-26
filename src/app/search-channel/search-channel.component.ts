@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { FirebaseService } from '../services/firebase.service';
+import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 @Component({
   selector: 'app-search-channel',
@@ -17,27 +21,65 @@ export class SearchChannelComponent implements OnInit {
   searchText: any;
   value = '';
 
-  constructor(public dialog: MatDialog, private firebaseService: FirebaseService, private route: ActivatedRoute) { }
+  user: Observable<any> | null;
+
+  userID: any;
+
+  constructor(
+    public dialog: MatDialog,
+    private firebaseService: FirebaseService,
+    private route: ActivatedRoute,
+    private firestore: AngularFirestore,
+    public afAuth: AngularFireAuth) { this.user = null; }
 
 
   ngOnInit(): void {
+    this.getCurrentUser();
 
     this.firebaseService.getAllChannels()
       .subscribe(channels => {
         this.allChannels = channels;
-        console.log('search channel inof', this.allChannels);
+        console.log('search channel info', this.allChannels);
       })
 
   }
 
+  getCurrentUser() {
+    this.afAuth.authState
+      .subscribe((user: any) => {
+        console.log('current user id is ', user.email);
+
+        if (user) {
+          return this.userID = user.email.toLowerCase();
+        }
+      });
+  }
+
+
+
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);
+
+    //this.dialog.afterAllClosed.subscribe(
+    //{
+    //  next: (newChannelDoc: any) => {
+    //    console.log(newChannelDoc);
+    //    this.firestore
+    //      .collection('users')
+    //      .doc(this.userID)
+    //      .set({ channels: [newChannelDoc.id] },
+    //        { merge: true });
+    //      },
+    //  error: (error: any) => {console.error(error)},
+    //  complete: () => {}
+    //}
+    //)
   }
 
   joinChannel() {
     //console.log('you joined channel');
-   console.log('your joined channel ', this.allChannels.customIdChannel);
-    
+    //console.log('your joined channel ', this.allChannels.customIdChannel);
+
   }
 
 }

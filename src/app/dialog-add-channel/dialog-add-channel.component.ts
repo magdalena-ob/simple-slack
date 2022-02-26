@@ -18,17 +18,20 @@ export class DialogAddChannelComponent implements OnInit {
     private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
+    this.channel.category = '';     //to clear input
   }
 
   async createChannel() {
-    try {
-      let newChannelDoc = await this.firebaseService.addChannel()
-      console.log('new Channel Doc ', newChannelDoc);
-      this.dialogRef.close(newChannelDoc); 
-    } catch (error) {
-      console.error(error)
-    }
-
+   // try {
+   //   let newChannelDoc = await this.firebaseService.addChannel()
+   //   console.log('new Channel Doc ', newChannelDoc);
+   //  
+   // } catch (error) {
+   //   console.error(error)
+   // }
+   
+    this.firebaseService.getCurrentUser();
+    this.dialogRef.close(); 
 
   }
 

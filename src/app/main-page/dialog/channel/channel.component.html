@@ -2,7 +2,6 @@
   <div class="title-container">
     <b># {{ channel.category }}</b>
   </div>
-  <div><button (click)="joinChannel()">Channel hinzufügen</button></div>
   <div class="msg-box">
     <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages">
       <div class="user">

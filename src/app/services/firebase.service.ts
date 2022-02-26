@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
@@ -18,21 +19,34 @@ export class FirebaseService {
 
   user: Observable<any> | null;
   channelId: any;
-
+  
   constructor(private firestore: AngularFirestore, private route: ActivatedRoute, public afAuth: AngularFireAuth,) {
     this.user = null;
   }
 
   //for creating a channel in dialog-add-channel.component
-  async addChannel() {
-    return await this.firestore
+  //async addChannel() {
+  //  return await this.firestore
+  //    .collection('channels')
+  //    .add(this.channel.toJSON())
+  //}
+
+  async addChannel(userID: string | undefined) {
+    try {
+      let newChannelDoc = await this.firestore
       .collection('channels')
       .add(this.channel.toJSON())
-      //.then((result: any) => {
-      //  console.log('finished adding channel', result);
-      //  return this.channel;
-      //});
+    
+      this.firestore.collection('users').doc(userID).set(
+        { channels: [newChannelDoc.id] },
+        { merge: true }
+      );
+    } catch(error) {
+      console.error(error);
+    }
+   
   }
+
 
   //to show all created channels in search-channel.component
   getAllChannels() {
@@ -43,15 +57,16 @@ export class FirebaseService {
   }
 
   //user who is logged in 
-  getCurrentUser() {
-    this.afAuth.authState
+ getCurrentUser() {
+   this.afAuth.authState
       .subscribe((user: any) => {
-        console.log('main-page: user ', user);
+        console.log('email user ', user.email);
 
         if (user) {
-          let emailLower = user.email.toLowerCase();
-          this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-          console.log('join channel', this.user);
+          let userID = user.email.toLowerCase();
+          //this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+          console.log('current user is', userID);
+          this.addChannel(userID);
         }
       });
   }
@@ -79,3 +94,4 @@ export class FirebaseService {
   }
 
 }
+
