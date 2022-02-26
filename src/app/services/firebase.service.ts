@@ -17,8 +17,6 @@ export class FirebaseService {
   customIdChannel: any;
 
   user: Observable<any> | null;
-  //emailLower: Observable<any> | undefined;
-  //addedChannel: boolean = false;
   channelId: any;
 
   constructor(private firestore: AngularFirestore, private route: ActivatedRoute, public afAuth: AngularFireAuth,) {
@@ -26,15 +24,14 @@ export class FirebaseService {
   }
 
   //for creating a channel in dialog-add-channel.component
-  saveChannel() {
-    this.firestore
+  async addChannel() {
+    return await this.firestore
       .collection('channels')
       .add(this.channel.toJSON())
-      .then((result: any) => {
-        console.log('finished adding channel', result);
-        this.channelCreated = true;
-        return this.channel;
-      });
+      //.then((result: any) => {
+      //  console.log('finished adding channel', result);
+      //  return this.channel;
+      //});
   }
 
   //to show all created channels in search-channel.component
