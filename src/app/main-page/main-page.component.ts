@@ -18,7 +18,6 @@ export class MainPageComponent implements OnInit {
   allChannels: any = [];
   customIdChannel = this.firebaseService.customIdChannel;
   addedChannels: any = [];
-  channelIds: any = [];
   addedChannelNames: any = [];
 
   constructor(public dialog: MatDialog,
@@ -94,27 +93,20 @@ export class MainPageComponent implements OnInit {
   }
 
   getChannelName() {
-    
-
     for (let all in this.allChannels) {
       let allChannelsId = this.allChannels[all].customIdChannel;
+      let channelName = this.allChannels[all].category;
       //console.log('allChannelsId is ', allChannelsId);
 
       for (let added in this.addedChannels) {
         let id = this.addedChannels[added].channels;
         //console.log('channel id is', id);
 
-       // this.channelIds.push(this.addedChannels[added].channels);
-        //console.log('added channel array is ', this.channelIds);
-
         if (allChannelsId == id) {
-          console.log('result is', allChannelsId, id,);
-          this.addedChannelNames.push(this.allChannels[all].category);
-          console.log('names are ', this.addedChannelNames);
+          this.addedChannelNames.push(channelName);
+          //console.log('names are ', this.addedChannelNames);
         }
-      }
-
-      
+      } 
     }
   }
 
