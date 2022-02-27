@@ -19,6 +19,7 @@ export class DialogAddChannelComponent implements OnInit {
 
   ngOnInit(): void {
     this.channel.category = '';     //to clear input
+    this.channel.description = '';
   }
 
   async createChannel() {

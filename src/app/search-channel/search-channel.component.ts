@@ -59,27 +59,10 @@ export class SearchChannelComponent implements OnInit {
 
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);
-
-    //this.dialog.afterAllClosed.subscribe(
-    //{
-    //  next: (newChannelDoc: any) => {
-    //    console.log(newChannelDoc);
-    //    this.firestore
-    //      .collection('users')
-    //      .doc(this.userID)
-    //      .set({ channels: [newChannelDoc.id] },
-    //        { merge: true });
-    //      },
-    //  error: (error: any) => {console.error(error)},
-    //  complete: () => {}
-    //}
-    //)
   }
 
   joinChannel() {
     //console.log('you joined channel');
-    //console.log('your joined channel ', this.allChannels.customIdChannel);
-
   }
 
 }

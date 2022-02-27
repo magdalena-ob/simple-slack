@@ -36,11 +36,12 @@
                         <mat-panel-title>
                             <mat-icon>arrow_drop_down</mat-icon>
                             Channels
-                            <mat-icon matTooltip="Channels hinzufügen" matTooltipPosition="above" class="add-icon"
+                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Channels hinzufügen" matTooltipPosition="above" class="add-icon"
                                 [matMenuTriggerFor]="menu1">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-list *ngFor="let channel of addedChannelNames" [routerLink]="['/main-page/channel/' + channel.customIdChannel]">
+                    <mat-list *ngIf="addedChannelNames.length === 0" class="info-channels">Du hast noch keine Channels hinzugefügt!</mat-list>
+                    <mat-list *ngFor="let channel of addedChannelNames">
                         <mat-list-item class="added-channels"># {{ channel }}</mat-list-item>
                     </mat-list>
                 </mat-expansion-panel>
@@ -52,7 +53,7 @@
                         <mat-panel-title>
                             <mat-icon>arrow_drop_down</mat-icon>
                             Direktnachrichten
-                            <mat-icon matTooltip="Direktnachricht öffnen" matTooltipPosition="above" class="add-icon"
+                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Direktnachricht öffnen" matTooltipPosition="above" class="add-icon"
                                 routerLink="directmessageadd">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>

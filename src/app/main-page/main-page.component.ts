@@ -42,7 +42,6 @@ export class MainPageComponent implements OnInit {
           this.getUsersChannel(userId);
         }
       });
-
   }
 
   openAddChannel() {
