@@ -15,16 +15,22 @@ export class MainPageComponent implements OnInit {
 
   user: Observable<any> | null;
   emailLower: any;
+  allChannels: any = [];
+  customIdChannel = this.firebaseService.customIdChannel;
   addedChannels: any = [];
+  channelIds: any = [];
+  addedChannelNames: any = [];
 
-  constructor(public dialog: MatDialog, 
-    public afAuth: AngularFireAuth, 
+  constructor(public dialog: MatDialog,
+    public afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
     private firebaseService: FirebaseService) {
-      this.user = null;
+    this.user = null;
   }
 
   ngOnInit(): void {
+    this.getAllChannels();
+
     this.afAuth.authState
       .subscribe((user: any) => {
         console.log('main-page: user ', user);
@@ -37,7 +43,7 @@ export class MainPageComponent implements OnInit {
           this.getUsersChannel(userId);
         }
       });
-      
+
   }
 
   openAddChannel() {
@@ -64,16 +70,52 @@ export class MainPageComponent implements OnInit {
     this.afAuth.signOut();
   }
 
+  getAllChannels() {
+    this.firebaseService.getAllChannels()
+    .subscribe(channels => {
+      this.allChannels = channels;
+      console.log('all channels', this.allChannels);
+    })
+  }
+ 
+
   getUsersChannel(userId: any) {
     this.firestore
-    .collection('users')
-    .doc(userId)
-    .collection('addedChannels')
-    .valueChanges(({ idField: 'userChannelsID' }))
-    .subscribe((result: any) => {
-      this.addedChannels = result;
+      .collection('users')
+      .doc(userId)
+      .collection('addedChannels')
+      .valueChanges(({ idField: 'userChannelsID' }))
+      .subscribe((result: any) => {
+        this.addedChannels = result;
         console.log('added user channels: ', this.addedChannels);
+       
+        this.getChannelName()
       });
+  }
+
+  getChannelName() {
+    
+
+    for (let all in this.allChannels) {
+      let allChannelsId = this.allChannels[all].customIdChannel;
+      //console.log('allChannelsId is ', allChannelsId);
+
+      for (let added in this.addedChannels) {
+        let id = this.addedChannels[added].channels;
+        //console.log('channel id is', id);
+
+       // this.channelIds.push(this.addedChannels[added].channels);
+        //console.log('added channel array is ', this.channelIds);
+
+        if (allChannelsId == id) {
+          console.log('result is', allChannelsId, id,);
+          this.addedChannelNames.push(this.allChannels[all].category);
+          console.log('names are ', this.addedChannelNames);
+        }
+      }
+
+      
+    }
   }
 
 }

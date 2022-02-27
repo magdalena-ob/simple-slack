@@ -40,8 +40,8 @@
                                 [matMenuTriggerFor]="menu1">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-list *ngFor="let channel of addedChannels">
-                        <mat-list-item class="added-channels"># {{ channel.channels }}</mat-list-item>
+                    <mat-list *ngFor="let channel of addedChannelNames" [routerLink]="['/main-page/channel/' + channel.customIdChannel]">
+                        <mat-list-item class="added-channels"># {{ channel }}</mat-list-item>
                     </mat-list>
                 </mat-expansion-panel>
             </mat-accordion>
