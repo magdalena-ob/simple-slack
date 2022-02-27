@@ -17,13 +17,14 @@ export class FirebaseService {
 
   user: Observable<any> | null;
   channelId: any;
-  
+
   constructor(private firestore: AngularFirestore, private route: ActivatedRoute, public afAuth: AngularFireAuth,) {
     this.user = null;
-    
+
   }
 
   //for creating a channel in dialog-add-channel.component
+
   //async addChannel() {
   //  return await this.firestore
   //    .collection('channels')
@@ -33,26 +34,24 @@ export class FirebaseService {
   async addChannel(userID: string | undefined) {
     try {
       let newChannelDoc = await this.firestore
-      .collection('channels')
-      .add(this.channel.toJSON())
-    
+        .collection('channels')
+        .add(this.channel.toJSON())
+
       //this.firestore.collection('users').doc(userID).set(           //array in user collection
       //  { channels: [newChannelDoc.id] },
       //  { merge: true }
       //);
 
-      this.firestore                                                  //collection in user collection
-     .collection('users')
-      .doc(userID)
-      .collection('channels')
-      .add(
-        {channels: newChannelDoc.id}
+      this.firestore                                                  //subcollection in user collection
+        .collection('users')
+        .doc(userID)
+        .collection('addedChannels')
+        .add(
+          { channels: newChannelDoc.id }
         );
-
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
-   
   }
 
 
@@ -65,8 +64,8 @@ export class FirebaseService {
   }
 
   //user who is logged in 
- getCurrentUser() {
-   this.afAuth.authState
+  getCurrentUser() {
+    this.afAuth.authState
       .subscribe((user: any) => {
         console.log('email user ', user.email);
 
@@ -79,11 +78,14 @@ export class FirebaseService {
       });
   }
 
+
+
+
   //to add channel id to in channel array logged in user collection
- // joinChannel() {
- //   this.afAuth.authState
- //     .subscribe((user: any) => {
- //       console.log('main-page: user ', user);
+  // joinChannel() {
+  //   this.afAuth.authState
+  //     .subscribe((user: any) => {
+  //       console.log('main-page: user ', user);
 
   //      if (user) {
   //        let emailLower = user.email.toLowerCase();

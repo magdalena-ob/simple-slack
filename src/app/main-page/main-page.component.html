@@ -31,7 +31,7 @@
             </div>
 
             <mat-accordion class="ex-panel" multi>
-                <mat-expansion-panel [hideToggle]="true">
+                <mat-expansion-panel [hideToggle]="true" [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <mat-icon>arrow_drop_down</mat-icon>
@@ -40,11 +40,14 @@
                                 [matMenuTriggerFor]="menu1">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <mat-list *ngFor="let channel of addedChannels">
+                        <mat-list-item class="added-channels"># {{ channel.channels }}</mat-list-item>
+                    </mat-list>
                 </mat-expansion-panel>
             </mat-accordion>
 
             <mat-accordion class="ex-panel" multi>
-                <mat-expansion-panel [hideToggle]="true">
+                <mat-expansion-panel [hideToggle]="true" [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <mat-icon>arrow_drop_down</mat-icon>

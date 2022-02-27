@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { Observable } from 'rxjs';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,9 +15,13 @@ export class MainPageComponent implements OnInit {
 
   user: Observable<any> | null;
   emailLower: any;
+  addedChannels: any = [];
 
-  constructor(public dialog: MatDialog, public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
-    this.user = null;
+  constructor(public dialog: MatDialog, 
+    public afAuth: AngularFireAuth, 
+    private firestore: AngularFirestore,
+    private firebaseService: FirebaseService) {
+      this.user = null;
   }
 
   ngOnInit(): void {
@@ -27,12 +32,17 @@ export class MainPageComponent implements OnInit {
         if (user) {
           this.emailLower = user.email.toLowerCase();
           this.user = this.firestore.collection('users').doc(this.emailLower).valueChanges();
+          let userId = this.emailLower;
+
+          this.getUsersChannel(userId);
         }
       });
+      
   }
 
   openAddChannel() {
-   let dialogRef = this.dialog.open(DialogAddChannelComponent);
+    this.dialog.open(DialogAddChannelComponent);
+
     //this.dialog.afterAllClosed.subscribe(
     //  {
     //    next: (newChannelDoc: any) => {
@@ -48,13 +58,25 @@ export class MainPageComponent implements OnInit {
 
     //  }
     //)
-    dialogRef.afterClosed().subscribe((result: any)=> {
-      console.log('result is',  result);
-    })
   }
 
   logout(): void {
     this.afAuth.signOut();
   }
 
+  getUsersChannel(userId: any) {
+    this.firestore
+    .collection('users')
+    .doc(userId)
+    .collection('addedChannels')
+    .valueChanges(({ idField: 'userChannelsID' }))
+    .subscribe((result: any) => {
+      this.addedChannels = result;
+        console.log('added user channels: ', this.addedChannels);
+      });
+  }
+
 }
+
+
+
