@@ -8,6 +8,9 @@
         <div>
             {{ (user | async)?.displayName }}
         </div>
+        <div *ngIf="anonymousGuest == true">
+            Gast
+        </div>
         <div class="pd-left-8" *ngIf="(afAuth.user | async)">
             <span>is logged in</span>
         </div>

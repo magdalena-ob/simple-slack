@@ -1,31 +1,28 @@
-<button class="margin-16" mat-raised-button color="primary" routerLink="">
-    Home
-</button>
-
 <mat-card>
+    <button mat-flat-button routerLink=""><mat-icon matTooltip="zurück zur Startseite" matTooltipPosition="right">arrow_back</mat-icon></button>
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
         <p>
             <mat-form-field appearance="outline">
-                <mat-label>Full Name</mat-label>
-                <input autocomplete="off" formControlName="displayName" type="text" matInput [(ngModel)]="user.name" placeholder="Display Name">
+                <mat-label color-gr>Name</mat-label>
+                <input autocomplete="off" formControlName="displayName" type="text" matInput [(ngModel)]="user.name" placeholder="Dein Name">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput [(ngModel)]="user.email" placeholder="Email">
+                <mat-label color-gr>Email</mat-label>
+                <input formControlName="email" type="email" matInput [(ngModel)]="user.email" placeholder="mail@example.com">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
+                <mat-label color-gr>Password</mat-label>
+                <input autocomplete="off" formControlName="password" type="password" matInput placeholder="***">
             </mat-form-field>
         </p>
         <div *ngIf="firebaseErrorMessage != ''" class="error-style">
             <span>{{ firebaseErrorMessage }}</span>
         </div>
 
-        <button mat-raised-button color="primary">Signup</button>
+        <button mat-raised-button color="primary" class="bg-btn">Signup</button>
     </form>
 </mat-card>

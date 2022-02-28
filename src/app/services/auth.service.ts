@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 @Injectable({
     providedIn: 'root'
@@ -13,9 +14,9 @@ export class AuthService {
 
     //user = new User();
     userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
-  
+
     constructor(private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
-        
+
         this.userLoggedIn = false;
 
         this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
@@ -40,9 +41,9 @@ export class AuthService {
                 //if (error.code)
                 //    return { isValid: false, message: error.message };
                 if (error.code == 'auth/wrong-password') {
-                    return {isValid: false, message: 'Dein Passwort ist leider falsch!'};
+                    return { isValid: false, message: 'Dein Passwort ist leider falsch!' };
                 } else if (error.code == 'auth/user-not-found') {
-                    return {isValid: false, message: 'Es konnte kein User mit dieser Email gefunden werden!'};
+                    return { isValid: false, message: 'Es konnte kein User mit dieser Email gefunden werden!' };
                 }
             });
     }
@@ -71,8 +72,22 @@ export class AuthService {
                 //if (error.code)
                 //    return { isValid: false, message: error.message };
                 if (error.code == 'auth/email-already-in-use') {
-                    return { isValid: false, message: 'Diese E-mail-Adresse ist bereits in Verwendung!'};
-                } else return { isValid: false, message: error.message};
+                    return { isValid: false, message: 'Diese E-mail-Adresse ist bereits in Verwendung!' };
+                } else return { isValid: false, message: error.message };
+            });
+    }
+
+    signinAnonymously() {
+        const auth = getAuth();
+        return signInAnonymously(auth)
+            .then(() => {
+                console.log('Guest login success');
+                // Signed in..
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ...
             });
     }
 

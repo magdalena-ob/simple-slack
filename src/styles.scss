@@ -74,7 +74,7 @@ h1 {
 p {
   text-align: center;
   font-size: 20px;
-  color: rgb(214, 214, 214);
+  /*color: rgb(214, 214, 214);*/
   margin-bottom: 20px;
 }
 
@@ -136,4 +136,8 @@ p {
 
 .pd-left-8 {
   padding-left: 8px;
+}
+
+.bg-btn {
+  background-color: #481449 !important;
 }

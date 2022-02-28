@@ -16,11 +16,8 @@
         <button mat-raised-button color="primary" *ngIf="(afAuth.user | async)" routerLink="/main-page">
             Dashboard
         </button>
-
-
         <div class="column-center " *ngIf="(afAuth.user | async)">
             Du bist bereits eingeloggt
-
             <br>
             <button mat-raised-button color="primary" (click)="logout()">
                 Log out
@@ -29,5 +26,8 @@
         <div class="login-status" *ngIf="!(afAuth.user | async)">
             Du bist noch nicht eingeloggt
         </div>
+        <button mat-raised-button color="primary" class="guest-btn" (click)="signinGuest()">
+            weiter als Gast
+        </button>
     </div>
 </mat-card>

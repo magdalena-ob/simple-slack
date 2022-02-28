@@ -4,4 +4,27 @@
   align-items: center;
   height: 95vh;
   justify-content: center;
-  }
+}
+
+.error-style {
+  color: #ff9800;
+  margin-bottom: 16px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #481449 !important;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  /*change color of outline when focused*/
+  color:#481449 !important;
+}
+
+::ng-deep.mat-error{
+  color: #ff9800 !important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: #ff9800 !important;
+  opacity: 0.8!important;
+}

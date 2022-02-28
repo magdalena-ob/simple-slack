@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service'
@@ -19,11 +19,19 @@ export class SignupComponent implements OnInit {
   firebaseErrorMessage: string;
   user = new User();
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private afAuth: AngularFireAuth, 
+    private firestore: AngularFirestore,
+    private elementRef: ElementRef) {
     this.firebaseErrorMessage = '';
   }
 
   ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#481449';
+
     //if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the main-page (NOTE: don't use afAuth.currentUser -- it's never null)
     //  this.router.navigate(['/main-page']);
     //}

@@ -19,6 +19,7 @@ export class MainPageComponent implements OnInit {
   customIdChannel = this.firebaseService.customIdChannel;
   addedChannels: any = [];
   addedChannelNames: any = [];
+  anonymousGuest: boolean = false;
 
   constructor(public dialog: MatDialog,
     public afAuth: AngularFireAuth,
@@ -33,14 +34,17 @@ export class MainPageComponent implements OnInit {
     this.afAuth.authState
       .subscribe((user: any) => {
         console.log('main-page: user ', user);
-
+        if(user.isAnonymous == true) {
+          console.log ('Gast is logged in');
+          this.anonymousGuest = true;
+        }
         if (user) {
           this.emailLower = user.email.toLowerCase();
           this.user = this.firestore.collection('users').doc(this.emailLower).valueChanges();
           let userId = this.emailLower;
 
           this.getUsersChannel(userId);
-        }
+        } 
       });
   }
 
