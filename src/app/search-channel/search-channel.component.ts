@@ -36,12 +36,7 @@ export class SearchChannelComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUser();
 
-    this.firebaseService.getAllChannels()
-      .subscribe(channels => {
-        this.allChannels = channels;
-        console.log('search channel info', this.allChannels);
-      })
-
+    this.getAllChannels();
   }
 
   getCurrentUser() {
@@ -55,7 +50,14 @@ export class SearchChannelComponent implements OnInit {
       });
   }
 
+  getAllChannels() {
+    this.firebaseService.getAllChannels()
+      .subscribe(channels => {
+        this.allChannels = channels;
+        console.log('search channel info', this.allChannels);
+      })
 
+  }
 
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);

@@ -66,13 +66,10 @@ mat-toolbar {
     right: 32px;
     font-size: 16px;
     font-weight: 400;
-}
 
-.user-name {
-    position: absolute;
-    right: 280px;
-    font-size: 16px;
-    font-weight: 400;
+    .mat-icon {
+        padding-right: 28px;
+    }
 }
 
 .user {
@@ -83,6 +80,10 @@ mat-toolbar {
     display: flex;
 }
 
+.user-name {
+    color: #ffc107;;
+}
+
 ::ng-deep.mat-drawer-content {
     overflow-x: hidden !important;
 }
@@ -91,6 +92,9 @@ mat-toolbar {
     width: 100%;
 }
 
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+    color: white;
+  }
 ::ng-deep.mat-expansion-panel {
     background-color: #481449 !important;
     box-shadow: unset !important;
@@ -99,6 +103,8 @@ mat-toolbar {
 ::ng-deep.mat-expansion-panel-header-title {
     color: white !important;
 }
+
+
 
 .added-channels{
     color: white;

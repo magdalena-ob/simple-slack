@@ -54,7 +54,21 @@ button {
     margin-bottom: 12px;
 }
 
+.login-stat-green {
+    margin-top: 12px;
+    color: #209c20;
+    margin-bottom: 12px; 
+}
+
+.btn-green {
+    background-color: #209c20 !important;
+}
+
 .guest-btn {
     background-color: #209c20 !important;
     width: unset !important;
+}
+
+.logout-btn {
+    background-color: #e91e63 !important;
 }

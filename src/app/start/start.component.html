@@ -1,6 +1,7 @@
 <div class="start-container">
     <div class="header">Willkommen bei Simple-Slack</div>
-    <div class="info">Simple-Slack ist eine Business App wo du dich mit deinen Kollegen einfach austauschen kannst!</div>
+    <div class="info">Simple-Slack ist eine Business App wo du dich mit deinen Kollegen einfach austauschen kannst!
+    </div>
 </div>
 
 <mat-card class="signin-container">
@@ -12,21 +13,21 @@
         <button mat-raised-button color="primary" routerLink="/signup">
             Signup
         </button>
-
-        <button mat-raised-button color="primary" *ngIf="(afAuth.user | async)" routerLink="/main-page">
+        <div class="column-center login-stat-green" *ngIf="(afAuth.user | async)">
+            Du bist bereits eingeloggt!
+        </div>
+        <button mat-raised-button color="primary" class="btn-green" *ngIf="(afAuth.user | async)"
+            routerLink="/main-page">
             Dashboard
         </button>
-        <div class="column-center " *ngIf="(afAuth.user | async)">
-            Du bist bereits eingeloggt
-            <br>
-            <button mat-raised-button color="primary" (click)="logout()">
-                Log out
-            </button>
-        </div>
+        <button mat-raised-button color="primary" class="logout-btn" *ngIf="(afAuth.user | async)" (click)="logout()">
+            Log out
+        </button>
         <div class="login-status" *ngIf="!(afAuth.user | async)">
-            Du bist noch nicht eingeloggt
+            Du bist noch nicht eingeloggt!
         </div>
-        <button mat-raised-button color="primary" class="guest-btn" (click)="signinGuest()">
+        <button *ngIf="!(afAuth.user | async)" mat-raised-button color="primary" class="guest-btn"
+            (click)="signinGuest()">
             weiter als Gast
         </button>
     </div>
