@@ -1,30 +1,33 @@
-<div class="header">Sign in to Simple-Slack</div>
-
-
-<div class="column-center">
-    <button mat-raised-button color="primary" routerLink="/login">
-        Login
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/signup">
-        Signup
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/main-page">
-        Dashboard
-    </button>
-
-
-    <div class="column-center" *ngIf="(afAuth.user | async)">
-        User is logged in
-    
-        <br>
-        <button mat-raised-button color="primary" (click)="logout()">
-            Log out
-        </button>
-    </div>
-    <div *ngIf="!(afAuth.user | async)">
-        User is not logged in
-    </div>
+<div class="start-container">
+    <div class="header">Willkommen bei Simple-Slack</div>
+    <div class="info">Simple-Slack ist eine Business App wo du dich mit deinen Kollegen einfach austauschen kannst!</div>
 </div>
 
+<mat-card class="signin-container">
+    <div class="signin-header">Sign in to Simple-Slack</div>
+    <div class="column-center">
+        <button mat-raised-button color="primary" routerLink="/login">
+            Login
+        </button>
+        <button mat-raised-button color="primary" routerLink="/signup">
+            Signup
+        </button>
+
+        <button mat-raised-button color="primary" *ngIf="(afAuth.user | async)" routerLink="/main-page">
+            Dashboard
+        </button>
+
+
+        <div class="column-center " *ngIf="(afAuth.user | async)">
+            Du bist bereits eingeloggt
+
+            <br>
+            <button mat-raised-button color="primary" (click)="logout()">
+                Log out
+            </button>
+        </div>
+        <div class="login-status" *ngIf="!(afAuth.user | async)">
+            Du bist noch nicht eingeloggt
+        </div>
+    </div>
+</mat-card>

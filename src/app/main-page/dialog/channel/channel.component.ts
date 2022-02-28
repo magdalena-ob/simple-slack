@@ -86,11 +86,6 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       })
   }
 
-  //joinChannel() {
-  //  this.firebaseService.channelId = this.channelId;
-
-  //  this.firebaseService.joinChannel();
-  //}
 
   ngAfterViewInit() {
     this.prismService.highlightAll();

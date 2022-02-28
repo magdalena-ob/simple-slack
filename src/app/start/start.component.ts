@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 @Component({
@@ -8,9 +8,11 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 })
 export class StartComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = '#481449';
   }
 
   logout(): void {

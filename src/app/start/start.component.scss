@@ -1,6 +1,37 @@
+.start-container {
+    margin-bottom: 8vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info {
+    color: #ffc107;
+    font-size: 18px;
+    margin-top: 3vh;
+}
+
+.signin-container {
+    min-width: 28vw;
+    min-height: 24vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signin-header {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
 button {
     margin: 5px;
     width: 100px;
+    background-color: #481449 !important;
 }
 
 :host {
@@ -12,7 +43,12 @@ button {
     }
 
 .header {
-    margin-bottom: 15vh;
+    /*margin-bottom: 15vh;*/
     font-size: 3vw;
     font-weight: 600;
+}
+
+.login-status {
+    margin-top: 12px;
+    color: #ffc107;
 }

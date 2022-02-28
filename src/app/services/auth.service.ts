@@ -37,8 +37,13 @@ export class AuthService {
                 console.log('Auth Service: login error...');
                 console.log('error code', error.code);
                 console.log('error', error);
-                if (error.code)
-                    return { isValid: false, message: error.message };
+                //if (error.code)
+                //    return { isValid: false, message: error.message };
+                if (error.code == 'auth/wrong-password') {
+                    return {isValid: false, message: 'Dein Passwort ist leider falsch!'};
+                } else if (error.code == 'auth/user-not-found') {
+                    return {isValid: false, message: 'Es konnte kein User mit dieser Email gefunden werden!'};
+                }
             });
     }
 
@@ -63,8 +68,11 @@ export class AuthService {
             })
             .catch(error => {
                 console.log('Auth Service: signup error', error);
-                if (error.code)
-                    return { isValid: false, message: error.message };
+                //if (error.code)
+                //    return { isValid: false, message: error.message };
+                if (error.code == 'auth/email-already-in-use') {
+                    return { isValid: false, message: 'Diese E-mail-Adresse ist bereits in Verwendung!'};
+                } else return { isValid: false, message: error.message};
             });
     }
 
