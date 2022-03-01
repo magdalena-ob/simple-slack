@@ -86,6 +86,10 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       })
   }
 
+  joinChannel() {
+    
+  }
+
 
   ngAfterViewInit() {
     this.prismService.highlightAll();

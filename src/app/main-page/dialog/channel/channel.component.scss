@@ -11,7 +11,14 @@
   justify-content: flex-end;
 }
 
-
+.join-btn {
+  background-color: #209c20;
+  color: white;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .code-container {
   max-width: 1000px;

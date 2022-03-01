@@ -54,7 +54,7 @@ body {
 }
 
 .thread-container {
-  width: 600px;
+  width: 460px;
 }
 
 .close-btn {
@@ -113,6 +113,7 @@ p {
 .msg-box {
   display: flex;
   flex-direction: column-reverse;
+  padding-top: 16px;
 }
 
 .user {
@@ -141,3 +142,4 @@ p {
 .bg-btn {
   background-color: #481449 !important;
 }
+
