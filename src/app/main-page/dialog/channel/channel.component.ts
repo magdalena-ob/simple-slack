@@ -22,6 +22,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   userID: any = '';
   members: any = [];
   isMember: boolean = false;
+  allChannelMembers: any  = [];
 
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
@@ -131,24 +132,29 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .collection('members')
       .valueChanges(({ idField: 'customIdMember' }))
       .subscribe((changes: any) => {
-        let members = changes;
-        console.log('retrieved members ', members);
-        this.checkForMember(members);
+        //let members = changes;
+        //console.log('retrieved members ', members);
+        //this.checkForMember(members);
+        this.allChannelMembers = changes;
+        this.checkForMember();
+        
       });
 
-      //this.checkForMember();
   }
 
   //check if user has joined channel
-  checkForMember(members: any) {
-    console.log('member id', members[0].memberID);
-    if(members[0].memberID == this.userID){
-      this.isMember = true;
-      console.log('this member status is', this.isMember);
-    } else {
-      this.isMember = false;
-      console.log('this member status is', this.isMember);
-    }
+  checkForMember() {
+    for( let index in this.allChannelMembers) {
+      let memberID = this.allChannelMembers[index].memberID;
+      console.log('member id', memberID);
+      if(memberID == this.userID){
+        this.isMember = true;
+        console.log('this member status is', this.isMember);
+      } else {
+        this.isMember = false;
+        console.log('this member status is', this.isMember);
+      }
+    } 
   }
 
   

@@ -1,6 +1,7 @@
 <mat-drawer-container class="main-container">
   <div class="title-container">
     <b># {{ channel.category }}</b>
+    <div><b>{{ allChannelMembers.length }}</b> Mitglieder</div>
     <button *ngIf="!isMember" mat-raised-button class="join-btn" (click)="joinChannel()">Beitreten</button>
   </div>
   <div class="msg-box">
