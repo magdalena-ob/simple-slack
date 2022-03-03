@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogUploadFileComponent } from 'src/app/dialog-upload-file/dialog-upload-file.component';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/models/message.class';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { fromEvent, Observable, Subscription } from 'rxjs';
+import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-message-box',
@@ -25,8 +27,37 @@ export class MessageBoxComponent implements OnInit {
   uid: any;
   fromUser: any;
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private firestore: AngularFirestore, public afAuth: AngularFireAuth) {
+  @ViewChild('textArea', { static: true })
+  textArea!: ElementRef;
+  @ViewChild('codeContent', { static: true })
+  codeContent!: ElementRef;
+  @ViewChild('pre', { static: true })
+  pre!: ElementRef;
+
+  sub!: Subscription;
+  highlighted = false;
+  codeType = 'javascript';
+
+  codeBlock: boolean;
+
+  form = this.fb.group({
+    content: ''
+  });
+
+  get contentControl() {
+    return this.form.get('content');
+  }
+
+  constructor(
+    public dialog: MatDialog, 
+    private route: ActivatedRoute, 
+    private firestore: AngularFirestore, 
+    public afAuth: AngularFireAuth,
+    private prismService: SyntaxHighlightingService,
+    private fb: FormBuilder,
+    private renderer: Renderer2) {
     this.user = null;
+    this.codeBlock = false;
    }
 
   ngOnInit(): void {
@@ -35,6 +66,7 @@ export class MessageBoxComponent implements OnInit {
       console.log('got channel id ', this.channelId);
 
       this.getCurrentUserId();
+      this.synchronizeScroll();
       
     })
   }
@@ -82,6 +114,46 @@ export class MessageBoxComponent implements OnInit {
   enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
+    this.codeBlock = !this.codeBlock;
+    console.log('cb wert',this.codeBlock);
   }
+
+  ngAfterViewInit() {
+    this.prismService.highlightAll();
+  }
+
+  ngAfterViewChecked() {
+    if (this.highlighted) {
+      this.prismService.highlightAll();
+      this.highlighted = false;
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+
+  private listenForm() {
+    this.sub = this.form.valueChanges.subscribe((val) => {
+      const modifiedContent = this.prismService.convertHtmlIntoString(val.content);
+
+      this.renderer.setProperty(this.codeContent.nativeElement, 'innerHTML', modifiedContent);
+
+      this.highlighted = true;
+    });
+  }
+
+  private synchronizeScroll() {
+    const localSub  = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
+      const toTop = this.textArea.nativeElement.scrollTop;
+      const toLeft = this.textArea.nativeElement.scrollLeft;
+
+      this.renderer.setProperty(this.pre.nativeElement, 'scrollTop', toTop);
+      this.renderer.setProperty(this.pre.nativeElement, 'scrollLeft', toLeft + 0.2);
+    });
+
+    this.sub.add(localSub);
+  }
+
 
 }

@@ -10,11 +10,19 @@
         
     </div>
     <div>
-        <mat-form-field appearance="fill" class="text-area">
+        <mat-form-field *ngIf="!codeBlock" appearance="fill" class="text-area">
             <mat-label>Nachrichten senden an #allgemein</mat-label>
             <textarea [(ngModel)]="message.textMessage"  required minlength="1" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
+        <form *ngIf="codeBlock" [formGroup]="form">
+            <div class="code-container line-numbers">
+              <textarea #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
+                formControlName="content" spellcheck="false"></textarea>
+              <pre aria-hidden="true" class="pre line-numbers" #pre><code [ngClass]="['code', 'language-' + codeType]" #codeContent></code>
+            </pre>
+            </div>
+          </form>
     </div>
     <div class="text-design-function-area">
         Zusatzfunktionen und Senden-Button

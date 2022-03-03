@@ -46,6 +46,8 @@ export class MainPageComponent implements OnInit {
           this.getUsersChannel(userId);
         } 
       });
+
+      console.log('addedChannelNames', this.addedChannelNames);
   }
 
   openAddChannel() {
