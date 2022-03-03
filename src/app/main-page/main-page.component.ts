@@ -19,6 +19,7 @@ export class MainPageComponent implements OnInit {
   customIdChannel = this.firebaseService.customIdChannel;
   addedChannels: any = [];
   addedChannelNames: any = [];
+  addedChannelIds: any = [];
   anonymousGuest: boolean = false;
 
   constructor(public dialog: MatDialog,
@@ -109,7 +110,7 @@ export class MainPageComponent implements OnInit {
 
         if (allChannelsId == id) {
           this.addedChannelNames.push(channelName);
-          //console.log('names are ', this.addedChannelNames);
+          this.addedChannelIds.push(id);
         }
       } 
     }

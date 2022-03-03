@@ -50,8 +50,8 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-list *ngIf="addedChannelNames.length === 0" class="info-channels">Du hast noch keine Channels hinzugefügt!</mat-list>
-                    <mat-list *ngFor="let channel of addedChannelNames">
-                        <mat-list-item class="added-channels"># {{ channel }}</mat-list-item>
+                    <mat-list *ngFor="let channel of addedChannelNames; let i = index">
+                        <mat-list-item class="added-channels" [routerLink]="['/main-page/channel/' + addedChannelIds[i] ]"># {{ channel }}</mat-list-item>
                     </mat-list>
                 </mat-expansion-panel>
             </mat-accordion>

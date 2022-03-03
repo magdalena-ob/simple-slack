@@ -37,6 +37,8 @@ export class FirebaseService {
         .collection('channels')
         .add(this.channel.toJSON())
 
+        console.log('new Channel Doc', newChannelDoc);
+
       //this.firestore.collection('users').doc(userID).set(           //array in user collection
       //  { channels: [newChannelDoc.id] },
       //  { merge: true }
