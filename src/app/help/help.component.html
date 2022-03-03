@@ -1,0 +1,29 @@
+<div class=" title-container">
+    <b>Wie funktiniert Simple-Slack?</b>
+</div>
+<div>
+    <mat-stepper orientation="vertical">
+        <mat-step>
+          <ng-template matStepLabel>Step 1</ng-template>
+          <ng-template matStepContent>
+              <h2>Erstelle einen Channel</h2>
+            <p>Erstelle einen Channel indem du auf das Plus neben Channels klickst und dann auf Channels erstellen</p>
+            <button mat-button matStepperNext>Next</button>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Step 2</ng-template>
+          <ng-template matStepContent>
+            <h2>Trete erstellten Channels bei</h2>
+            <p>Gehe auf Channels durchsuchen um dir alle Channels anzusehen, wenn du auf einen Channel klickst kannst du diesen beitreten, indem du auf den grünen Button rechts oben klickst!</p>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Step 3</ng-template>
+          <p>Tausche dich mit deinen Kollegen aus, versde Texte in Code Format oder veschicke Bilder</p>
+          <button mat-button matStepperPrevious>Back</button>
+        </mat-step>
+      </mat-stepper>
+</div>

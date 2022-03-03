@@ -83,10 +83,6 @@
     position: relative;
 }
 
-.channel-action {
-    display: none;
-}
-
 .channel-item:hover  .channel-action {
     display: flex;
     position: absolute;
@@ -105,7 +101,3 @@
     padding-top: 16px;
 }
 
-.join-btn {
-    margin-left: 8px;
-    margin-right: 16px;
-}

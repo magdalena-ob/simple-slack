@@ -52,7 +52,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FirebaseService } from './services/firebase.service';
 import { SyntaxHighlightingService } from './services/syntax-highlighting.service';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { HelpComponent } from './help/help.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DialogUploadFileComponent,
     SearchChannelComponent,
     FilterPipe,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     }),
     MatDividerModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatStepperModule
   ],
   providers: [FirebaseService,
   SyntaxHighlightingService

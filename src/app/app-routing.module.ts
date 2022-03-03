@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HelpComponent } from './help/help.component';
 import { ChannelComponent } from './main-page/dialog/channel/channel.component';
 import { DirectMessageAddComponent } from './main-page/dialog/direct-message-add/direct-message-add.component';
 import { DirectMessageComponent } from './main-page/dialog/direct-message/direct-message.component';
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path:'search_channel',
         component: SearchChannelComponent
+      },
+      {
+        path:'help',
+        component: HelpComponent
       }
     ]
   },
