@@ -63,9 +63,7 @@ export class SearchChannelComponent implements OnInit {
     this.dialog.open(DialogAddChannelComponent);
   }
 
-  joinChannel() {
-    //console.log('you joined channel');
-  }
+ 
 
 }
 

@@ -18,7 +18,11 @@ export class FirebaseService {
   user: Observable<any> | null;
   channelId: any;
 
-  constructor(private firestore: AngularFirestore, private route: ActivatedRoute, public afAuth: AngularFireAuth,) {
+
+  constructor(
+    private firestore: AngularFirestore, 
+    private route: ActivatedRoute, 
+    public afAuth: AngularFireAuth) {
     this.user = null;
 
   }
@@ -51,6 +55,18 @@ export class FirebaseService {
         .add(
           { channels: newChannelDoc.id }
         );
+
+        this.firestore
+        .collection('channels')
+        .doc(newChannelDoc.id)
+        .collection('members')
+        .add(
+           {
+             memberID: userID,
+             joined: true
+           }
+        );
+
     } catch (error) {
       console.error(error);
     }
@@ -79,6 +95,8 @@ export class FirebaseService {
         }
       });
   }
+
+ 
 
 
 

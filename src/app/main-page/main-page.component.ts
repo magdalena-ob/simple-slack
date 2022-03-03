@@ -22,6 +22,7 @@ export class MainPageComponent implements OnInit {
   addedChannelIds: any = [];
   anonymousGuest: boolean = false;
 
+
   constructor(public dialog: MatDialog,
     public afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -83,7 +84,6 @@ export class MainPageComponent implements OnInit {
     })
   }
  
-
   getUsersChannel(userId: any) {
     this.firestore
       .collection('users')

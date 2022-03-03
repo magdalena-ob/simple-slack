@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, Renderer2, ViewChild, Input } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -18,10 +19,10 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   channel: Channel = new Channel();
   channelMessages: any = [];
   time: any = new Date().getHours();
+  userID: any = '';
+  members: any = [];
+  isMember: boolean = false;
 
-  
-
- 
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
   @ViewChild('codeContent', { static: true })
@@ -46,19 +47,24 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
     private firebaseService: FirebaseService,
+    public afAuth: AngularFireAuth,
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
-    private renderer: Renderer2 
-    ) { }
+    private renderer: Renderer2
+  ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe( paramMap => {
+    this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id1');
       console.log('got channel id ', this.channelId);
+      this.getUser();
       this.getChannel();
       this.getMessage();
       this.listenForm()
       this.synchronizeScroll();
+      this.getMembers();
+      //this.checkForMember();
+      
     })
   }
 
@@ -79,7 +85,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .collection('channels')
       .doc(this.channelId)
       .collection('messages')
-      .valueChanges(({idField: 'customIdMessage'}))
+      .valueChanges(({ idField: 'customIdMessage' }))
       .subscribe((changes: any) => {
         this.channelMessages = changes;
         console.log('retrieved channelmessages ', this.channelMessages);
@@ -87,10 +93,65 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   }
 
   joinChannel() {
-    
+    this.firestore
+      .collection('users')
+      .doc(this.userID)
+      .collection('addedChannels')
+      .add(
+        { channels: this.channelId }
+      );
+
+      this.firestore
+        .collection('channels')
+        .doc(this.channelId)
+        .collection('members')
+        .add(
+           {
+             memberID: this.userID,
+             joined: true
+           }
+        );
   }
 
+  getUser() {
+    this.afAuth.authState
+      .subscribe((user: any) => {
 
+        if (user) {
+          this.userID = user.email.toLowerCase();
+          console.log('UserID is', this.userID);
+        }
+      });
+  }
+
+  getMembers() {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('members')
+      .valueChanges(({ idField: 'customIdMember' }))
+      .subscribe((changes: any) => {
+        let members = changes;
+        console.log('retrieved members ', members);
+        this.checkForMember(members);
+      });
+
+      //this.checkForMember();
+  }
+
+  //check if user has joined channel
+  checkForMember(members: any) {
+    console.log('member id', members[0].memberID);
+    if(members[0].memberID == this.userID){
+      this.isMember = true;
+      console.log('this member status is', this.isMember);
+    } else {
+      this.isMember = false;
+      console.log('this member status is', this.isMember);
+    }
+  }
+
+  
   ngAfterViewInit() {
     this.prismService.highlightAll();
   }
@@ -117,7 +178,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   }
 
   private synchronizeScroll() {
-    const localSub  = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
+    const localSub = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
       const toTop = this.textArea.nativeElement.scrollTop;
       const toLeft = this.textArea.nativeElement.scrollLeft;
 

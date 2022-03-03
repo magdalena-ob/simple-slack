@@ -77,8 +77,8 @@
         </mat-menu>
     </mat-drawer>
 
-
-    <div class="router-container">
+    <div *ngIf="allChannels == ''">Es gibt noch keine Channels</div>
+    <div  class="router-container">
         <router-outlet></router-outlet>
     </div>
     <!--<mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
