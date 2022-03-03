@@ -29,6 +29,7 @@
             <div class="channel-description color-gr">
                 {{ channel.description }}
             </div>
+            <div class="joined-status" *ngIf="!isMember"><mat-icon>check</mat-icon>Beigetreten</div>
         </mat-list-item>
         <mat-divider *ngIf="!lastItem"></mat-divider>
     </mat-list>

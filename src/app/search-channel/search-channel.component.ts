@@ -20,6 +20,7 @@ export class SearchChannelComponent implements OnInit {
   customIdChannel = this.firebaseService.customIdChannel;
   searchText: any;
   value = '';
+  isMember: boolean = true;
 
   user: Observable<any> | null;
 

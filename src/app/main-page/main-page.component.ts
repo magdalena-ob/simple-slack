@@ -23,7 +23,8 @@ export class MainPageComponent implements OnInit {
   anonymousGuest: boolean = false;
 
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
     private firebaseService: FirebaseService) {
