@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementR
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -24,6 +25,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   isMember: boolean = false;
   allChannelMembers: any  = [];
 
+  
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
   @ViewChild('codeContent', { static: true })
@@ -49,6 +51,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
     private firestore: AngularFirestore,
     private firebaseService: FirebaseService,
     public afAuth: AngularFireAuth,
+    public dialog: MatDialog,
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
     private renderer: Renderer2
@@ -132,10 +135,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .collection('members')
       .valueChanges(({ idField: 'customIdMember' }))
       .subscribe((changes: any) => {
-        //let members = changes;
-        //console.log('retrieved members ', members);
-        //this.checkForMember(members);
         this.allChannelMembers = changes;
+        console.log('all members', this.allChannelMembers);
         this.checkForMember();
         
       });
@@ -157,6 +158,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
     } 
   }
 
+ 
   
   ngAfterViewInit() {
     this.prismService.highlightAll();

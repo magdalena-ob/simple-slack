@@ -20,6 +20,37 @@
   align-items: center;
 }
 
+.members {
+  cursor: pointer;
+  position: relative;
+}
+
+.show-members {
+  position: absolute;
+  top: 24px;
+  right: 0px;
+  z-index: 3;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: none;
+  padding: 16px;
+
+  .member-box {
+    padding: 4px;
+    font-size: 16px;
+  }
+}
+
+.members:hover .show-members {
+  display: flex;
+  flex-direction: column;
+}
+
 .code-container {
   max-width: 1000px;
   margin: 0 auto;

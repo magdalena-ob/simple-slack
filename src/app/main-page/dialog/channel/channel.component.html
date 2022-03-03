@@ -1,20 +1,33 @@
 <mat-drawer-container class="main-container">
   <div class="title-container">
     <b># {{ channel.category }}</b>
-    <div><b>{{ allChannelMembers.length }}</b> Mitglieder</div>
+    <div class="members" type="button">
+      <div>
+        <b>{{ allChannelMembers.length }}</b> Mitglieder
+      </div>
+      <div class="show-members">
+        <div class="member-box" *ngFor="let member of allChannelMembers">
+          <div class="member-item">{{ member.memberID }}</div>
+        </div>
+      </div>
+    </div>
     <button *ngIf="!isMember" mat-raised-button class="join-btn" (click)="joinChannel()">Beitreten</button>
   </div>
+
   <div class="msg-box">
     <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages">
       <div class="user">
         <div class="user-img"><img src="assets/img/user.png"></div>
-        <div class="pd-left-56"><b>{{ message.fromName }}</b> {{ message.timeSent | date:'HH:mm'  }} Uhr</div>
+        <div class="msg-info">
+          <div class="pd-left-56"><b>{{ message.fromName }}</b></div>
+          <div class="msg-time color-gr">{{ message.timeSent | date:'HH:mm' }} Uhr</div>
+        </div>
       </div>
       <div class="pd-left-56">
         {{message.textMessage}}
       </div>
       <div class="response-msg-cont">
-        <mat-icon class="answer-icon" matTooltip="Im Thread antworten" matTooltipPosition="above"
+        <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above"
           [routerLink]="['/main-page/channel/customIdChannel/thread/' + message.customIdMessage]">
           chat
         </mat-icon>
