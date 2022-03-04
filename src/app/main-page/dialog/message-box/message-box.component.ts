@@ -27,6 +27,8 @@ export class MessageBoxComponent implements OnInit {
   uid: any;
   fromUser: any;
 
+  downloadUrl: any;
+
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
   @ViewChild('codeContent', { static: true })
@@ -71,8 +73,17 @@ export class MessageBoxComponent implements OnInit {
     })
   }
 
+  //openDialog() {
+  //  this.dialog.open(DialogUploadFileComponent);
+  //}
+
   openDialog() {
-    this.dialog.open(DialogUploadFileComponent);
+    let dialog = this.dialog.open(DialogUploadFileComponent);
+    dialog.componentInstance.dialogRef
+      .afterClosed()
+      .subscribe(() => {
+      this.downloadUrl = dialog.componentInstance.downloadUrl;
+    });
   }
 
   getCurrentUserId() {
