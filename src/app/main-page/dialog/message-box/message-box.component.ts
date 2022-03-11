@@ -42,6 +42,10 @@ export class MessageBoxComponent implements OnInit {
 
   codeBlock: boolean;
 
+  files: any;
+  img!: HTMLImageElement;
+  document!: { getElementById: (arg0: string) => { (): any; new(): any; src: string; }; };
+
   form = this.fb.group({
     content: ''
   });
@@ -83,8 +87,14 @@ export class MessageBoxComponent implements OnInit {
       .afterClosed()
       .subscribe(() => {
       this.downloadUrl = dialog.componentInstance.downloadUrl;
+      this.document.getElementById('placeForImgInMessageBox').src = this.downloadUrl;
     });
   }
+
+  // openFiles() {
+  //  this.img.src= URL.createObjectURL(this.downloadUrl);
+  //  //this.document.getElementById('textArea').src = 'this.downloadUrl';
+  //}
 
   getCurrentUserId() {
     this.afAuth.authState
