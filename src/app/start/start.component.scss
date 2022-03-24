@@ -30,7 +30,7 @@
 
 button {
     margin: 5px;
-    width: 100px;
+    width: 112px;
     background-color: #481449 !important;
 }
 
@@ -52,6 +52,16 @@ button {
     margin-top: 12px;
     color: #ffc107;
     margin-bottom: 12px;
+}
+
+.project-information {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+
+    box-shadow: 0px -6px 3px -7px;
+    padding-top: 6px;
 }
 
 .login-stat-green {
