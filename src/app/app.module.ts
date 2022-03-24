@@ -54,6 +54,7 @@ import { SyntaxHighlightingService } from './services/syntax-highlighting.servic
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HelpComponent } from './help/help.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { TechnologiesComponent } from './start/technologies/technologies.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     SearchChannelComponent,
     FilterPipe,
     HelpComponent,
+    TechnologiesComponent,
   ],
   imports: [
     BrowserModule,

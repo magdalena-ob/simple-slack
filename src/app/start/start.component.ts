@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TechnologiesComponent } from './technologies/technologies.component';
 
 @Component({
   selector: 'app-start',
@@ -14,7 +16,8 @@ export class StartComponent implements OnInit {
     public afAuth: AngularFireAuth,
     private elementRef: ElementRef,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
@@ -36,6 +39,11 @@ export class StartComponent implements OnInit {
         // this.firebaseErrorMessage = result.message;
       }
     })
+  }
+
+  openDialog() {
+      //let dialog = 
+      this.dialog.open(TechnologiesComponent);
   }
 
 }
