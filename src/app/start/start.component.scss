@@ -59,9 +59,13 @@ button {
     font-size: 16px;
     margin-top: 12px;
     margin-bottom: 24px;
-
+    color: #777777;
     box-shadow: 0px -6px 3px -7px;
     padding-top: 6px;
+}
+
+.light-grey {
+    background-color: #9b9b9b !important;
 }
 
 .login-stat-green {
