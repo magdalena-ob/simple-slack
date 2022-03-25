@@ -17,9 +17,20 @@
         </mat-form-field>
         <form *ngIf="codeBlock" [formGroup]="form">
             <div class="code-container line-numbers">
-              <textarea #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
-                formControlName="content" spellcheck="false"><img #placeForImgInMessageBox src=""></textarea>
-              <pre aria-hidden="true" class="pre line-numbers" #pre><code [ngClass]="['code', 'language-' + codeType]" #codeContent></code>
+              <textarea 
+              #textArea 
+              placeholder="Add your code (default html)" 
+              class="text-area-code-editor" 
+              formControlName="content" 
+              spellcheck="false"
+              >
+              <img #placeForImgInMessageBox src="">
+            </textarea>
+              <pre 
+              aria-hidden="true" 
+              class="pre line-numbers" 
+              #pre>
+              <code [ngClass]="['code', 'language-' + codeType]" #codeContent>{{text}}</code>
             </pre>
             </div>
           </form>

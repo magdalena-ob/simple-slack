@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, OnDestroy, Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogUploadFileComponent } from 'src/app/dialog-upload-file/dialog-upload-file.component';
@@ -14,7 +14,7 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './message-box.component.html',
   styleUrls: ['./message-box.component.scss']
 })
-export class MessageBoxComponent implements OnInit {
+export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
 
   toggle = true;
   status = 'Enable';
@@ -66,13 +66,22 @@ export class MessageBoxComponent implements OnInit {
     this.codeBlock = false;
    }
 
+   text = `constructor(
+    private prismService: SyntaxHighlightingService,
+    private fb: FormBuilder,
+    private renderer: Renderer2
+  ) { }`;
+
   ngOnInit(): void {
+    this.listenForm();
+      this.synchronizeScroll();
+
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id1');
       console.log('got channel id ', this.channelId);
 
       this.getCurrentUserId();
-      this.synchronizeScroll();
+      
       
     })
   }
@@ -136,17 +145,20 @@ export class MessageBoxComponent implements OnInit {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
     this.codeBlock = !this.codeBlock;
+    this.highlighted = !this.highlighted;
     console.log('cb wert',this.codeBlock);
   }
 
   ngAfterViewInit() {
     this.prismService.highlightAll();
+    console.log('prism afterviewinit');
   }
 
   ngAfterViewChecked() {
     if (this.highlighted) {
       this.prismService.highlightAll();
       this.highlighted = false;
+      console.log('prism afterviewchecked');
     }
   }
 
