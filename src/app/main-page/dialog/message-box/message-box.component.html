@@ -15,7 +15,7 @@
             <textarea [(ngModel)]="message.textMessage"  required minlength="1" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
-        <form *ngIf="codeBlock" [formGroup]="form">
+        <form [formGroup]="form">
             <div class="code-container line-numbers">
               <textarea 
               #textArea 
@@ -30,7 +30,7 @@
               aria-hidden="true" 
               class="pre line-numbers" 
               #pre>
-              <code [ngClass]="['code', 'language-' + codeType]" #codeContent>{{text}}</code>
+              <code [ngClass]="['code', 'language-' + codeType]" #codeContent></code>
             </pre>
             </div>
           </form>
