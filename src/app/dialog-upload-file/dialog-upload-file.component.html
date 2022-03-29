@@ -1,16 +1,15 @@
-<div>
-    <h1>Image upload</h1>
-    <h3>You have the option of uploading a picture and sending it with the message.</h3>
-    <p>Please, select a file from type image.</p>
+<div class="upload-container">
+    <h2>Image upload</h2>
 
     <div class="file-event-area">
-        <input [hidden]="true" type="file" #file (change)="showPreview($event, previewImg)" accept="*.png.jpg">
-        <button mat-flat-button (click)="file.click()" class="file-event-button">Choose File</button>
-        <img #previewImg class="img-size">
-        <button mat-flat-button (click)="uploadFile($event)" class="file-event-button">Upload File</button>
+        <div class="choose">
+            <input [hidden]="true" type="file" #file (change)="showPreview($event, previewImg)" accept="*.png.jpg">
+            <button mat-fab (click)="file.click()" class="file-event-button">
+                <mat-icon>add</mat-icon>
+            </button>
+            <p><b>Select your photo</b></p>
+        </div>
+        <img #previewImg class="preview-img">
+        <button mat-flat-button (click)="uploadFile($event)" class="file-event-button">Upload Image</button>
     </div>
 </div>
-
-<!--<button>
-    <button (click)="file.click()">Upload file</button>
-</button>-->

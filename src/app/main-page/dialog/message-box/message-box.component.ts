@@ -86,18 +86,22 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     })
   }
 
-  //openDialog() {
-  //  this.dialog.open(DialogUploadFileComponent);
-  //}
+  
+  openImgUpload() {
+    this.dialog.open(DialogUploadFileComponent);
 
-  openDialog() {
-    let dialog = this.dialog.open(DialogUploadFileComponent);
-    dialog.componentInstance.dialogRef
-      .afterClosed()
-      .subscribe(() => {
-      this.downloadUrl = dialog.componentInstance.downloadUrl;
-      this.document.getElementById('placeForImgInMessageBox').src = this.downloadUrl;
-    });
+    this.dialog.afterAllClosed.subscribe((result: any) => {
+      console.log('result', result);
+    })
+
+    //let dialog = this.dialog.open(DialogUploadFileComponent);
+    //dialog.componentInstance.dialogRef
+      //.afterClosed()
+      //.subscribe((result: any) => {
+       // console.log('result ', result);
+      //this.downloadUrl = dialog.componentInstance.downloadUrl;
+      //this.document.getElementById('placeForImgInMessageBox').src = this.downloadUrl;
+    //});
   }
 
   // openFiles() {
