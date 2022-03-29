@@ -11,6 +11,7 @@ import { FileService } from '../services/file.service';
 import { MatButtonModule } from '@angular/material/button';
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class DialogUploadFileComponent implements OnInit {
     contentType: 'image/jpeg'
   };
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DialogUploadFileComponent>) { }
 
   //old version
   //constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
@@ -95,6 +96,7 @@ export class DialogUploadFileComponent implements OnInit {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
+          this.dialogRef.close(); 
         });
       }
     );
