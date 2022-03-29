@@ -20,8 +20,8 @@ export class FirebaseService {
 
 
   constructor(
-    private firestore: AngularFirestore, 
-    private route: ActivatedRoute, 
+    private firestore: AngularFirestore,
+    private route: ActivatedRoute,
     public afAuth: AngularFireAuth) {
     this.user = null;
 
@@ -41,7 +41,7 @@ export class FirebaseService {
         .collection('channels')
         .add(this.channel.toJSON())
 
-        console.log('new Channel Doc', newChannelDoc);
+      console.log('new Channel Doc', newChannelDoc);
 
       //this.firestore.collection('users').doc(userID).set(           //array in user collection
       //  { channels: [newChannelDoc.id] },
@@ -56,15 +56,15 @@ export class FirebaseService {
           { channels: newChannelDoc.id }
         );
 
-        this.firestore
+      this.firestore
         .collection('channels')
         .doc(newChannelDoc.id)
         .collection('members')
         .add(
-           {
-             memberID: userID,
-             joined: true
-           }
+          {
+            memberID: userID,
+            joined: true
+          }
         );
 
     } catch (error) {
@@ -95,8 +95,6 @@ export class FirebaseService {
         }
       });
   }
-
- 
 
 
 

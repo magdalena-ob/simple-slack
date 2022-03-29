@@ -65,7 +65,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       this.getChannel();
       this.getMessage();
       this.listenForm()
-      this.synchronizeScroll();
+     // this.synchronizeScroll();
       this.getMembers();
       //this.checkForMember();
       
@@ -185,16 +185,16 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
     });
   }
 
-  private synchronizeScroll() {
-    const localSub = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
-      const toTop = this.textArea.nativeElement.scrollTop;
-      const toLeft = this.textArea.nativeElement.scrollLeft;
+  //private synchronizeScroll() {
+  //  const localSub = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
+  //    const toTop = this.textArea.nativeElement.scrollTop;
+  //    const toLeft = this.textArea.nativeElement.scrollLeft;
 
-      this.renderer.setProperty(this.pre.nativeElement, 'scrollTop', toTop);
-      this.renderer.setProperty(this.pre.nativeElement, 'scrollLeft', toLeft + 0.2);
-    });
+  //    this.renderer.setProperty(this.pre.nativeElement, 'scrollTop', toTop);
+  //    this.renderer.setProperty(this.pre.nativeElement, 'scrollLeft', toLeft + 0.2);
+  //  });
 
-    this.sub.add(localSub);
-  }
+  //  this.sub.add(localSub);
+ // }
 
 }
