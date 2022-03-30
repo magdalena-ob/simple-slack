@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, Renderer2, ViewChild, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { limit, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Channel } from 'src/models/channel.class';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
@@ -23,9 +25,9 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   userID: any = '';
   members: any = [];
   isMember: boolean = false;
-  allChannelMembers: any  = [];
+  allChannelMembers: any = [];
 
-  
+
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
   @ViewChild('codeContent', { static: true })
@@ -65,10 +67,10 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       this.getChannel();
       this.getMessage();
       this.listenForm()
-     // this.synchronizeScroll();
+      // this.synchronizeScroll();
       this.getMembers();
       //this.checkForMember();
-      
+
     })
   }
 
@@ -92,8 +94,25 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .valueChanges(({ idField: 'customIdMessage' }))
       .subscribe((changes: any) => {
         this.channelMessages = changes;
+        // Sort timeStamp, not yet finished
+        const q = query(this.channelMessages, orderBy("timeSent", "desc"), limit(30));
+        this.sortMessagesDescending();
         console.log('retrieved channelmessages ', this.channelMessages);
       })
+  }
+
+
+  sortMessagesDescending() {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .valueChanges(({ idField: 'customIdMessage' }))
+    const queryObservable = this.channelMessages.pipe(
+      switchMap(timeSent =>
+        this.firestore.collection('items', ref => ref.orderBy('timeSent', 'desc')).valueChanges()
+      )
+    )
   }
 
   joinChannel() {
@@ -105,16 +124,16 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
         { channels: this.channelId }
       );
 
-      this.firestore
-        .collection('channels')
-        .doc(this.channelId)
-        .collection('members')
-        .add(
-           {
-             memberID: this.userID,
-             joined: true
-           }
-        );
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('members')
+      .add(
+        {
+          memberID: this.userID,
+          joined: true
+        }
+      );
   }
 
   getUser() {
@@ -138,28 +157,28 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
         this.allChannelMembers = changes;
         console.log('all members', this.allChannelMembers);
         this.checkForMember();
-        
+
       });
 
   }
 
   //check if user has joined channel
   checkForMember() {
-    for( let index in this.allChannelMembers) {
+    for (let index in this.allChannelMembers) {
       let memberID = this.allChannelMembers[index].memberID;
       console.log('member id', memberID);
-      if(memberID == this.userID){
+      if (memberID == this.userID) {
         this.isMember = true;
         console.log('this member status is', this.isMember);
       } else {
         this.isMember = false;
         console.log('this member status is', this.isMember);
       }
-    } 
+    }
   }
 
- 
-  
+
+
   ngAfterViewInit() {
     this.prismService.highlightAll();
   }
@@ -195,6 +214,6 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   //  });
 
   //  this.sub.add(localSub);
- // }
+  // }
 
 }
