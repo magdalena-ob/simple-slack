@@ -14,7 +14,7 @@
     <button *ngIf="!isMember" mat-raised-button class="join-btn" (click)="joinChannel()">Beitreten</button>
   </div>
 
-  <div class="msg-box">
+  <div class="msg-box scroll-container" #scrollToEnd>
     <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages">
       <div class="user">
         <div class="user-img"><img src="assets/img/user.png"></div>
@@ -39,7 +39,10 @@
       </div>
     </mat-list>
   </div>
-  <app-message-box></app-message-box>
+  <div>
+    <app-message-box></app-message-box>
+  </div>
+  
 
 
   

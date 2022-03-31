@@ -16,7 +16,7 @@ import { SyntaxHighlightingService } from '../../../services/syntax-highlighting
   templateUrl: './channel.component.html',
   styleUrls: ['./channel.component.scss']
 })
-export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
+export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
   channelId: any = '';
   channel: Channel = new Channel();
@@ -26,6 +26,9 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   members: any = [];
   isMember: boolean = false;
   allChannelMembers: any = [];
+
+  @ViewChild('scrollToEnd')
+  private myScrollContainer!: ElementRef;
 
 
   @ViewChild('textArea', { static: true })
@@ -70,9 +73,11 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       // this.synchronizeScroll();
       this.getMembers();
       //this.checkForMember();
-
     })
+
+    this.scrollToBottom();
   }
+
 
 
   getChannel() {
@@ -181,9 +186,12 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
 
   ngAfterViewInit() {
     this.prismService.highlightAll();
+    this.scrollToBottom();
   }
 
   ngAfterViewChecked() {
+    this.scrollToBottom();
+
     if (this.highlighted) {
       this.prismService.highlightAll();
       this.highlighted = false;
@@ -216,4 +224,9 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
   //  this.sub.add(localSub);
   // }
 
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
 }
