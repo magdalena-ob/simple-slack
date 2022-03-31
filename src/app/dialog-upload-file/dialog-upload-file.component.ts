@@ -6,10 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { Observable } from 'rxjs';
+
 import { FileService } from '../services/file.service';
 import { MatButtonModule } from '@angular/material/button';
 
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -25,14 +27,15 @@ import { MatDialogRef } from '@angular/material/dialog';
     <img [src]="profileUrl | async" />
   `
 })
+
+@Injectable()
 export class DialogUploadFileComponent implements OnInit {
   [x: string]: any;
 
   uploadPercent!: Observable<number | undefined>;
   downloadURL: Observable<string> | undefined;
+  
   file: any;
-
-
   storage: any = getStorage();
   metadata = {
     contentType: 'image/jpeg'
@@ -84,9 +87,6 @@ export class DialogUploadFileComponent implements OnInit {
           case 'storage/canceled':
             // User canceled the upload
             break;
-
-          // ...
-
           case 'storage/unknown':
             // Unknown error occurred, inspect error.serverResponse
             break;
@@ -96,7 +96,7 @@ export class DialogUploadFileComponent implements OnInit {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
-          this.dialogRef.close(); 
+          this.dialogRef.close(downloadURL); 
         });
       }
     );

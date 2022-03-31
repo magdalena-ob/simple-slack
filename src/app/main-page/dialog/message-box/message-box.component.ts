@@ -9,6 +9,12 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 import { FormBuilder } from '@angular/forms';
 
+
+
+export interface ImageURL {
+  imgURL: any;
+}
+
 @Component({
   selector: 'app-message-box',
   templateUrl: './message-box.component.html',
@@ -28,6 +34,8 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   fromUser: any;
 
   downloadUrl: any;
+
+  imgURL: any;
 
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
@@ -88,10 +96,11 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
 
   
   openImgUpload() {
-    this.dialog.open(DialogUploadFileComponent);
+    let dialog = this.dialog.open(DialogUploadFileComponent);
 
-    this.dialog.afterAllClosed.subscribe((result: any) => {
-      console.log('result', result);
+    dialog.afterClosed().subscribe((result: any) => {
+      this.imgURL = result
+      console.log('image URL is ', this.imgURL);
     })
 
     //let dialog = this.dialog.open(DialogUploadFileComponent);
@@ -134,6 +143,10 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.message.timeSent = this.timeSent.getTime();
     this.message.fromID = this.uid;
     this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+    
+    if (this.imgURL !== '') {
+      this.message.image = this.imgURL;
+    }
                                 
     this.firestore
     .collection('channels')
