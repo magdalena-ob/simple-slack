@@ -95,8 +95,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked, AfterViewInit
       .subscribe((changes: any) => {
         this.channelMessages = changes;
         // Sort timeStamp, not yet finished
-        const q = query(this.channelMessages, orderBy("timeSent", "desc"), limit(30));
-        this.sortMessagesDescending();
+        //const q = query(this.channelMessages, orderBy("timeSent", "desc"), limit(30));
+        //this.sortMessagesDescending();
         console.log('retrieved channelmessages ', this.channelMessages);
       })
   }
