@@ -23,8 +23,13 @@
           <div class="msg-time color-gr">{{ message.timeSent | date:'HH:mm' }} Uhr</div>
         </div>
       </div>
-      <div class="pd-left-56">
-        {{message.textMessage}}
+      <div class="pd-left-56 msg-container">
+        <div>
+          {{message.textMessage}}
+        </div>
+        <div class="msg-img-container">
+          <img src="{{message.image}}">
+        </div>
       </div>
       <div class="response-msg-cont">
         <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above"
