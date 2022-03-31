@@ -23,6 +23,8 @@ export class DialogUploadFileComponent implements OnInit {
     contentType: 'image/jpeg'
   };
 
+  upload:boolean = false;
+
   constructor(public dialogRef: MatDialogRef<DialogUploadFileComponent>) { }
 
   ngOnInit(): void {
@@ -33,6 +35,9 @@ export class DialogUploadFileComponent implements OnInit {
     this.file = event.target.files[0];
     console.log('Selected filename: ', this.file);
     img.src= URL.createObjectURL(this.file);
+    if(this.file !== '') {
+      this.upload = true;
+    }
   }
 
   uploadFile(event: any) {

@@ -35,7 +35,9 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
 
   downloadUrl: any;
 
-  imgURL: any;
+  imgURL: string = '';
+  imgUploaded: boolean =  false;
+  @ViewChild('img') myImgElem!: ElementRef;
 
   @ViewChild('textArea', { static: true })
   textArea!: ElementRef;
@@ -90,7 +92,6 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
 
       this.getCurrentUserId();
       
-      
     })
   }
 
@@ -99,18 +100,11 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     let dialog = this.dialog.open(DialogUploadFileComponent);
 
     dialog.afterClosed().subscribe((result: any) => {
-      this.imgURL = result
+      this.imgURL = result;
       console.log('image URL is ', this.imgURL);
+      this.imgUploaded = true;
     })
 
-    //let dialog = this.dialog.open(DialogUploadFileComponent);
-    //dialog.componentInstance.dialogRef
-      //.afterClosed()
-      //.subscribe((result: any) => {
-       // console.log('result ', result);
-      //this.downloadUrl = dialog.componentInstance.downloadUrl;
-      //this.document.getElementById('placeForImgInMessageBox').src = this.downloadUrl;
-    //});
   }
 
   // openFiles() {
@@ -143,11 +137,8 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.message.timeSent = this.timeSent.getTime();
     this.message.fromID = this.uid;
     this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
-    
-    if (this.imgURL !== '') {
-      this.message.image = this.imgURL;
-    }
-                                
+    this.message.image = this.imgURL;
+                                 
     this.firestore
     .collection('channels')
     .doc(this.channelId)
@@ -155,6 +146,9 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     .add(this.message.toJSON())
     .then((result:any) =>{
       console.log('finished adding message' , result);
+      this.message.textMessage = '';
+      this.myImgElem.nativeElement.src = '';
+      this.imgUploaded = false;
     });
   }
 

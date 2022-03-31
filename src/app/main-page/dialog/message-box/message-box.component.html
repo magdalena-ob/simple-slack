@@ -13,8 +13,8 @@
     </div>
     <div>
         <mat-form-field *ngIf="!codeBlock" appearance="fill" class="text-area">
-            <mat-label>Nachrichten senden an #allgemein</mat-label>
-            <textarea [(ngModel)]="message.textMessage" required minlength="1" matInput cdkTextareaAutosize
+            <mat-label>Nachrichten senden...</mat-label>
+            <textarea [(ngModel)]="message.textMessage"  matInput cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
         <form [formGroup]="form">
@@ -31,9 +31,9 @@
     </div>
     <div class="text-design-function-area">
         <div class="img-container">
-            <img src="{{imgURL}}">
+            <img #img src="{{imgURL}}">
         </div>
-        <button mat-flat-button class="send-icon-button" (click)="toSendMessage()">
+        <button [disabled]="message.textMessage == '' && !imgUploaded" mat-flat-button class="send-icon-button" (click)="toSendMessage()">
             <mat-icon>send</mat-icon>
         </button>
     </div>

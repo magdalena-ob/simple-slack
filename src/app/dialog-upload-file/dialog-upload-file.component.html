@@ -10,6 +10,6 @@
             <p><b>Select your photo</b></p>
         </div>
         <img #previewImg class="preview-img">
-        <button mat-flat-button (click)="uploadFile($event)" class="file-event-button">Upload Image</button>
+        <button mat-flat-button [disabled]="!upload" (click)="uploadFile($event)" class="file-event-button">Upload Image</button>
     </div>
 </div>
