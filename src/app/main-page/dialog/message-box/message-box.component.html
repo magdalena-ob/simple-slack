@@ -1,44 +1,39 @@
 <mat-card class="message-box">
     <div class="text-design-function-area">
         Text-Design-Funktionen
-        <button mat-flat-button color="none" class="icon-button" (click)="enableDisableRule()" 
+        <button mat-flat-button color="none" class="icon-button" (click)="enableDisableRule()"
             [ngClass]="{'light-grey' : toggle, 'grey': !toggle}">
             <mat-icon>code</mat-icon>
         </button>
-        
-        <button mat-raised-button (click)="openImgUpload()" class="icon-button"><mat-icon>attach_file</mat-icon></button>
-        
+
+        <button mat-raised-button (click)="openImgUpload()" class="icon-button">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+
     </div>
     <div>
         <mat-form-field *ngIf="!codeBlock" appearance="fill" class="text-area">
             <mat-label>Nachrichten senden an #allgemein</mat-label>
-            <textarea [(ngModel)]="message.textMessage"  required minlength="1" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
+            <textarea [(ngModel)]="message.textMessage" required minlength="1" matInput cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
         <form [formGroup]="form">
             <div class="code-container line-numbers">
-              <textarea 
-              #textArea 
-              placeholder="Add your code (default html)" 
-              class="text-area-code-editor" 
-              formControlName="content" 
-              spellcheck="false"
-              >
+                <textarea #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
+                    formControlName="content" spellcheck="false">
               <img #placeForImgInMessageBox src="">
             </textarea>
-              <pre 
-              aria-hidden="true" 
-              class="pre line-numbers" 
-              #pre>
+                <pre aria-hidden="true" class="pre line-numbers" #pre>
               <code [ngClass]="['code', 'language-' + codeType]" #codeContent></code>
             </pre>
             </div>
-          </form>
+        </form>
     </div>
     <div class="text-design-function-area">
-        Zusatzfunktionen und Senden-Button
+        <div class="img-container">
+            <img src="{{imgURL}}">
+        </div>
         <button mat-flat-button class="send-icon-button" (click)="toSendMessage()">
-            <!--color="primary" -->
             <mat-icon>send</mat-icon>
         </button>
     </div>

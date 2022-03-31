@@ -1,115 +1,122 @@
 .text-area {
-    width: 100%;
+  width: 100%;
 }
 
 .message-box {
-    position: absolute;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .text-design-function-area {
-    background-color: rgb(233, 233, 233);
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 8px;
-    display: flex;
-    justify-content: space-between;
+  background-color: rgb(233, 233, 233);
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .icon-button {
-    width: 60px;
-    height: 32px;
-    background-color: #e9e9e9;
+  width: 60px;
+  height: 32px;
+  background-color: #e9e9e9;
 
-    mat-icon {
-        font-size: 20px !important;
-    }
+  mat-icon {
+    font-size: 20px !important;
+  }
 
-    &:hover {
-        background-color: #b8b8b8;
-    }
+  &:hover {
+    background-color: #b8b8b8;
+  }
 }
 
 .grey {
-    background-color: #b8b8b8;
+  background-color: #b8b8b8;
 }
 
 .light-grey {
-    background-color: #e9e9e9;
+  background-color: #e9e9e9;
 }
 
 .send-icon-button {
-    width: 60px;
-    height: 32px;
-    background-color: #198a1f;
+  width: 60px;
+  height: 32px;
+  background-color: #198a1f;
 
-    mat-icon {
-        font-size: 20px !important;
-    }
+  mat-icon {
+    font-size: 20px !important;
+  }
 }
 
 .code-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    min-height: 150px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+}
+
+.text-area-code-editor {
+
+  &,
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+    border: 0;
   }
-  
-  .text-area-code-editor {
-    &,
-    &:focus {
-      box-shadow: none;
-      outline: 0;
-      border: 0;
-    }
-  }
-  
-  .text-area-code-editor,
-  .pre,
+}
+
+.text-area-code-editor,
+.pre,
+.code {
+  tab-size: 4;
+  margin: 0;
+  padding: 0;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.pre {
+  height: 100%;
+  min-height: inherit;
+  z-index: 1;
+  overflow: auto;
+  padding: 15px 0 0 70px;
+
   .code {
-    tab-size: 4;
-    margin: 0;
-    padding: 0;
-    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-    font-size: 1em;
-    line-height: 1.5;
-  }
-  
-  .pre {
-    height: 100%;
     min-height: inherit;
-    z-index: 1;
-    overflow: auto;
-    padding: 15px 0 0 70px;
-  
-    .code {
-      min-height: inherit;
-      overflow: hidden;
-      height: 100%;
-    }
+    overflow: hidden;
+    height: 100%;
   }
-  
-  .text-area-code-editor {
-    caret-color: rgb(255, 255, 255);
-    white-space: nowrap;
-    overflow: auto;
-    text-align: left;
-    display: block;
-    resize: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    color: transparent;
-    background: transparent;
-    z-index: 2;
-    padding: 15px 0 0 70px;
+}
+
+.text-area-code-editor {
+  caret-color: rgb(255, 255, 255);
+  white-space: nowrap;
+  overflow: auto;
+  text-align: left;
+  display: block;
+  resize: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  color: transparent;
+  background: transparent;
+  z-index: 2;
+  padding: 15px 0 0 70px;
+}
+
+.img-container {
+  img {
+    object-fit: cover;
+    max-width: 56px;
   }
-  
+}

@@ -1,17 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs/operators';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-
-import { FileService } from '../services/file.service';
-import { MatButtonModule } from '@angular/material/button';
-
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -28,13 +15,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   `
 })
 
-@Injectable()
-export class DialogUploadFileComponent implements OnInit {
-  [x: string]: any;
 
-  uploadPercent!: Observable<number | undefined>;
-  downloadURL: Observable<string> | undefined;
-  
+export class DialogUploadFileComponent implements OnInit {
   file: any;
   storage: any = getStorage();
   metadata = {
@@ -42,12 +24,6 @@ export class DialogUploadFileComponent implements OnInit {
   };
 
   constructor(public dialogRef: MatDialogRef<DialogUploadFileComponent>) { }
-
-  //old version
-  //constructor(private storage: AngularFireStorage, private fileService: FileService ) { //angularfire storage
-  // const ref = this.storage.ref('gs://simple-slack-af9e7.appspot.com'+'files0.200362540166646[object File].png');
-  // this.profileUrl = ref.getDownloadURL();
-  //} //firestore
 
   ngOnInit(): void {
 
@@ -101,25 +77,6 @@ export class DialogUploadFileComponent implements OnInit {
       }
     );
 
-
-
-    //old version
-
-    //const filePath = "/files"+Math.random()+this.file; // 'name-your-file-path-here'
-    //const fileRef = this.storage.ref(filePath);
-    //const task = this.firestore.upload(filePath, this.file);
-    //const task = this.storage.upload("/files"+Math.random()+this.file, this.file);
-
-    // observe percentage changes
-    //this.uploadPercent = task.percentageChanges();
-    // get ontified when the download URL i available
-    //task.snapshotChanges().pipe(
-    //  finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-    //).subscribe()
   }
-
-
-
-
 
 }
