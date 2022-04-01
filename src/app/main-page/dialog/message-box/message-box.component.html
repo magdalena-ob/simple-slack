@@ -17,7 +17,7 @@
             <textarea [(ngModel)]="message.textMessage"  matInput cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
-        <form [formGroup]="form">
+        <form [ngClass]="{'d-none' : !codeBlock}" [formGroup]="form">
             <div class="code-container line-numbers">
                 <textarea #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
                     formControlName="content" spellcheck="false">
