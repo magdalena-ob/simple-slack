@@ -28,7 +28,7 @@
           {{message.textMessage}}
         </div>
         <div class="msg-img-container">
-          <img src="{{message.image}}">
+          <img src="{{ message.image }}">
         </div>
       </div>
       <div class="response-msg-cont">
@@ -43,11 +43,6 @@
     <app-message-box></app-message-box>
   </div>
   
-
-
-  
-
-
   <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
     <div class="title-container">
       <b>Thread</b>

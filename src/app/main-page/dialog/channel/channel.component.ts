@@ -78,8 +78,6 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
     this.scrollToBottom();
   }
 
-
-
   getChannel() {
     this.firestore
       .collection('channels')
@@ -175,13 +173,9 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
       if (memberID == this.userID) {
         this.isMember = true;
         console.log('this member status is', this.isMember);
-      } else {
-        this.isMember = false;
-        console.log('this member status is', this.isMember);
-      }
+      } 
     }
   }
-
 
 
   ngAfterViewInit() {
