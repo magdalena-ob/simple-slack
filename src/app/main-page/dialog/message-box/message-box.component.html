@@ -1,12 +1,12 @@
 <mat-card class="message-box">
     <div class="text-design-function-area">
         Text-Design-Funktionen
-        <button mat-flat-button color="none" class="icon-button" (click)="enableDisableRule()"
+        <button mat-flat-button color="none" class="icon-button" (click)="enableDisableRule()" matTooltip="Code" matTooltipPosition="above"
             [ngClass]="{'light-grey' : toggle, 'grey': !toggle}">
             <mat-icon>code</mat-icon>
         </button>
 
-        <button mat-raised-button (click)="openImgUpload()" class="icon-button">
+        <button mat-raised-button (click)="openImgUpload()" matTooltip="Foto hinzufügen" matTooltipPosition="above" class="icon-button">
             <mat-icon>attach_file</mat-icon>
         </button>
 
@@ -14,7 +14,7 @@
     <div>
         <mat-form-field *ngIf="!codeBlock" appearance="fill" class="text-area">
             <mat-label>Nachrichten senden...</mat-label>
-            <textarea [(ngModel)]="message.textMessage"  matInput cdkTextareaAutosize
+            <textarea [(ngModel)]="message.textMessage" matInput cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
         </mat-form-field>
         <form [ngClass]="{'d-none' : !codeBlock}" [formGroup]="form">
