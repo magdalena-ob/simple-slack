@@ -72,6 +72,10 @@
 ::ng-deep.mat-list-base, .mat-list-item {
     padding-top: 0px !important;
     height: 64px !important;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04) ;
+    }
 }
 
 .channel-description {
@@ -81,6 +85,7 @@
 
 .channel-item {
     position: relative;
+    cursor: pointer;
 }
 
 .channel-item:hover  .channel-action {
@@ -91,10 +96,10 @@
     left: 0;
     bottom: 0;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.04);
+    /*background-color: rgba(0, 0, 0, 0.04);*/
     justify-content: flex-end;
     align-items: center;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .channel-name {
