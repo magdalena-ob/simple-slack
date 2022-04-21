@@ -20,10 +20,10 @@ const routes: Routes = [
   {
     path: 'main-page', component: MainPageComponent, canActivate: [AuthGuard],
     children: [
-      //{
-      //  path:'thread',
-      //  component: ThreadComponent
-      //},
+      {
+        path:'channel/:id1/thread/:id2',
+        component: ThreadComponent
+      },
       {
         path:'channel/:id1',
         component: ChannelComponent,

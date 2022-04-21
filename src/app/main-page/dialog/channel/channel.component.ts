@@ -224,11 +224,5 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
-
-  //navigateToThread(i: number) {
-  //  console.log('open current Thread');
-
-  //  this.router.navigateByUrl('main-page/channel/this.channelId/thread/' + i);
-    
-  //}
+  
 }

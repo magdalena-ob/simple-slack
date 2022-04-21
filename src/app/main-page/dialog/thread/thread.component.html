@@ -1,10 +1,14 @@
+<div class="title-container thread-header">
+    <b>Thread</b>
+    <div class="color-gr location"># {{ channel.category }}</div>
+</div>
+
 <mat-list class="padding-16 channel-msg">
     <div class="user">
         <div class="user-img"><img src="/assets/img/user.png"></div>
-        <div class="pd-left-56"><b>Username</b> 00:00 Uhr</div>
+        <div class="pd-left-56"><b>{{ message.fromName }}</b> {{ message.timeSent | date:'HH:mm' }} Uhr</div>
     </div>
     <div class="pd-left-56">
-        show current message in this thread
         {{ message.textMessage }}
     </div>
 </mat-list>

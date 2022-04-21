@@ -32,9 +32,6 @@
         </div>
       </div>
       <div class="response-msg-cont">
-        <!--<mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above" (click)="drawer.open(); navigateToThread(i)">
-          chat
-        </mat-icon>-->
         <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above" (click)="drawer.open()"
         [routerLink]="['/main-page/channel/' + message.channelID + '/thread/' + message.customIdMessage]">
         chat
