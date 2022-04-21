@@ -5,6 +5,7 @@ export class Message {
     fromID: any;
     fromName: string;
     codeBlock: boolean;
+    channelID: any;
 
     constructor(obj?: any) {
             this.textMessage = obj ? obj.textMessage : '';
@@ -13,6 +14,7 @@ export class Message {
             this.fromID = obj ? obj.fromID : '';
             this.fromName = obj ? obj.fromName : '';
             this.codeBlock = obj ? obj.codeBlock : false;
+            this.channelID = obj ? obj.channelID : '';
            
     }
 
@@ -23,7 +25,8 @@ export class Message {
             image: this.image,
             fromID: this.fromID,
             fromName: this.fromName,
-            codeBlock: this.codeBlock
+            codeBlock: this.codeBlock, 
+            channelID: this.channelID,
             
         }
     }

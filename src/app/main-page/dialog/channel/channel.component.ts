@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { limit, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -59,7 +59,8 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
     public dialog: MatDialog,
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -223,4 +224,11 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
+
+  //navigateToThread(i: number) {
+  //  console.log('open current Thread');
+
+  //  this.router.navigateByUrl('main-page/channel/this.channelId/thread/' + i);
+    
+  //}
 }

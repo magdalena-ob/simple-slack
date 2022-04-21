@@ -15,7 +15,7 @@
   </div>
 
   <div class="msg-box scroll-container" #scrollToEnd>
-    <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages">
+    <mat-list class="padding-16 channel-msg" *ngFor="let message of channelMessages; let i = index">
       <div class="user">
         <div class="user-img"><img src="assets/img/user.png"></div>
         <div class="msg-info">
@@ -32,10 +32,13 @@
         </div>
       </div>
       <div class="response-msg-cont">
-        <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above"
-          [routerLink]="['/main-page/channel/customIdChannel/thread/' + message.customIdMessage]">
+        <!--<mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above" (click)="drawer.open(); navigateToThread(i)">
           chat
-        </mat-icon>
+        </mat-icon>-->
+        <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above" (click)="drawer.open()"
+        [routerLink]="['/main-page/channel/' + message.channelID + '/thread/' + message.customIdMessage]">
+        chat
+      </mat-icon>
       </div>
     </mat-list>
   </div>
@@ -43,10 +46,10 @@
     <app-message-box></app-message-box>
   </div>
   
-  <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="true">
+  <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="false">
     <div class="title-container">
       <b>Thread</b>
-      <button type="button" mat-button class="close-btn" (click)="drawer.toggle()">
+      <button type="button" mat-button class="close-btn" (click)="drawer.close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>

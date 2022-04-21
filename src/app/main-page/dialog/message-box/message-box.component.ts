@@ -139,6 +139,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
     this.message.image = this.imgURL;
     this.message.codeBlock = this.codeBlock;
+    this.message.channelID = this.channelId;
                                  
     this.firestore
     .collection('channels')
