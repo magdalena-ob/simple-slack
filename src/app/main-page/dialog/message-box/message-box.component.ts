@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 import { FormBuilder } from '@angular/forms';
+import { Comment } from 'src/models/comment.class';
 
 
 
@@ -26,7 +27,9 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   status = 'Enable';
 
   channelId : any;
+  threadId: any;
   message = new Message();
+  comment = new Comment();
   timeSent: Date = new Date();
 
   user: Observable<any> | null;
@@ -86,9 +89,16 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.listenForm();
       this.synchronizeScroll();
 
-    this.route.paramMap.subscribe( paramMap => {
-      this.channelId = paramMap.get('id1');
-      console.log('got channel id ', this.channelId);
+
+      this.route.params.subscribe((params) => {
+        console.log('whole param', params);
+        this.channelId = params.id1;
+        this.threadId = params.id2;
+        console.log('got channel id ', this.channelId);
+        console.log('got thread id ', this.threadId);
+    //this.route.paramMap.subscribe( paramMap => {
+    //  this.channelId = paramMap.get('id1');
+    //  console.log('got channel id ', this.channelId);
 
       this.getCurrentUserId();
       
@@ -134,24 +144,54 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
 
 
   toSendMessage() {
+    if(this.locationThread()) {
+      console.log('message for thread');
+      this.commentMessage();
+    } else {
+      this.message.timeSent = this.timeSent.getTime();
+      this.message.fromID = this.uid;
+      this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+      this.message.image = this.imgURL;
+      this.message.codeBlock = this.codeBlock;
+      this.message.channelID = this.channelId;
+                                   
+      this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .add(this.message.toJSON())
+      .then((result:any) =>{
+        console.log('finished adding message' , result);
+        this.message.textMessage = '';
+        this.myImgElem.nativeElement.src = '';
+        this.imgUploaded = false;
+      });
+    }
+    
+  }
+
+  //answer message in Thread
+  commentMessage() {
     this.message.timeSent = this.timeSent.getTime();
-    this.message.fromID = this.uid;
-    this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
-    this.message.image = this.imgURL;
-    this.message.codeBlock = this.codeBlock;
-    this.message.channelID = this.channelId;
-                                 
+      this.message.fromID = this.uid;
+      this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+      this.message.image = this.imgURL;
+      this.message.codeBlock = this.codeBlock;
+      this.message.channelID = this.channelId;
+
     this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .collection('messages')
-    .add(this.message.toJSON())
-    .then((result:any) =>{
-      console.log('finished adding message' , result);
-      this.message.textMessage = '';
-      this.myImgElem.nativeElement.src = '';
-      this.imgUploaded = false;
-    });
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .doc(this.threadId)
+      .collection('comments')
+      .add(this.message.toJSON())
+      .then((result:any) =>{
+        console.log('finished adding comment' , result);
+        this.message.textMessage = '';
+        this.myImgElem.nativeElement.src = '';
+        this.imgUploaded = false;
+      });
   }
 
   enableDisableRule() {
@@ -201,5 +241,8 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.sub.add(localSub);
   }
 
+  locationThread() {
+    return window.location.href.indexOf("thread") > -1;
+  }
 
 }
