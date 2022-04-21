@@ -157,3 +157,11 @@ h1 {
 .d-none {
   display: none;
 }
+
+.msg-img-container {
+  margin-top: 12px;
+  img {
+    object-fit: cover;
+    max-width: 200px;
+  }
+}

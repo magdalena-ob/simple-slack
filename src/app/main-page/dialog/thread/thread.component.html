@@ -19,7 +19,12 @@
         <div class="pd-left-56"><b>{{ comment.fromName }}</b> {{ comment.timeSent | date:'HH:mm' }} Uhr</div>
     </div>
     <div class="pd-left-56">
-        {{ comment.textMessage }}
+        <div>
+            {{ comment.textMessage }}
+        </div>
+        <div class="msg-img-container">
+            <img src="{{ comment.image }}">
+        </div>
     </div>
 </mat-list>
 <app-message-box></app-message-box>
