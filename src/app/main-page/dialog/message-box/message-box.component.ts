@@ -8,7 +8,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 import { FormBuilder } from '@angular/forms';
-import { Comment } from 'src/models/comment.class';
 
 
 
@@ -29,7 +28,6 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   channelId : any;
   threadId: any;
   message = new Message();
-  comment = new Comment();
   timeSent: Date = new Date();
 
   user: Observable<any> | null;
@@ -174,7 +172,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   commentMessage() {
     this.message.timeSent = this.timeSent.getTime();
       this.message.fromID = this.uid;
-      this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+      this.message.fromName = this.fromUser;                     
       this.message.image = this.imgURL;
       this.message.codeBlock = this.codeBlock;
       this.message.channelID = this.channelId;

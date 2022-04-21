@@ -20,6 +20,7 @@ export class ThreadComponent implements OnInit {
   threadId: any = '';
   threadMessages: any = [];
   message: Message = new Message();
+  allComments: any = [];
 
   ngOnInit(): void {
 
@@ -31,6 +32,7 @@ export class ThreadComponent implements OnInit {
       console.log('got thread id ', this.threadId);
       this.getThread();
       this.getChannel();
+      this.getComments();
     })
   
     //this.route.paramMap.subscribe(params => {
@@ -64,6 +66,20 @@ export class ThreadComponent implements OnInit {
       .subscribe((channel: any) => {
         this.channel = new Channel(channel);
         console.log('retrieved channel ', this.channel);
+      })
+  }
+
+  getComments() {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .doc(this.threadId)
+      .collection('comments')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.allComments = changes;
+        console.log('comments', this.allComments);
       })
   }
 
