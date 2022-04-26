@@ -1,12 +1,10 @@
 import { AfterViewInit, Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, Renderer2, ViewChild, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { limit, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Channel } from 'src/models/channel.class';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
@@ -98,26 +96,18 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
       .valueChanges(({ idField: 'customIdMessage' }))
       .subscribe((changes: any) => {
         this.channelMessages = changes;
-        // Sort timeStamp, not yet finished
-        //const q = query(this.channelMessages, orderBy("timeSent", "desc"), limit(30));
-        //this.sortMessagesDescending();
+        this.orderByTimeSent();
         console.log('retrieved channelmessages ', this.channelMessages);
       })
   }
 
-
-  sortMessagesDescending() {
-    this.firestore
-      .collection('channels')
-      .doc(this.channelId)
-      .collection('messages')
-      .valueChanges(({ idField: 'customIdMessage' }))
-    const queryObservable = this.channelMessages.pipe(
-      switchMap(timeSent =>
-        this.firestore.collection('items', ref => ref.orderBy('timeSent', 'desc')).valueChanges()
-      )
-    )
+  //sort messages with timestemp
+  orderByTimeSent() {
+    return this.channelMessages.sort(
+      (objA: { timeSent: number; }, objB: { timeSent: number; }) => objA.timeSent - objB.timeSent,
+    );
   }
+
 
   joinChannel() {
     this.firestore

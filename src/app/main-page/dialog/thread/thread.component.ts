@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { Message } from 'src/models/message.class';
+import { orderBy, query, serverTimestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-thread',
@@ -45,6 +46,9 @@ export class ThreadComponent implements OnInit {
     //})
   }
 
+  //query
+  //const q = query(colRef, orderBy('timeSent'));
+
   getThread() {
     this.firestore
       .collection('channels')
@@ -76,11 +80,21 @@ export class ThreadComponent implements OnInit {
       .collection('messages')
       .doc(this.threadId)
       .collection('comments')
+      //.orderBy('timeSent')
       .valueChanges()
       .subscribe((changes: any) => {
         this.allComments = changes;
         console.log('comments', this.allComments);
+        this.orderByTimeSent();
+        
       })
   }
+
+  orderByTimeSent() {
+    return this.allComments.sort(
+      (objA: { timeSent: number; }, objB: { timeSent: number; }) => objA.timeSent - objB.timeSent,
+    );
+  }
+  
 
 }
