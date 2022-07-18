@@ -16,6 +16,9 @@
         <div *ngFor="let option of cardValue.options">
           {{ option }}
         </div>
+        <div>
+          <button [routerLink]="['/main-page/directmessage/']">send DM</button>
+        </div>
       </ng-container>
     </mat-card>
   </div>
