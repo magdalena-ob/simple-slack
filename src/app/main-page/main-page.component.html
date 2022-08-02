@@ -35,7 +35,7 @@
             </button>
         </div>
         <div class="menu-items">
-           <!-- <div class="nav-item">
+            <!-- <div class="nav-item">
                 <mat-icon class="chat-icon">chat</mat-icon>
                 Threads
             </div>-->
@@ -44,15 +44,17 @@
                 <mat-expansion-panel [togglePosition]="'before'" [expanded]="true">
                     <mat-expansion-panel-header class="specific-class">
                         <mat-panel-title>
-                           <!-- <mat-icon>arrow_drop_down</mat-icon>-->
+                            <!-- <mat-icon>arrow_drop_down</mat-icon>-->
                             Channels
-                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Channels hinzufügen" matTooltipPosition="above" class="add-icon"
-                                [matMenuTriggerFor]="menu1">add</mat-icon>
+                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Channels hinzufügen"
+                                matTooltipPosition="above" class="add-icon" [matMenuTriggerFor]="menu1">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-list *ngIf="addedChannelNames.length === 0" class="info-channels">Du hast noch keine Channels hinzugefügt!</mat-list>
+                    <mat-list *ngIf="addedChannelNames.length === 0" class="info-channels">Du hast noch keine Channels
+                        hinzugefügt!</mat-list>
                     <mat-list *ngFor="let channel of addedChannelNames; let i = index">
-                        <mat-list-item class="added-channels" [routerLink]="['/main-page/channel/' + addedChannelIds[i] ]"># {{ channel }}</mat-list-item>
+                        <mat-list-item class="added-channels"
+                            [routerLink]="['/main-page/channel/' + addedChannelIds[i] ]"># {{ channel }}</mat-list-item>
                     </mat-list>
                 </mat-expansion-panel>
             </mat-accordion>
@@ -63,10 +65,16 @@
                         <mat-panel-title>
                             <!--<mat-icon>arrow_drop_down</mat-icon>-->
                             Direktnachrichten
-                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Direktnachricht öffnen" matTooltipPosition="above" class="add-icon"
-                                routerLink="directmessageadd">add</mat-icon>
+                            <mat-icon (click)="$event.stopPropagation();" matTooltip="Direktnachricht öffnen"
+                                matTooltipPosition="above" class="add-icon" routerLink="directmessageadd">add</mat-icon>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <mat-list *ngFor="let chats of privateChats; let j = index">
+                        <mat-list-item class="added-channels" [routerLink]="['/main-page/directmessage/' + privateChatsID[j] ]">
+                            <mat-icon>account_circle</mat-icon> 
+                            <div class="pd-left">{{ chats }}</div>
+                        </mat-list-item>
+                    </mat-list>
                 </mat-expansion-panel>
             </mat-accordion>
 

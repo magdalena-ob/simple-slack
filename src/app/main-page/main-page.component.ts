@@ -21,6 +21,12 @@ export class MainPageComponent implements OnInit {
   addedChannelNames: any = [];
   addedChannelIds: any = [];
   anonymousGuest: boolean = false;
+  customIdChat: any;
+  allChats: any = [];
+  chatUser: any = [];
+  privateChats: any = [];
+  privateChatsID: any = [];
+
 
 
   constructor(
@@ -33,12 +39,15 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllChannels();
+    this.getUserId();
+  }
 
+  getUserId() {
     this.afAuth.authState
       .subscribe((user: any) => {
         console.log('main-page: user ', user);
-        if(user.isAnonymous == true) {
-          console.log ('Gast is logged in');
+        if (user.isAnonymous == true) {
+          console.log('Gast is logged in');
           this.anonymousGuest = true;
         }
         if (user) {
@@ -47,10 +56,9 @@ export class MainPageComponent implements OnInit {
           let userId = this.emailLower;
 
           this.getUsersChannel(userId);
-        } 
+          this.getAllChats(userId);
+        }
       });
-
-      console.log('addedChannelNames', this.addedChannelNames);
   }
 
   openAddChannel() {
@@ -79,12 +87,12 @@ export class MainPageComponent implements OnInit {
 
   getAllChannels() {
     this.firebaseService.getAllChannels()
-    .subscribe(channels => {
-      this.allChannels = channels;
-      console.log('all channels', this.allChannels);
-    })
+      .subscribe(channels => {
+        this.allChannels = channels;
+        console.log('all channels', this.allChannels);
+      });
   }
- 
+
   getUsersChannel(userId: any) {
     this.firestore
       .collection('users')
@@ -94,12 +102,14 @@ export class MainPageComponent implements OnInit {
       .subscribe((result: any) => {
         this.addedChannels = result;
         console.log('added user channels: ', this.addedChannels);
-       
+
         this.getChannelName()
       });
   }
 
   getChannelName() {
+    this.addedChannelNames = [];
+    this.addedChannelIds = [];
     for (let all in this.allChannels) {
       let allChannelsId = this.allChannels[all].customIdChannel;
       let channelName = this.allChannels[all].category;
@@ -113,8 +123,37 @@ export class MainPageComponent implements OnInit {
           this.addedChannelNames.push(channelName);
           this.addedChannelIds.push(id);
         }
-      } 
+      }
     }
+  }
+
+  getAllChats(userId: any) {
+    this.firestore
+      .collection('chats')
+      .valueChanges({ idField: 'customIdChat' })
+      .subscribe(chats => {
+        this.allChats = chats;
+        this.getPrivateChat(userId);
+      });
+
+
+  }
+
+  getPrivateChat(userId: any) {
+    console.log('user id is ', userId);
+    console.log('all chats', this.allChats);
+    this.privateChats = [];
+    this.privateChatsID = [];
+    for (let i = 0; i < this.allChats.length; i++) {
+      const chats = this.allChats[i];
+      if (userId == chats.toID || chats.fromID) {
+        this.privateChats.push(chats.toID);
+        this.privateChatsID.push(chats.customIdChat);
+        console.log('chat names are ', this.privateChats);
+        console.log('chat ids are ', this.privateChatsID);
+      }
+    }
+
   }
 
 }
