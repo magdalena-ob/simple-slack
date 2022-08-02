@@ -17,7 +17,8 @@
           {{ option }}
         </div>
         <div>
-          <button [routerLink]="['/main-page/directmessage/']">send DM</button>
+          <button (click)="openChat()">send DM</button>
+          <!--<button (click)="createChat()" [routerLink]="['/main-page/directmessage/']">send DM</button>-->
         </div>
       </ng-container>
     </mat-card>

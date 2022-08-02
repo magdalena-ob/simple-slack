@@ -32,7 +32,7 @@ const routes: Routes = [
         ]
       },
       {
-        path:'directmessage',
+        path:'directmessage/:ID',
         component: DirectMessageComponent
       },
       { path: 'directmessageadd',
