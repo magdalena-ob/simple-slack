@@ -29,6 +29,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   threadId: any;
   message = new Message();
   timeSent: Date = new Date();
+  chatID: any;
 
   user: Observable<any> | null;
   uid: any;
@@ -92,8 +93,10 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
         console.log('whole param', params);
         this.channelId = params.id1;
         this.threadId = params.id2;
-        console.log('got channel id ', this.channelId);
+        this.chatID = params.ID;
+        
         console.log('got thread id ', this.threadId);
+        console.log('got chat id ', this.chatID);
     //this.route.paramMap.subscribe( paramMap => {
     //  this.channelId = paramMap.get('id1');
     //  console.log('got channel id ', this.channelId);
@@ -141,31 +144,60 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   }
 
 
-  toSendMessage() {
-    if(this.locationThread()) {
-      console.log('message for thread');
-      this.commentMessage();
-    } else {
-      this.message.timeSent = this.timeSent.getTime();
-      this.message.fromID = this.uid;
-      this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
-      this.message.image = this.imgURL;
-      this.message.codeBlock = this.codeBlock;
-      this.message.channelID = this.channelId;
-                                   
-      this.firestore
-      .collection('channels')
-      .doc(this.channelId)
-      .collection('messages')
-      .add(this.message.toJSON())
-      .then((result:any) =>{
-        console.log('finished adding message' , result);
-        this.message.textMessage = '';
-        this.myImgElem.nativeElement.src = '';
-        this.imgUploaded = false;
-      });
-    }
-    
+  sendMessage() {
+    if (this.chatID) {                        //send message in private chat
+      console.log('this is a private chat');
+      this.sendChatMessage();
+    } else {                                  //send message in channel
+      if(this.locationThread()) {
+        console.log('message for thread');
+        this.commentMessage();
+      } else {
+        this.sendChannelMessage();
+      }
+    } 
+  }
+
+  sendChatMessage(){
+    this.message.timeSent = this.timeSent.getTime();
+    this.message.fromID = this.uid;
+    this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+    this.message.image = this.imgURL;
+    this.message.codeBlock = this.codeBlock;
+    this.message.channelID = this.chatID;
+                                 
+    this.firestore
+    .collection('chats')
+    .doc(this.chatID)
+    .collection('messages')
+    .add(this.message.toJSON())
+    .then((result:any) =>{
+      console.log('finished adding message' , result);
+      this.message.textMessage = '';
+      this.myImgElem.nativeElement.src = '';
+      this.imgUploaded = false;
+    });
+  }
+
+  sendChannelMessage() {
+    this.message.timeSent = this.timeSent.getTime();
+    this.message.fromID = this.uid;
+    this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
+    this.message.image = this.imgURL;
+    this.message.codeBlock = this.codeBlock;
+    this.message.channelID = this.channelId;
+                                 
+    this.firestore
+    .collection('channels')
+    .doc(this.channelId)
+    .collection('messages')
+    .add(this.message.toJSON())
+    .then((result:any) =>{
+      console.log('finished adding message' , result);
+      this.message.textMessage = '';
+      this.myImgElem.nativeElement.src = '';
+      this.imgUploaded = false;
+    });
   }
 
   //answer message in Thread

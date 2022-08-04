@@ -11,6 +11,7 @@ export class DirectMessageComponent implements OnInit {
 
   chatID: any = '';
   chat: any;
+  chatMessages: any = [];
 
   constructor(
     private firestore: AngularFirestore,
@@ -19,7 +20,7 @@ export class DirectMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getChatID();
-    
+    this.getMessage();
   }
 
   getChatID() {
@@ -38,6 +39,19 @@ export class DirectMessageComponent implements OnInit {
       .subscribe((chat: any) => {
         this.chat = chat;
       });
+  }
+
+  getMessage() {
+    this.firestore
+      .collection('chats')
+      .doc(this.chatID)
+      .collection('messages')
+      .valueChanges(({ idField: 'customIdMessage' }))
+      .subscribe((changes: any) => {
+        this.chatMessages = changes;
+        //this.orderByTimeSent();
+        console.log('retrieved chatmessages ', this.chatMessages);
+      })
   }
 
 }

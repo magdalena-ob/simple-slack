@@ -3,8 +3,24 @@
         <b>{{ chat.toID }}</b>
     </div>
 
-    <div class="message-destination-area">
-      
+    <div class="msg-box scroll-container" #scrollToEnd>
+        <mat-list class="padding-16 channel-msg" *ngFor="let message of chatMessages; let i = index">
+            <div class="user">
+                <div class="user-img"><img src="assets/img/user.png"></div>
+                <div class="msg-info">
+                    <div class="pd-left-56"><b>{{ message.fromName }}</b></div>
+                    <div class="msg-time color-gr">{{ message.timeSent | date:'HH:mm' }} Uhr</div>
+                </div>
+            </div>
+            <div class="pd-left-56 msg-container">
+                <div>
+                    {{message.textMessage}}
+                </div>
+                <div class="msg-img-container">
+                    <img src="{{ message.image }}">
+                </div>
+            </div>
+        </mat-list>
     </div>
 
     <app-message-box></app-message-box>

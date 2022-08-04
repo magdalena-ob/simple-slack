@@ -32,7 +32,7 @@
         <div class="img-container">
             <img #img src="{{imgURL}}">
         </div>
-        <button [disabled]="message.textMessage == '' && !imgUploaded" mat-flat-button class="send-icon-button" (click)="toSendMessage()">
+        <button [disabled]="message.textMessage == '' && !imgUploaded" mat-flat-button class="send-icon-button" (click)="sendMessage()">
             <mat-icon>send</mat-icon>
         </button>
     </div>
