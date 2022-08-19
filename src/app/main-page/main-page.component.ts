@@ -146,11 +146,12 @@ export class MainPageComponent implements OnInit {
     this.privateChatsID = [];
     for (let i = 0; i < this.allChats.length; i++) {
       const chats = this.allChats[i];
-      if (userId == chats.toID || chats.fromID) {
+      if(userId == chats.toID) {
+        this.privateChats.push(chats.fromID);
+        this.privateChatsID.push(chats.customIdChat);
+      } else if(userId == chats.fromID) {
         this.privateChats.push(chats.toID);
         this.privateChatsID.push(chats.customIdChat);
-        console.log('chat names are ', this.privateChats);
-        console.log('chat ids are ', this.privateChatsID);
       }
     }
 

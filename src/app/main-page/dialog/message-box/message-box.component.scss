@@ -9,10 +9,12 @@
   bottom: 16px;
   display: flex;
   flex-direction: column;
+  border: 1.5px solid hsl(299deg 57% 18%);
+  border-radius: 12px;
 }
 
-.text-design-function-area {
-  background-color: rgb(233, 233, 233);
+
+.function-box {
   position: relative;
   top: 0;
   left: 0;
@@ -21,6 +23,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 
 .icon-button {
   width: 60px;

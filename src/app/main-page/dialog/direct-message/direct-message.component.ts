@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-direct-message',
@@ -12,21 +14,30 @@ export class DirectMessageComponent implements OnInit {
   chatID: any = '';
   chat: any;
   chatMessages: any = [];
+  //emailLower: any;
+  anonymousGuest: boolean = false;
+  user: Observable<any> | null;
+  userID: any = '';
 
   constructor(
     private firestore: AngularFirestore,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    public afAuth: AngularFireAuth
+  ) { 
+    this.user = null;
+  }
 
   ngOnInit(): void {
     this.getChatID();
-    this.getMessage();
+    this.getUserId();
+    
   }
 
   getChatID() {
     this.route.paramMap.subscribe(paramMap => {
       this.chatID = paramMap.get('ID');
       this.loadPrivateChat();
+      this.getMessage();
     });
   }
 
@@ -52,6 +63,21 @@ export class DirectMessageComponent implements OnInit {
         //this.orderByTimeSent();
         console.log('retrieved chatmessages ', this.chatMessages);
       })
+  }
+
+  getUserId() {
+    this.afAuth.authState
+      .subscribe((user: any) => {
+        console.log('main-page: user ', user);
+        if (user.isAnonymous == true) {
+          console.log('Gast is logged in');
+          this.anonymousGuest = true;
+        }
+        if (user) {
+          this.userID = user.email.toLowerCase();
+          this.user = this.firestore.collection('users').doc(this.userID).valueChanges();       
+        }
+      });
   }
 
 }

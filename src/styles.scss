@@ -165,3 +165,9 @@ h1 {
     max-width: 200px;
   }
 }
+
+.scroll-container {
+  overflow-y: auto;
+  height: 64vh;
+  width: 100%;
+}

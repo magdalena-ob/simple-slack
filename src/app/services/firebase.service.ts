@@ -98,25 +98,5 @@ export class FirebaseService {
 
 
 
-
-  //to add channel id to in channel array logged in user collection
-  // joinChannel() {
-  //   this.afAuth.authState
-  //     .subscribe((user: any) => {
-  //       console.log('main-page: user ', user);
-
-  //      if (user) {
-  //        let emailLower = user.email.toLowerCase();
-  //        return this.firestore
-  //          .collection('users')
-  //          .doc(emailLower)
-  //          .set(
-  //            { channels: [this.channelId] },
-  //            { merge: true }
-  //          )
-  //      }
-  //    });
-  //}
-
 }
 
