@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TechnologiesComponent } from './technologies/technologies.component';
+import { LocalStorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-start',
@@ -11,17 +12,21 @@ import { TechnologiesComponent } from './technologies/technologies.component';
   styleUrls: ['./start.component.scss']
 })
 export class StartComponent implements OnInit {
+  lastUrl: any;
 
   constructor(
     public afAuth: AngularFireAuth,
     private elementRef: ElementRef,
     private authService: AuthService,
     private router: Router,
+    public localStorage: LocalStorageService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.elementRef.nativeElement.ownerDocument
       .body.style.backgroundColor = '#481449';
+
+    this.getLastUrl();
   }
 
   logout(): void {
@@ -44,6 +49,11 @@ export class StartComponent implements OnInit {
   openDialog() {
       //let dialog = 
       this.dialog.open(TechnologiesComponent);
+  }
+
+  getLastUrl() {
+    this.localStorage.loadLastURL();
+    this.lastUrl = this.localStorage.lastURL;
   }
 
 }

@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LocalStorageService } from 'src/app/services/storage.service';
 import { Channel } from 'src/models/channel.class';
 import { SyntaxHighlightingService } from '../../../services/syntax-highlighting.service';
 
@@ -59,6 +60,7 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
     private fb: FormBuilder,
     private renderer: Renderer2,
     public router: Router,
+    public localStorage: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -72,6 +74,7 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
       // this.synchronizeScroll();
       this.getMembers();
       //this.checkForMember();
+      this.localStorage.saveCurrentURL();
     })
 
     this.scrollToBottom();

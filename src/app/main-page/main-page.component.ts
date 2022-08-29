@@ -28,7 +28,6 @@ export class MainPageComponent implements OnInit {
   privateChatsID: any = [];
 
 
-
   constructor(
     public dialog: MatDialog,
     public afAuth: AngularFireAuth,
@@ -154,8 +153,9 @@ export class MainPageComponent implements OnInit {
         this.privateChatsID.push(chats.customIdChat);
       }
     }
-
   }
+
+ 
 
 }
 

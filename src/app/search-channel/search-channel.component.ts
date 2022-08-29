@@ -6,6 +6,7 @@ import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-chan
 import { FirebaseService } from '../services/firebase.service';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { LocalStorageService } from '../services/storage.service';
 
 
 @Component({
@@ -30,14 +31,15 @@ export class SearchChannelComponent implements OnInit {
     public dialog: MatDialog,
     private firebaseService: FirebaseService,
     private route: ActivatedRoute,
+    public localStorage: LocalStorageService,
     private firestore: AngularFirestore,
     public afAuth: AngularFireAuth) { this.user = null; }
 
 
   ngOnInit(): void {
     this.getCurrentUser();
-
     this.getAllChannels();
+    this.localStorage.saveCurrentURL();
   }
 
   getCurrentUser() {

@@ -16,10 +16,9 @@
         <div class="column-center login-stat-green" *ngIf="(afAuth.user | async)">
             Du bist bereits eingeloggt!
         </div>
-        <button mat-raised-button color="primary" class="btn-green" *ngIf="(afAuth.user | async)"
-            routerLink="/main-page">
+        <a mat-raised-button color="primary" class="btn-green" *ngIf="(afAuth.user | async)" href="{{ lastUrl }}">
             Dashboard
-        </button>
+        </a>
         <button mat-raised-button color="primary" class="logout-btn" *ngIf="(afAuth.user | async)" (click)="logout()">
             Log out
         </button>

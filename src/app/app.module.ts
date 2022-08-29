@@ -55,6 +55,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HelpComponent } from './help/help.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { TechnologiesComponent } from './start/technologies/technologies.component';
+import { LocalStorageService } from './services/storage.service';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { TechnologiesComponent } from './start/technologies/technologies.compone
     MatStepperModule
   ],
   providers: [FirebaseService,
-  SyntaxHighlightingService
+  SyntaxHighlightingService,
+  LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-direct-message',
@@ -22,15 +23,16 @@ export class DirectMessageComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
-    public afAuth: AngularFireAuth
-  ) { 
+    public afAuth: AngularFireAuth,
+    public localStorage: LocalStorageService
+  ) {
     this.user = null;
   }
 
   ngOnInit(): void {
     this.getChatID();
     this.getUserId();
-    
+    this.localStorage.saveCurrentURL();
   }
 
   getChatID() {
@@ -75,7 +77,7 @@ export class DirectMessageComponent implements OnInit {
         }
         if (user) {
           this.userID = user.email.toLowerCase();
-          this.user = this.firestore.collection('users').doc(this.userID).valueChanges();       
+          this.user = this.firestore.collection('users').doc(this.userID).valueChanges();
         }
       });
   }
