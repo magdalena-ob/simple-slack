@@ -98,20 +98,11 @@
   }
 }
 
-.text-area-code-editor {
-  caret-color: rgb(255, 255, 255);
-  white-space: nowrap;
-  overflow: auto;
-  text-align: left;
-  display: block;
-  resize: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  color: transparent;
-  background: transparent;
-  z-index: 2;
-  padding: 15px 0 0 70px;
+
+
+::ng-deep .mat-tooltip {
+  background-color: #ffc107;
 }
+
+
 

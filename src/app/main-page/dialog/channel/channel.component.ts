@@ -38,9 +38,9 @@ export class ChannelComponent implements OnInit, AfterViewInit, AfterViewChecked
   pre!: ElementRef;
 
   sub!: Subscription;
-  highlighted = false;
+  highlighted = true;
   codeType = 'javascript';
-
+  //codeBlock = true;
 
   form = this.fb.group({
     content: ''

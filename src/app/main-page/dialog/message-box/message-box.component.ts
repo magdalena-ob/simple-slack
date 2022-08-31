@@ -25,7 +25,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   toggle = true;
   status = 'Enable';
 
-  channelId : any;
+  channelId: any;
   threadId: any;
   message = new Message();
   timeSent: Date = new Date();
@@ -38,7 +38,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   downloadUrl: any;
 
   imgURL: string = '';
-  imgUploaded: boolean =  false;
+  imgUploaded: boolean = false;
   @ViewChild('img') myImgElem!: ElementRef;
 
   @ViewChild('textArea', { static: true })
@@ -67,18 +67,18 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   }
 
   constructor(
-    public dialog: MatDialog, 
-    private route: ActivatedRoute, 
-    private firestore: AngularFirestore, 
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private firestore: AngularFirestore,
     public afAuth: AngularFireAuth,
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
     private renderer: Renderer2) {
     this.user = null;
     this.codeBlock = false;
-   }
+  }
 
-   text = `constructor(
+  text = `constructor(
     private prismService: SyntaxHighlightingService,
     private fb: FormBuilder,
     private renderer: Renderer2
@@ -86,27 +86,23 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
 
   ngOnInit(): void {
     this.listenForm();
-      this.synchronizeScroll();
+    this.synchronizeScroll();
 
+    this.route.params.subscribe((params) => {
+      console.log('whole param', params);
+      this.channelId = params.id1;
+      this.threadId = params.id2;
+      this.chatID = params.ID;
 
-      this.route.params.subscribe((params) => {
-        console.log('whole param', params);
-        this.channelId = params.id1;
-        this.threadId = params.id2;
-        this.chatID = params.ID;
-        
-        console.log('got thread id ', this.threadId);
-        console.log('got chat id ', this.chatID);
-    //this.route.paramMap.subscribe( paramMap => {
-    //  this.channelId = paramMap.get('id1');
-    //  console.log('got channel id ', this.channelId);
+      console.log('got thread id ', this.threadId);
+      console.log('got chat id ', this.chatID);
 
       this.getCurrentUserId();
-      
+
     })
   }
 
-  
+
   openImgUpload() {
     let dialog = this.dialog.open(DialogUploadFileComponent);
 
@@ -127,7 +123,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.afAuth.authState
       .subscribe((user: any) => {
         console.log('user message-box ', user);
-        
+
         if (user) {
           this.uid = user.uid;
           this.fromUser = user.displayName;
@@ -137,8 +133,8 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
           this.user.subscribe((changes) => {
             this.fromUser = changes.displayName;
             //console.log('display name' , this.fromUser);
-          } )
-         
+          })
+
         }
       });
   }
@@ -149,34 +145,34 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
       console.log('this is a private chat');
       this.sendChatMessage();
     } else {                                  //send message in channel
-      if(this.locationThread()) {
+      if (this.locationThread()) {
         console.log('message for thread');
         this.commentMessage();
       } else {
         this.sendChannelMessage();
       }
-    } 
+    }
   }
 
-  sendChatMessage(){
+  sendChatMessage() {
     this.message.timeSent = this.timeSent.getTime();
     this.message.fromID = this.uid;
     this.message.fromName = this.fromUser;                     //to get uid from user who sent the message
     this.message.image = this.imgURL;
     this.message.codeBlock = this.codeBlock;
     this.message.channelID = this.chatID;
-                                 
+
     this.firestore
-    .collection('chats')
-    .doc(this.chatID)
-    .collection('messages')
-    .add(this.message.toJSON())
-    .then((result:any) =>{
-      console.log('finished adding message' , result);
-      this.message.textMessage = '';
-      this.myImgElem.nativeElement.src = '';
-      this.imgUploaded = false;
-    });
+      .collection('chats')
+      .doc(this.chatID)
+      .collection('messages')
+      .add(this.message.toJSON())
+      .then((result: any) => {
+        console.log('finished adding message', result);
+        this.message.textMessage = '';
+        this.myImgElem.nativeElement.src = '';
+        this.imgUploaded = false;
+      });
   }
 
   sendChannelMessage() {
@@ -186,28 +182,28 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.message.image = this.imgURL;
     this.message.codeBlock = this.codeBlock;
     this.message.channelID = this.channelId;
-                                 
+
     this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .collection('messages')
-    .add(this.message.toJSON())
-    .then((result:any) =>{
-      console.log('finished adding message' , result);
-      this.message.textMessage = '';
-      this.myImgElem.nativeElement.src = '';
-      this.imgUploaded = false;
-    });
+      .collection('channels')
+      .doc(this.channelId)
+      .collection('messages')
+      .add(this.message.toJSON())
+      .then((result: any) => {
+        console.log('finished adding message', result);
+        this.message.textMessage = '';
+        this.myImgElem.nativeElement.src = '';
+        this.imgUploaded = false;
+      });
   }
 
   //answer message in Thread
   commentMessage() {
     this.message.timeSent = this.timeSent.getTime();
-      this.message.fromID = this.uid;
-      this.message.fromName = this.fromUser;                     
-      this.message.image = this.imgURL;
-      this.message.codeBlock = this.codeBlock;
-      this.message.channelID = this.channelId;
+    this.message.fromID = this.uid;
+    this.message.fromName = this.fromUser;
+    this.message.image = this.imgURL;
+    this.message.codeBlock = this.codeBlock;
+    this.message.channelID = this.channelId;
 
     this.firestore
       .collection('channels')
@@ -216,8 +212,8 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
       .doc(this.threadId)
       .collection('comments')
       .add(this.message.toJSON())
-      .then((result:any) =>{
-        console.log('finished adding comment' , result);
+      .then((result: any) => {
+        console.log('finished adding comment', result);
         this.message.textMessage = '';
         this.myImgElem.nativeElement.src = '';
         this.imgUploaded = false;
@@ -229,7 +225,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
     this.status = this.toggle ? 'Enable' : 'Disable';
     this.codeBlock = !this.codeBlock;
     this.highlighted = !this.highlighted;
-    console.log('cb wert',this.codeBlock);
+    console.log('cb wert', this.codeBlock);
   }
 
   ngAfterViewInit() {
@@ -260,7 +256,7 @@ export class MessageBoxComponent implements OnInit, AfterViewChecked, AfterViewI
   }
 
   private synchronizeScroll() {
-    const localSub  = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
+    const localSub = fromEvent(this.textArea.nativeElement, 'scroll').subscribe(() => {
       const toTop = this.textArea.nativeElement.scrollTop;
       const toLeft = this.textArea.nativeElement.scrollLeft;
 

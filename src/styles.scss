@@ -1,4 +1,5 @@
 @import "~prismjs/themes/prism-okaidia";
+
 // @import "~prismjs/themes/prism-tomorrow";
 // @import "~prismjs/themes/prism-solarizedlight";
 // @import "~prismjs/themes/prism";
@@ -14,6 +15,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -91,12 +93,12 @@ h1 {
   user-select: none;
 }
 
-.line-numbers-rows > span {
+.line-numbers-rows>span {
   display: block;
   counter-increment: linenumber;
 }
 
-.line-numbers-rows > span:before {
+.line-numbers-rows>span:before {
   content: counter(linenumber);
   color: rgb(219, 219, 219);
   display: block;
@@ -129,10 +131,12 @@ h1 {
 
 .user {
   position: relative;
+
   .user-img {
     position: absolute;
     top: 0;
     left: 0;
+
     img {
       object-fit: cover;
       height: 40px;
@@ -160,6 +164,7 @@ h1 {
 
 .msg-img-container {
   margin-top: 12px;
+
   img {
     object-fit: cover;
     max-width: 200px;
@@ -170,4 +175,71 @@ h1 {
   overflow-y: auto;
   height: 64vh;
   width: 100%;
+}
+
+.code-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+}
+
+.text-area-code-editor {
+
+  &,
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+    border: 0;
+  }
+}
+
+.text-area-code-editor,
+.pre,
+.code {
+  tab-size: 4;
+  margin: 0;
+  padding: 0;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.pre {
+  height: 100%;
+  min-height: inherit;
+  z-index: 1;
+  overflow: auto;
+  padding: 15px 0 0 70px;
+
+  .code {
+    min-height: inherit;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+.text-area-code-editor {
+  caret-color: rgb(255, 255, 255);
+  white-space: nowrap;
+  overflow: auto;
+  text-align: left;
+  display: block;
+  resize: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  color: transparent;
+  background: transparent;
+  z-index: 2;
+  padding: 15px 0 0 70px;
+}
+
+.code-style {
+  background-color: black;
+  min-height: 100px;
+  padding: 16px;
+  color: white;
+  border-radius: 16px;
 }

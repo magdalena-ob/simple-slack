@@ -30,19 +30,31 @@
         <div class="msg-img-container">
           <img src="{{ message.image }}">
         </div>
+
+        <!--<form [ngClass]="{'d-none' : !message.codeBlock}" [formGroup]="form">
+            <div class="code-container line-numbers">
+                
+                <pre aria-hidden="false" class="pre line-numbers" #pre><code [ngClass]="['code', 'language-' + codeType]" #codeContent></code>
+            </pre>
+            </div>
+        </form>-->
+        <div class="code-style" *ngIf="message.codeBlock">
+          {{message.textMessage }}
+        </div> 
+
       </div>
       <div class="response-msg-cont">
-        <mat-icon class="answer-icon" matTooltip="antworten" matTooltipPosition="above" (click)="drawer.open()"
-        [routerLink]="['/main-page/channel/' + message.channelID + '/thread/' + message.customIdMessage]">
-        chat
-      </mat-icon>
+        <mat-icon class="answer-icon" matTooltip="Sieh dir hier die Antworten an." matTooltipPosition="above" (click)="drawer.open()"
+          [routerLink]="['/main-page/channel/' + message.channelID + '/thread/' + message.customIdMessage]">
+          chat
+        </mat-icon>
       </div>
     </mat-list>
   </div>
   <div>
     <app-message-box></app-message-box>
   </div>
-  
+
   <mat-drawer #drawer class="thread-container" mode="side" position="end" [opened]="false">
     <div class="title-container">
       <b>Thread</b>
@@ -53,5 +65,8 @@
     <div>
       <router-outlet></router-outlet>
     </div>
+   <!-- <div>
+      <app-message-box></app-message-box>
+    </div>-->
   </mat-drawer>
 </mat-drawer-container>

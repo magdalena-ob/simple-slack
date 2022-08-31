@@ -24,7 +24,6 @@ export class ThreadComponent implements OnInit {
   allComments: any = [];
 
   ngOnInit(): void {
-
      this.route.params.subscribe((params) => {
       console.log('whole param', params);
       this.channelId = params.id1;
@@ -36,18 +35,7 @@ export class ThreadComponent implements OnInit {
       this.getComments();
     })
   
-    //this.route.paramMap.subscribe(params => {
-    //  console.log('whole param', params);
-    //  this.channelId = params.get('id1')
-    //  this.threadId = params.get('id2');
-    //  console.log('got channel id ', this.channelId);
-    //  console.log('got thread id ', this.threadId);
-    //  this.getThread();
-    //})
   }
-
-  //query
-  //const q = query(colRef, orderBy('timeSent'));
 
   getThread() {
     this.firestore

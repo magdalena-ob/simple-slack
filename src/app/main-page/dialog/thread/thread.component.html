@@ -25,6 +25,9 @@
         <div class="msg-img-container">
             <img src="{{ comment.image }}">
         </div>
+        <div class="code-style" *ngIf="message.codeBlock">
+            {{message.textMessage }}
+        </div>
     </div>
 </mat-list>
 

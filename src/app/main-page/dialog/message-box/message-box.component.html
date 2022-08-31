@@ -12,7 +12,7 @@
         </mat-form-field>
         <form [ngClass]="{'d-none' : !codeBlock}" [formGroup]="form">
             <div class="code-container line-numbers">
-                <textarea #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
+                <textarea [(ngModel)]="message.textMessage" #textArea placeholder="Add your code (default html)" class="text-area-code-editor"
                     formControlName="content" spellcheck="false">
               <img #placeForImgInMessageBox src="">
             </textarea>
@@ -29,7 +29,7 @@
             [ngClass]="{'light-grey' : toggle, 'grey': !toggle}">
             <mat-icon>code</mat-icon>
         </button>
-        <button [disabled]="message.textMessage == '' && !imgUploaded && !codeBlock" mat-flat-button class="send-icon-button" (click)="sendMessage()">
+        <button [disabled]="message.textMessage == '' && !imgUploaded" mat-flat-button class="send-icon-button" (click)="sendMessage()">
             <mat-icon>send</mat-icon>
         </button>
     </div>
